@@ -63,7 +63,6 @@
         <Compile Include="Models\ParameterType.cs" />
         <Compile Include="Services\CalculationBookService.cs" />
         <Compile Include="Services\CalculationService.cs" />
-        <Compile Include="Services\FoundationCalculationService.cs" />
         <Compile Include="ViewModels\MainViewModel.cs" />
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
