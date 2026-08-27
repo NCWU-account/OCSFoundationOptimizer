@@ -68,70 +68,27 @@ namespace OCSFoundationOptimizer
         private void FitImageToViewer()
         {
             if (SampleImage.Source == null)
-            {
                 return;
-            }
 
+            _imageWidth = SampleImage.Source.Width;
+            _imageHeight = SampleImage.Source.Height;
 
-            _imageWidth =
-                SampleImage.Source.Width;
-
-            _imageHeight =
-                SampleImage.Source.Height;
-
-
-            if (_imageWidth <= 0 ||
-                _imageHeight <= 0)
-            {
+            if (_imageWidth <= 0 || _imageHeight <= 0)
                 return;
-            }
 
+            double viewerWidth = ImageViewer.ActualWidth;
+            double viewerHeight = ImageViewer.ActualHeight;
 
-            double viewerWidth =
-                ImageViewer.ActualWidth;
-
-            double viewerHeight =
-                ImageViewer.ActualHeight;
-
-
-            if (viewerWidth <= 0 ||
-                viewerHeight <= 0)
-            {
+            if (viewerWidth <= 0 || viewerHeight <= 0)
                 return;
-            }
 
+            double availableWidth = viewerWidth - 20;
+            double availableHeight = viewerHeight - 20;
 
-            // =================================================
-            // 留出边距
-            // =================================================
+            double scaleX = availableWidth / _imageWidth;
+            double scaleY = availableHeight / _imageHeight;
 
-            double availableWidth =
-                viewerWidth - 20;
-
-            double availableHeight =
-                viewerHeight - 20;
-
-
-            // =================================================
-            // 根据宽高计算缩放比例
-            // =================================================
-
-            double scaleX =
-                availableWidth / _imageWidth;
-
-            double scaleY =
-                availableHeight / _imageHeight;
-
-
-            // =================================================
-            // 保持比例
-            // =================================================
-
-            _currentScale =
-                Math.Min(
-                    scaleX,
-                    scaleY);
-
+            _currentScale = Math.Min(scaleX, scaleY);
 
             if (_currentScale <= 0 ||
                 double.IsNaN(_currentScale) ||
@@ -140,57 +97,20 @@ namespace OCSFoundationOptimizer
                 _currentScale = 1.0;
             }
 
+            ImageScale.ScaleX = _currentScale;
+            ImageScale.ScaleY = _currentScale;
 
-            // =================================================
-            // 设置缩放
-            // =================================================
-
-            ImageScale.ScaleX =
-                _currentScale;
-
-            ImageScale.ScaleY =
-                _currentScale;
-
-
-            // =================================================
-            // 计算居中位置
-            // =================================================
-
-            double scaledWidth =
-                _imageWidth *
-                _currentScale;
-
-            double scaledHeight =
-                _imageHeight *
-                _currentScale;
-
+            double scaledWidth = _imageWidth * _currentScale;
+            double scaledHeight = _imageHeight * _currentScale;
 
             double offsetX =
-                (viewerWidth -
-                 scaledWidth) / 2.0;
-
+                (viewerWidth - scaledWidth) / 2.0;
 
             double offsetY =
-                (viewerHeight -
-                 scaledHeight) / 2.0;
+                (viewerHeight - scaledHeight) / 2.0;
 
-
-            // =================================================
-            // 设置图片位置
-            // =================================================
-
-            ImageTranslate.X =
-                Math.Max(0, offsetX);
-
-            ImageTranslate.Y =
-                Math.Max(0, offsetY);
-
-
-            // =================================================
-            // 更新布局
-            // =================================================
-
-            ImageScrollViewer.ScrollToHome();
+            ImageTranslate.X = offsetX;
+            ImageTranslate.Y = offsetY;
         }
 
 
@@ -340,8 +260,27 @@ namespace OCSFoundationOptimizer
             object sender,
             MouseButtonEventArgs e)
         {
-            if (e.LeftButton !=
-                MouseButtonState.Pressed)
+            // =====================================================
+            // 双击：恢复自适应
+            // =====================================================
+
+            if (e.ClickCount == 2)
+            {
+                StopDragging();
+
+                FitImageToViewer();
+
+                e.Handled = true;
+
+                return;
+            }
+
+
+            // =====================================================
+            // 单击：开始拖动
+            // =====================================================
+
+            if (e.LeftButton != MouseButtonState.Pressed)
             {
                 return;
             }
@@ -354,8 +293,7 @@ namespace OCSFoundationOptimizer
                 e.GetPosition(ImageViewer);
 
 
-            ImageViewer
-                .CaptureMouse();
+            ImageViewer.CaptureMouse();
 
 
             Mouse.OverrideCursor =
@@ -375,46 +313,21 @@ namespace OCSFoundationOptimizer
             MouseEventArgs e)
         {
             if (!_isDragging)
-            {
                 return;
-            }
-
-
-            if (e.LeftButton !=
-                MouseButtonState.Pressed)
-            {
-                StopDragging();
-                return;
-            }
-
 
             Point currentPosition =
                 e.GetPosition(ImageViewer);
 
-
             Vector movement =
-                currentPosition -
-                _lastMousePosition;
+                currentPosition - _lastMousePosition;
 
+            ImageTranslate.X += movement.X;
+            ImageTranslate.Y += movement.Y;
 
-            // =================================================
-            // 图片跟随鼠标移动
-            // =================================================
-
-            ImageTranslate.X +=
-                movement.X;
-
-            ImageTranslate.Y +=
-                movement.Y;
-
-
-            _lastMousePosition =
-                currentPosition;
-
+            _lastMousePosition = currentPosition;
 
             e.Handled = true;
         }
-
 
         // =====================================================
         // 鼠标左键释放
@@ -474,20 +387,16 @@ namespace OCSFoundationOptimizer
         // =====================================================
         // 窗口尺寸变化
         // =====================================================
-
-        protected override void OnRenderSizeChanged(
-            SizeChangedInfo sizeInfo)
+        private void ImageViewer_SizeChanged(
+            object sender,
+            SizeChangedEventArgs e)
         {
-            base.OnRenderSizeChanged(sizeInfo);
-
-
             if (!_isDragging)
             {
-                Dispatcher.BeginInvoke(
-                    new Action(
-                        FitImageToViewer));
+                FitImageToViewer();
             }
         }
+      
 
 
         // =====================================================

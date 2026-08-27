@@ -45,17 +45,17 @@ namespace OCSFoundationOptimizer.Calculations
                 double width =
                     GetNumber(
                         parameters,
-                        "FoundationWidth");
+                        "a0");
 
                 double length =
                     GetNumber(
                         parameters,
-                        "FoundationLength");
+                        "b0");
 
                 double height =
                     GetNumber(
                         parameters,
-                        "FoundationHeight");
+                        "a1");
 
 
                 // ==========================================

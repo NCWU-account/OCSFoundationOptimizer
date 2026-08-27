@@ -6,9 +6,9 @@
         mc:Ignorable="d"
         Title="OCS基础优化计算"
         Height="850"
-        Width="1400"
+        Width="1450"
         MinHeight="720"
-        MinWidth="1100"
+        MinWidth="1150"
         WindowStartupLocation="CenterScreen"
         Background="#F3F5F7">
 
@@ -17,7 +17,8 @@
     <!-- ========================================================= -->
 
     <Window.Resources>
-
+        <BooleanToVisibilityConverter
+            x:Key="BooleanToVisibilityConverter" />
         <!-- ===================================================== -->
         <!-- 基础字体 -->
         <!-- ===================================================== -->
@@ -74,40 +75,318 @@
 
 
         <!-- ===================================================== -->
-        <!-- 理论按钮 -->
+        <!-- 参数名称 -->
         <!-- ===================================================== -->
 
-        <Style x:Key="TheoryButton"
-               TargetType="Button">
+        <Style x:Key="ParameterNameStyle"
+               TargetType="TextBlock">
+
+            <Setter Property="FontSize"
+                    Value="12" />
+
+            <Setter Property="Foreground"
+                    Value="#4B5563" />
+
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+
+        </Style>
+
+
+        <!-- ===================================================== -->
+        <!-- 参数输入框 -->
+        <!-- ===================================================== -->
+
+        <Style x:Key="ParameterTextBox"
+               TargetType="TextBox">
 
             <Setter Property="Height"
-                    Value="70" />
+                    Value="36" />
 
-            <Setter Property="Margin"
-                    Value="0,0,0,12" />
+            <Setter Property="FontSize"
+                    Value="13" />
+
+            <Setter Property="Foreground"
+                    Value="#1F2937" />
 
             <Setter Property="Background"
-                    Value="#F8FAFC" />
+                    Value="#FAFBFC" />
 
             <Setter Property="BorderBrush"
-                    Value="#D9E0E6" />
+                    Value="#CBD3DB" />
 
             <Setter Property="BorderThickness"
                     Value="1" />
 
             <Setter Property="Padding"
-                    Value="12" />
-
-            <Setter Property="Cursor"
-                    Value="Hand" />
-
-            <Setter Property="HorizontalContentAlignment"
-                    Value="Stretch" />
+                    Value="10,0" />
 
             <Setter Property="VerticalContentAlignment"
                     Value="Center" />
 
         </Style>
+
+
+        <!-- ===================================================== -->
+        <!-- 输入参数模板 -->
+        <!-- ===================================================== -->
+
+        <DataTemplate x:Key="ParameterTemplate">
+
+            <Border Margin="0,0,10,12"
+                    Padding="12"
+                    Background="#FFFFFF"
+                    BorderBrush="#E2E7EC"
+                    BorderThickness="1"
+                    CornerRadius="4">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="Auto" />
+
+                        <RowDefinition Height="8" />
+
+                        <RowDefinition Height="36" />
+
+                        <RowDefinition Height="Auto" />
+
+                    </Grid.RowDefinitions>
+
+
+                    <!-- 参数名称 -->
+
+                    <Grid Grid.Row="0">
+
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="*" />
+
+                            <ColumnDefinition Width="Auto" />
+
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock Grid.Column="0"
+                                   Text="{Binding Name}"
+                                   Style="{StaticResource ParameterNameStyle}" />
+
+
+                        <!-- 必填标识 -->
+
+                        <TextBlock Grid.Column="1"
+                                   Text="必填"
+                                   FontSize="9"
+                                   Foreground="#9AA3AD"
+                                   VerticalAlignment="Center"
+                                   Visibility="{Binding IsRequired,
+                                Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    </Grid>
+
+
+                    <!-- 输入区域 -->
+
+                    <Border Grid.Row="2"
+                            Background="#FAFBFC"
+                            BorderBrush="#CBD3DB"
+                            BorderThickness="1"
+                            CornerRadius="3">
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="*" />
+
+                                <ColumnDefinition Width="Auto" />
+
+                            </Grid.ColumnDefinitions>
+
+
+                            <!-- 输入框 -->
+
+                            <TextBox Grid.Column="0"
+                                     Text="{Binding Value,
+                                                    Mode=TwoWay,
+                                                    UpdateSourceTrigger=PropertyChanged}"
+                                     IsReadOnly="{Binding IsReadOnly}"
+                                     Style="{StaticResource ParameterTextBox}"
+                                     BorderThickness="0"
+                                     Background="Transparent"
+                                     Padding="9,0" />
+
+
+                            <!-- 单位 -->
+
+                            <Border Grid.Column="1"
+                                    Margin="0,0,8,0"
+                                    VerticalAlignment="Center"
+                                    Background="#EEF1F4"
+                                    CornerRadius="2"
+                                    Padding="7,3">
+
+                                <TextBlock Text="{Binding Unit}"
+                                           FontSize="10"
+                                           Foreground="#69737D" />
+
+                            </Border>
+
+                        </Grid>
+
+
+                        <!-- 参数错误 -->
+
+                        <Border.Style>
+
+                            <Style TargetType="Border">
+
+                                <Setter Property="BorderBrush"
+                                        Value="#CBD3DB" />
+
+                                <Setter Property="Background"
+                                        Value="#FAFBFC" />
+
+                                <Style.Triggers>
+
+                                    <DataTrigger Binding="{Binding HasError}"
+                                                 Value="True">
+
+                                        <Setter Property="BorderBrush"
+                                                Value="#D93025" />
+
+                                        <Setter Property="Background"
+                                                Value="#FFF7F7" />
+
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding IsReadOnly}"
+                                                 Value="True">
+
+                                        <Setter Property="Background"
+                                                Value="#F1F3F5" />
+
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+
+                            </Style>
+
+                        </Border.Style>
+
+                    </Border>
+
+
+                    <!-- 错误提示 -->
+
+                    <TextBlock Grid.Row="3"
+                               Text="{Binding ErrorMessage}"
+                               FontSize="10"
+                               Foreground="#D93025"
+                               Margin="2,5,0,0"
+                               TextWrapping="Wrap">
+
+                        <TextBlock.Style>
+
+                            <Style TargetType="TextBlock">
+
+                                <Setter Property="Visibility"
+                                        Value="Collapsed" />
+
+                                <Style.Triggers>
+
+                                    <DataTrigger Binding="{Binding HasError}"
+                                                 Value="True">
+
+                                        <Setter Property="Visibility"
+                                                Value="Visible" />
+
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+
+                            </Style>
+
+                        </TextBlock.Style>
+
+                    </TextBlock>
+
+                </Grid>
+
+            </Border>
+
+        </DataTemplate>
+
+
+        <!-- ===================================================== -->
+        <!-- 结果参数模板 -->
+        <!-- ===================================================== -->
+
+        <DataTemplate x:Key="ResultTemplate">
+
+            <Border Margin="0,0,10,12"
+                    Padding="12"
+                    Background="#F9FAFB"
+                    BorderBrush="#E2E7EC"
+                    BorderThickness="1"
+                    CornerRadius="4">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="Auto" />
+
+                        <RowDefinition Height="6" />
+
+                        <RowDefinition Height="Auto" />
+
+                    </Grid.RowDefinitions>
+
+
+                    <!-- 名称 -->
+
+                    <TextBlock Grid.Row="0"
+                               Text="{Binding Name}"
+                               FontSize="11"
+                               Foreground="#69737D" />
+
+
+                    <!-- 数值 -->
+
+                    <Grid Grid.Row="2">
+
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="*" />
+
+                            <ColumnDefinition Width="Auto" />
+
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock Grid.Column="0"
+                                   Text="{Binding Value}"
+                                   FontSize="17"
+                                   FontWeight="SemiBold"
+                                   Foreground="#1F2937"
+                                   VerticalAlignment="Center" />
+
+
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding Unit}"
+                                   FontSize="10"
+                                   Foreground="#7B8490"
+                                   VerticalAlignment="Bottom"
+                                   Margin="8,0,0,2" />
+
+                    </Grid>
+
+                </Grid>
+
+            </Border>
+
+        </DataTemplate>
 
 
         <!-- ===================================================== -->
@@ -168,7 +447,7 @@
 
 
         <!-- ===================================================== -->
-        <!-- 执行按钮 -->
+        <!-- 执行计算按钮 -->
         <!-- ===================================================== -->
 
         <Style x:Key="ExecuteButton"
@@ -209,6 +488,9 @@
                     <Setter Property="Background"
                             Value="#285F91" />
 
+                    <Setter Property="BorderBrush"
+                            Value="#285F91" />
+
                 </Trigger>
 
                 <Trigger Property="IsPressed"
@@ -236,145 +518,40 @@
 
 
         <!-- ===================================================== -->
-        <!-- 输入参数 -->
+        <!-- 理论按钮 -->
         <!-- ===================================================== -->
 
-        <DataTemplate x:Key="ParameterTemplate">
+        <Style x:Key="TheoryButton"
+               TargetType="Button">
 
-            <Grid Margin="0,0,0,14">
+            <Setter Property="Height"
+                    Value="68" />
 
-                <Grid.ColumnDefinitions>
+            <Setter Property="Margin"
+                    Value="0,0,0,10" />
 
-                    <ColumnDefinition Width="125" />
+            <Setter Property="Background"
+                    Value="#F8FAFC" />
 
-                    <ColumnDefinition Width="*" />
+            <Setter Property="BorderBrush"
+                    Value="#D9E0E6" />
 
-                    <ColumnDefinition Width="48" />
+            <Setter Property="BorderThickness"
+                    Value="1" />
 
-                </Grid.ColumnDefinitions>
+            <Setter Property="Padding"
+                    Value="12" />
 
+            <Setter Property="Cursor"
+                    Value="Hand" />
 
-                <TextBlock Grid.Column="0"
-                           Text="{Binding Name}"
-                           VerticalAlignment="Center"
-                           FontSize="13"
-                           Foreground="#374151" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Stretch" />
 
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
 
-                <Border Grid.Column="1"
-                        Height="34"
-                        Background="#FAFBFC"
-                        BorderBrush="#CBD3DB"
-                        BorderThickness="1"
-                        CornerRadius="3">
-
-                    <Border.Style>
-
-                        <Style TargetType="Border">
-
-                            <Setter Property="BorderBrush"
-                                    Value="#CBD3DB" />
-
-                            <Setter Property="Background"
-                                    Value="#FAFBFC" />
-
-                            <Style.Triggers>
-
-                                <DataTrigger Binding="{Binding HasError}"
-                                             Value="True">
-
-                                    <Setter Property="BorderBrush"
-                                            Value="#D93025" />
-
-                                    <Setter Property="Background"
-                                            Value="#FFF5F5" />
-
-                                </DataTrigger>
-
-                                <DataTrigger Binding="{Binding IsReadOnly}"
-                                             Value="True">
-
-                                    <Setter Property="Background"
-                                            Value="#F1F3F5" />
-
-                                </DataTrigger>
-
-                            </Style.Triggers>
-
-                        </Style>
-
-                    </Border.Style>
-
-
-                    <TextBox Text="{Binding Value,
-                                            Mode=TwoWay,
-                                            UpdateSourceTrigger=PropertyChanged}"
-                             IsReadOnly="{Binding IsReadOnly}"
-                             BorderThickness="0"
-                             Background="Transparent"
-                             Padding="9,0"
-                             FontSize="13"
-                             Foreground="#1F2937"
-                             VerticalContentAlignment="Center" />
-
-                </Border>
-
-
-                <TextBlock Grid.Column="2"
-                           Text="{Binding Unit}"
-                           VerticalAlignment="Center"
-                           Margin="9,0,0,0"
-                           FontSize="12"
-                           Foreground="#7B8490" />
-
-            </Grid>
-
-        </DataTemplate>
-
-
-        <!-- ===================================================== -->
-        <!-- 结果参数 -->
-        <!-- ===================================================== -->
-
-        <DataTemplate x:Key="ResultTemplate">
-
-            <Grid Margin="0,0,0,13">
-
-                <Grid.ColumnDefinitions>
-
-                    <ColumnDefinition Width="150" />
-
-                    <ColumnDefinition Width="*" />
-
-                    <ColumnDefinition Width="55" />
-
-                </Grid.ColumnDefinitions>
-
-
-                <TextBlock Grid.Column="0"
-                           Text="{Binding Name}"
-                           VerticalAlignment="Center"
-                           FontSize="13"
-                           Foreground="#4B5563" />
-
-
-                <TextBlock Grid.Column="1"
-                           Text="{Binding Value}"
-                           VerticalAlignment="Center"
-                           FontSize="14"
-                           FontWeight="SemiBold"
-                           Foreground="#1F2937" />
-
-
-                <TextBlock Grid.Column="2"
-                           Text="{Binding Unit}"
-                           VerticalAlignment="Center"
-                           FontSize="12"
-                           Foreground="#7B8490" />
-
-            </Grid>
-
-        </DataTemplate>
+        </Style>
 
     </Window.Resources>
 
@@ -471,14 +648,17 @@
 
             <Grid.ColumnDefinitions>
 
-                <!-- 左侧 -->
+                <!-- 左侧理论 -->
+
                 <ColumnDefinition Width="205" />
 
-                <!-- 中间 -->
+                <!-- 中间计算区 -->
+
                 <ColumnDefinition Width="*" />
 
-                <!-- 右侧 -->
-                <ColumnDefinition Width="540" />
+                <!-- 右侧图片 -->
+
+                <ColumnDefinition Width="500" />
 
             </Grid.ColumnDefinitions>
 
@@ -506,6 +686,8 @@
                     </Grid.RowDefinitions>
 
 
+                    <!-- 标题 -->
+
                     <StackPanel Grid.Row="0"
                                 Margin="18,18,18,16">
 
@@ -518,6 +700,8 @@
 
                     </StackPanel>
 
+
+                    <!-- 理论选择 -->
 
                     <StackPanel Grid.Row="1"
                                 Margin="18,0">
@@ -554,6 +738,9 @@
                                             <Setter Property="Background"
                                                     Value="#F1F6FA" />
 
+                                            <Setter Property="BorderBrush"
+                                                    Value="#9EB2C3" />
+
                                         </Trigger>
 
                                     </Style.Triggers>
@@ -567,7 +754,7 @@
 
                                 <Grid.ColumnDefinitions>
 
-                                    <ColumnDefinition Width="32" />
+                                    <ColumnDefinition Width="28" />
 
                                     <ColumnDefinition Width="*" />
 
@@ -577,8 +764,8 @@
 
 
                                 <Ellipse Grid.Column="0"
-                                         Width="10"
-                                         Height="10"
+                                         Width="9"
+                                         Height="9"
                                          HorizontalAlignment="Center"
                                          VerticalAlignment="Center">
 
@@ -608,8 +795,7 @@
                                 </Ellipse>
 
 
-                                <StackPanel Grid.Column="1"
-                                            Margin="9,0,0,0">
+                                <StackPanel Grid.Column="1">
 
                                     <TextBlock Text="理论 A"
                                                FontSize="14"
@@ -617,7 +803,7 @@
                                                Foreground="#263238" />
 
                                     <TextBlock Text="计算模型 A"
-                                               FontSize="11"
+                                               FontSize="10"
                                                Foreground="#89929C"
                                                Margin="0,3,0,0" />
 
@@ -692,6 +878,9 @@
                                             <Setter Property="Background"
                                                     Value="#F1F6FA" />
 
+                                            <Setter Property="BorderBrush"
+                                                    Value="#9EB2C3" />
+
                                         </Trigger>
 
                                     </Style.Triggers>
@@ -705,7 +894,7 @@
 
                                 <Grid.ColumnDefinitions>
 
-                                    <ColumnDefinition Width="32" />
+                                    <ColumnDefinition Width="28" />
 
                                     <ColumnDefinition Width="*" />
 
@@ -715,8 +904,8 @@
 
 
                                 <Ellipse Grid.Column="0"
-                                         Width="10"
-                                         Height="10"
+                                         Width="9"
+                                         Height="9"
                                          HorizontalAlignment="Center"
                                          VerticalAlignment="Center">
 
@@ -746,8 +935,7 @@
                                 </Ellipse>
 
 
-                                <StackPanel Grid.Column="1"
-                                            Margin="9,0,0,0">
+                                <StackPanel Grid.Column="1">
 
                                     <TextBlock Text="理论 B"
                                                FontSize="14"
@@ -755,7 +943,7 @@
                                                Foreground="#263238" />
 
                                     <TextBlock Text="计算模型 B"
-                                               FontSize="11"
+                                               FontSize="10"
                                                Foreground="#89929C"
                                                Margin="0,3,0,0" />
 
@@ -800,6 +988,8 @@
 
                     </StackPanel>
 
+
+                    <!-- 状态 -->
 
                     <Border Grid.Row="2"
                             Background="#F7F9FB"
@@ -846,16 +1036,24 @@
 
                 <Grid.RowDefinitions>
 
-                    <RowDefinition Height="*" />
+                    <!-- 输入区域 -->
 
                     <RowDefinition Height="*" />
+
+                    <!-- 结果区域根据内容 -->
 
                     <RowDefinition Height="Auto" />
+
+                    <!-- 按钮 -->
+
+                    <RowDefinition Height="52" />
 
                 </Grid.RowDefinitions>
 
 
+                <!-- ================================================= -->
                 <!-- 输入参数 -->
+                <!-- ================================================= -->
 
                 <Border Grid.Row="0"
                         Background="#FFFFFF"
@@ -867,39 +1065,265 @@
 
                         <Grid.RowDefinitions>
 
+                            <!-- 标题 -->
                             <RowDefinition Height="Auto" />
 
+                            <!-- 分割线 -->
                             <RowDefinition Height="1" />
 
+                            <!-- 参数 -->
                             <RowDefinition Height="*" />
 
                         </Grid.RowDefinitions>
 
 
-                        <StackPanel Grid.Row="0"
-                                    Margin="18,16">
+                        <!-- ================================================= -->
+                        <!-- 标题 -->
+                        <!-- ================================================= -->
 
-                            <TextBlock Text="计算参数"
-                                       Style="{StaticResource SectionTitle}" />
+                        <Grid Grid.Row="0"
+                              Margin="18,15">
 
-                            <TextBlock Text="INPUT PARAMETERS"
-                                       Style="{StaticResource Caption}"
-                                       Margin="0,3,0,0" />
+                            <Grid.ColumnDefinitions>
 
-                        </StackPanel>
+                                <ColumnDefinition Width="*" />
 
+                                <ColumnDefinition Width="Auto" />
+
+                            </Grid.ColumnDefinitions>
+
+
+                            <StackPanel Grid.Column="0">
+
+                                <TextBlock Text="计算参数"
+                                           Style="{StaticResource SectionTitle}" />
+
+                                <TextBlock Text="INPUT PARAMETERS"
+                                           Style="{StaticResource Caption}"
+                                           Margin="0,3,0,0" />
+
+                            </StackPanel>
+
+
+                            <TextBlock Grid.Column="1"
+                                       Text="请输入设计参数"
+                                       FontSize="10"
+                                       Foreground="#9AA3AD"
+                                       VerticalAlignment="Center" />
+
+                        </Grid>
+
+
+                        <!-- ================================================= -->
+                        <!-- 分割线 -->
+                        <!-- ================================================= -->
 
                         <Border Grid.Row="1"
                                 Background="#E6E9ED" />
 
+
+                        <!-- ================================================= -->
+                        <!-- 参数区域 -->
+                        <!-- ================================================= -->
 
                         <ScrollViewer Grid.Row="2"
                                       VerticalScrollBarVisibility="Auto"
                                       HorizontalScrollBarVisibility="Disabled"
                                       Padding="18">
 
-                            <ItemsControl ItemsSource="{Binding InputParameters}"
-                                          ItemTemplate="{StaticResource ParameterTemplate}" />
+                            <ItemsControl ItemsSource="{Binding InputParameters}">
+
+
+                                <!-- ================================================= -->
+                                <!-- 三列布局 -->
+                                <!-- ================================================= -->
+
+                                <ItemsControl.ItemsPanel>
+
+                                    <ItemsPanelTemplate>
+
+                                        <UniformGrid Columns="3" />
+
+                                    </ItemsPanelTemplate>
+
+                                </ItemsControl.ItemsPanel>
+
+
+                                <!-- ================================================= -->
+                                <!-- 参数模板 -->
+                                <!-- ================================================= -->
+
+                                <ItemsControl.ItemTemplate>
+
+                                    <DataTemplate>
+
+                                        <Grid Margin="0,0,14,16">
+
+                                            <Grid.RowDefinitions>
+
+                                                <!-- 参数名称 -->
+                                                <RowDefinition Height="Auto" />
+
+                                                <!-- 名称与输入框间距 -->
+                                                <RowDefinition Height="5" />
+
+                                                <!-- 输入框 -->
+                                                <RowDefinition Height="34" />
+
+                                            </Grid.RowDefinitions>
+
+
+                                            <!-- ================================================= -->
+                                            <!-- 参数名称 -->
+                                            <!-- ================================================= -->
+
+                                            <Grid Grid.Row="0">
+
+                                                <Grid.ColumnDefinitions>
+
+                                                    <ColumnDefinition Width="*" />
+
+                                                    <ColumnDefinition Width="Auto" />
+
+                                                </Grid.ColumnDefinitions>
+
+
+                                                <TextBlock Grid.Column="0"
+                                                           Text="{Binding Name}"
+                                                           FontSize="12"
+                                                           FontWeight="Medium"
+                                                           Foreground="#374151"
+                                                           VerticalAlignment="Center"
+                                                           TextTrimming="CharacterEllipsis" />
+
+
+                                                <TextBlock Grid.Column="1"
+                                                           Text="必填"
+                                                           FontSize="9"
+                                                           Foreground="#9AA3AD"
+                                                           VerticalAlignment="Center"
+                                                           Margin="6,0,0,0"
+                                                           Visibility="{Binding IsRequired,
+                                                Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                                            </Grid>
+
+
+                                            <!-- ================================================= -->
+                                            <!-- 输入框 -->
+                                            <!-- ================================================= -->
+
+                                            <Grid Grid.Row="2">
+
+                                                <Grid.ColumnDefinitions>
+
+                                                    <!-- 输入区域 -->
+                                                    <ColumnDefinition Width="150" />
+
+                                                    <!-- 单位 -->
+                                                    <ColumnDefinition Width="Auto" />
+
+                                                </Grid.ColumnDefinitions>
+
+
+                                                <!-- ================================================= -->
+                                                <!-- 输入框 -->
+                                                <!-- ================================================= -->
+
+                                                <Border Grid.Column="0"
+                                                        Width="150"
+                                                        Height="34"
+                                                        HorizontalAlignment="Left"
+                                                        Background="#FAFBFC"
+                                                        BorderBrush="#CBD3DB"
+                                                        BorderThickness="1"
+                                                        CornerRadius="3">
+
+                                                    <Border.Style>
+
+                                                        <Style TargetType="Border">
+
+                                                            <Setter Property="BorderBrush"
+                                                                    Value="#CBD3DB" />
+
+                                                            <Setter Property="Background"
+                                                                    Value="#FAFBFC" />
+
+                                                            <Style.Triggers>
+
+
+                                                                <!-- 错误 -->
+
+                                                                <DataTrigger Binding="{Binding HasError}"
+                                                                             Value="True">
+
+                                                                    <Setter Property="BorderBrush"
+                                                                            Value="#D93025" />
+
+                                                                    <Setter Property="Background"
+                                                                            Value="#FFF5F5" />
+
+                                                                </DataTrigger>
+
+
+                                                                <!-- 只读 -->
+
+                                                                <DataTrigger Binding="{Binding IsReadOnly}"
+                                                                             Value="True">
+
+                                                                    <Setter Property="Background"
+                                                                            Value="#F1F3F5" />
+
+                                                                </DataTrigger>
+
+
+                                                                <!-- 鼠标悬停 -->
+
+                                                                <Trigger Property="IsMouseOver"
+                                                                         Value="True">
+
+                                                                    <Setter Property="BorderBrush"
+                                                                            Value="#9BAAB8" />
+
+                                                                </Trigger>
+
+                                                            </Style.Triggers>
+
+                                                        </Style>
+
+                                                    </Border.Style>
+
+
+                                                    <TextBox
+                                                        Text="{Binding Value,
+                                                    Mode=TwoWay,
+                                                    UpdateSourceTrigger=PropertyChanged}"
+                                                        IsReadOnly="{Binding IsReadOnly}"
+                                                        Style="{StaticResource ParameterTextBox}" />
+
+                                                </Border>
+
+
+                                                <!-- ================================================= -->
+                                                <!-- 单位 -->
+                                                <!-- ================================================= -->
+
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding Unit}"
+                                                           FontSize="11"
+                                                           Foreground="#7B8490"
+                                                           VerticalAlignment="Center"
+                                                           Margin="7,0,0,0" />
+
+                                            </Grid>
+
+                                        </Grid>
+
+                                    </DataTemplate>
+
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
 
                         </ScrollViewer>
 
@@ -908,7 +1332,9 @@
                 </Border>
 
 
+                <!-- ================================================= -->
                 <!-- 计算结果 -->
+                <!-- ================================================= -->
 
                 <Border Grid.Row="1"
                         Background="#FFFFFF"
@@ -924,66 +1350,104 @@
 
                             <RowDefinition Height="1" />
 
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
 
                         </Grid.RowDefinitions>
 
 
-                        <StackPanel Grid.Row="0"
-                                    Margin="18,16">
+                        <!-- 标题 -->
 
-                            <TextBlock Text="计算结果"
-                                       Style="{StaticResource SectionTitle}" />
+                        <Grid Grid.Row="0"
+                              Margin="18,14">
 
-                            <TextBlock Text="CALCULATION RESULTS"
-                                       Style="{StaticResource Caption}"
-                                       Margin="0,3,0,0" />
+                            <Grid.ColumnDefinitions>
 
-                        </StackPanel>
+                                <ColumnDefinition Width="*" />
+
+                                <ColumnDefinition Width="Auto" />
+
+                            </Grid.ColumnDefinitions>
+
+
+                            <StackPanel Grid.Column="0">
+
+                                <TextBlock Text="计算结果"
+                                           Style="{StaticResource SectionTitle}" />
+
+                                <TextBlock Text="CALCULATION RESULTS"
+                                           Style="{StaticResource Caption}"
+                                           Margin="0,3,0,0" />
+
+                            </StackPanel>
+
+
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding CurrentTheoryDisplayName}"
+                                       FontSize="10"
+                                       Foreground="#1F4E79"
+                                       VerticalAlignment="Center" />
+
+                        </Grid>
 
 
                         <Border Grid.Row="1"
                                 Background="#E6E9ED" />
 
 
-                        <ScrollViewer Grid.Row="2"
-                                      VerticalScrollBarVisibility="Auto"
-                                      Padding="18">
+                        <!-- 结果两列 -->
 
-                            <ItemsControl ItemsSource="{Binding ResultParameters}"
-                                          ItemTemplate="{StaticResource ResultTemplate}" />
+                        <ItemsControl Grid.Row="2"
+                                      ItemsSource="{Binding ResultParameters}"
+                                      ItemTemplate="{StaticResource ResultTemplate}"
+                                      Margin="18,14">
 
-                        </ScrollViewer>
+                            <ItemsControl.ItemsPanel>
+
+                                <ItemsPanelTemplate>
+
+                                    <UniformGrid Columns="2" />
+
+                                </ItemsPanelTemplate>
+
+                            </ItemsControl.ItemsPanel>
+
+                        </ItemsControl>
 
                     </Grid>
 
                 </Border>
 
 
+                <!-- ================================================= -->
                 <!-- 底部按钮 -->
+                <!-- ================================================= -->
 
-                <StackPanel Grid.Row="2"
-                            Orientation="Horizontal"
-                            HorizontalAlignment="Right">
+                <Grid Grid.Row="2">
 
-                    <Button Content="生成计算书"
-                            Width="120"
-                            Style="{StaticResource ActionButton}"
-                            Command="{Binding GenerateCalculationBookCommand}"
-                            Margin="0,0,10,0" />
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center">
 
-                    <Button Content="执行计算"
-                            Width="125"
-                            Style="{StaticResource ExecuteButton}"
-                            Command="{Binding CalculateCommand}" />
+                        <Button Content="生成计算书"
+                                Width="120"
+                                Style="{StaticResource ActionButton}"
+                                Command="{Binding GenerateCalculationBookCommand}"
+                                Margin="0,0,10,0" />
 
-                </StackPanel>
+                        <Button Content="执行计算"
+                                Width="125"
+                                Style="{StaticResource ExecuteButton}"
+                                Command="{Binding CalculateCommand}" />
+
+                    </StackPanel>
+
+                </Grid>
 
             </Grid>
 
 
             <!-- ================================================= -->
-            <!-- 右侧：结构示意图 -->
+            <!-- 右侧结构示意 -->
             <!-- ================================================= -->
 
             <Border Grid.Column="2"
@@ -1019,6 +1483,8 @@
                     </StackPanel>
 
 
+                    <!-- 图片 -->
+
                     <!-- ================================================= -->
                     <!-- 图片查看区域 -->
                     <!-- ================================================= -->
@@ -1030,77 +1496,44 @@
                             BorderThickness="1"
                             ClipToBounds="True">
 
-                        <Grid x:Name="ImageViewer"
-                              Background="#F5F7F9"
-                              ClipToBounds="True">
+                        <Canvas x:Name="ImageViewer"
+                                Background="#F5F7F9"
+                                ClipToBounds="True"
+                                SizeChanged="ImageViewer_SizeChanged"
+                                PreviewMouseWheel="ImageViewer_MouseWheel"
+                                PreviewMouseLeftButtonDown="ImageViewer_MouseLeftButtonDown"
+                                PreviewMouseLeftButtonUp="ImageViewer_MouseLeftButtonUp"
+                                PreviewMouseMove="ImageViewer_MouseMove">
 
+                            <Image x:Name="SampleImage"
+                                   Source="pic/sample.png"
+                                   Stretch="None"
+                                   Width="Auto"
+                                   Height="Auto"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                   RenderTransformOrigin="0,0">
 
-                            <!-- ================================================= -->
-                            <!-- ScrollViewer -->
-                            <!-- ================================================= -->
+                                <Image.RenderTransform>
 
-                            <ScrollViewer x:Name="ImageScrollViewer"
-                                          HorizontalScrollBarVisibility="Hidden"
-                                          VerticalScrollBarVisibility="Hidden"
-                                          Background="#F5F7F9"
-                                          CanContentScroll="False"
-                                          PanningMode="None"
-                                          Focusable="False"
-                                          IsHitTestVisible="True"
-                                          PreviewMouseWheel="ImageViewer_MouseWheel"
-                                          PreviewMouseLeftButtonDown="ImageViewer_MouseLeftButtonDown"
-                                          PreviewMouseLeftButtonUp="ImageViewer_MouseLeftButtonUp"
-                                          PreviewMouseMove="ImageViewer_MouseMove"
-                                          PreviewMouseDoubleClick="ImageViewer_MouseDoubleClick">
+                                    <TransformGroup>
 
-                                <Grid>
+                                        <ScaleTransform x:Name="ImageScale"
+                                                        ScaleX="1"
+                                                        ScaleY="1" />
 
-                                    <!-- ================================================= -->
-                                    <!-- 图片 -->
-                                    <!-- ================================================= -->
+                                        <TranslateTransform x:Name="ImageTranslate"
+                                                            X="0"
+                                                            Y="0" />
 
-                                    <Image x:Name="SampleImage"
-                                           Source="pic/sample.png"
-                                           Stretch="None"
-                                           HorizontalAlignment="Left"
-                                           VerticalAlignment="Top"
-                                           RenderOptions.BitmapScalingMode="HighQuality"
-                                           RenderTransformOrigin="0,0">
+                                    </TransformGroup>
 
-                                        <Image.RenderTransform>
+                                </Image.RenderTransform>
 
-                                            <TransformGroup>
+                            </Image>
 
-                                                <!-- 缩放 -->
-
-                                                <ScaleTransform x:Name="ImageScale"
-                                                                ScaleX="1"
-                                                                ScaleY="1" />
-
-                                                <!-- 平移 -->
-
-                                                <TranslateTransform x:Name="ImageTranslate"
-                                                                     X="0"
-                                                                     Y="0" />
-
-                                            </TransformGroup>
-
-                                        </Image.RenderTransform>
-
-                                    </Image>
-
-                                </Grid>
-
-                            </ScrollViewer>
-
-
-                            <!-- ================================================= -->
                             <!-- 右上角提示 -->
-                            <!-- ================================================= -->
-
-                            <Border HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    Margin="10"
+                            <Border Canvas.Right="10"
+                                    Canvas.Top="10"
                                     Background="#EFFFFFFF"
                                     Padding="9,6"
                                     CornerRadius="3"
@@ -1112,14 +1545,9 @@
 
                             </Border>
 
-
-                            <!-- ================================================= -->
                             <!-- 左下角图片尺寸 -->
-                            <!-- ================================================= -->
-
-                            <Border HorizontalAlignment="Left"
-                                    VerticalAlignment="Bottom"
-                                    Margin="10"
+                            <Border Canvas.Left="10"
+                                    Canvas.Bottom="10"
                                     Background="#EFFFFFFF"
                                     Padding="8,5"
                                     CornerRadius="3"
@@ -1131,27 +1559,12 @@
 
                             </Border>
 
-
-                            <!-- ================================================= -->
-                            <!-- 中央提示 -->
-                            <!-- ================================================= -->
-
-                            <TextBlock Text="结构示意图"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       FontSize="11"
-                                       Foreground="#A0A8B0"
-                                       IsHitTestVisible="False"
-                                       Visibility="Collapsed" />
-
-                        </Grid>
+                        </Canvas>
 
                     </Border>
 
 
-                    <!-- ================================================= -->
                     <!-- 图片说明 -->
-                    <!-- ================================================= -->
 
                     <StackPanel Grid.Row="2"
                                 Margin="18,12,18,15">
@@ -1159,7 +1572,7 @@
                         <TextBlock Text="查看方式"
                                    Style="{StaticResource Caption}" />
 
-                        <TextBlock Text="滚动鼠标滚轮缩放示意图，按住鼠标左键拖动图片，双击恢复自适应显示。"
+                        <TextBlock Text="滚动鼠标滚轮缩放示意图，按住鼠标左键可拖动图片，双击恢复默认视图。"
                                    FontSize="11"
                                    Foreground="#69737D"
                                    TextWrapping="Wrap"
