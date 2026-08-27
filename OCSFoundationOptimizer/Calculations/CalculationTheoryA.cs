@@ -153,33 +153,30 @@ namespace OCSFoundationOptimizer.Calculations
                 // ==========================================
                 // 计算过程参数
                 // ==========================================
-
-                double area =
-                    20;
-
+                
+                double Ka = CountKp(fai);
                 result.ProcessParameters.Add(
                     new ParameterItem
                     {
-                        Key = "FoundationArea",
-                        Name = "基础面积",
-                        Value = area.ToString("F3"),
-                        Unit = "m²",
+                        Key = "k_a",
+                        Name = "被动土压力系数Ka",
+                        Value = Ka.ToString("F3"),
+                        Unit = "",
                         IsReadOnly = true
                     });
-
-
-                double volume =
-                    area * 2;
-
+                
+                double Ep = r*h/1000*h/1000*Ka/2;
                 result.ProcessParameters.Add(
                     new ParameterItem
                     {
-                        Key = "FoundationVolume",
-                        Name = "基础体积",
-                        Value = volume.ToString("F3"),
-                        Unit = "m³",
+                        Key = "E_p",
+                        Name = "被动土压力Ep",
+                        Value = Ep.ToString("F3"),
+                        Unit = "KN",
                         IsReadOnly = true
                     });
+
+                
 
 
                 // ==========================================
@@ -187,7 +184,7 @@ namespace OCSFoundationOptimizer.Calculations
                 // ==========================================
 
                 double resultK_0 =
-                    area * 10;
+                    Ep * 10;
 
                 result.ResultParameters.Add(
                     new ParameterItem
@@ -200,7 +197,7 @@ namespace OCSFoundationOptimizer.Calculations
                     });
 
                 double resultK_c =
-                                   area * 10;
+                    Ep * 10;
 
                 result.ResultParameters.Add(
                     new ParameterItem
@@ -214,7 +211,7 @@ namespace OCSFoundationOptimizer.Calculations
 
 
                 double resultp_k =
-                                   area * 10;
+                    Ep * 10;
 
                 result.ResultParameters.Add(
                     new ParameterItem
@@ -227,7 +224,7 @@ namespace OCSFoundationOptimizer.Calculations
                     });
 
                 double resultS_min =
-                                   area * 10;
+                    Ep * 10;
 
                 result.ResultParameters.Add(
                     new ParameterItem
@@ -241,7 +238,7 @@ namespace OCSFoundationOptimizer.Calculations
 
 
                 double resultS_max =
-                                   area * 10;
+                    Ep * 10;
 
                 result.ResultParameters.Add(
                     new ParameterItem
@@ -293,5 +290,19 @@ namespace OCSFoundationOptimizer.Calculations
 
             return value;
         }
+        
+        // 计算被动土压力系数Kp
+        public static double CountKp(double phiDegrees)
+        {
+            // 计算角度：45° - φ/2
+            double angleDegrees = 45.0 + phiDegrees / 2.0;
+            // 转换为弧度
+            double angleRadians = angleDegrees * Math.PI / 180.0;
+            // 计算 tan 并平方
+            double t = Math.Tan(angleRadians);
+            return t * t;
+        }
+        
+        
     }
 }
