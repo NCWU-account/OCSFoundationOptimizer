@@ -7,26 +7,32 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace OCSFoundationOptimizer.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private readonly CalculationService
-            _calculationService;
+        private readonly CalculationService _calculationService;
 
-        private readonly CalculationBookService
-            _calculationBookService;
+        private readonly CalculationBookService _calculationBookService;
 
+        // =====================================================
+        // 自动计算计时器
+        // =====================================================
 
+        private readonly DispatcherTimer _autoCalculateTimer;
         // =====================================================
         // 当前计算理论
         // =====================================================
 
-        private CalculationTheoryType _currentTheory
-            = CalculationTheoryType.A;
+        private CalculationTheoryType _currentTheory =
+            CalculationTheoryType.A;
 
 
+        /// <summary>
+        /// 当前选择的计算理论
+        /// </summary>
         public CalculationTheoryType CurrentTheory
         {
             get => _currentTheory;
@@ -38,7 +44,62 @@ namespace OCSFoundationOptimizer.ViewModels
                     _currentTheory = value;
 
                     OnPropertyChanged();
+
+                    // 通知理论 A / B 的选中状态发生变化
+                    OnPropertyChanged(
+                        nameof(IsTheoryASelected));
+
+                    OnPropertyChanged(
+                        nameof(IsTheoryBSelected));
+
+                    // 通知界面显示文字
+                    OnPropertyChanged(
+                        nameof(CurrentTheoryDisplayName));
                 }
+            }
+        }
+
+
+        // =====================================================
+        // 理论 A 是否选中
+        // =====================================================
+
+        public bool IsTheoryASelected
+        {
+            get
+            {
+                return CurrentTheory ==
+                       CalculationTheoryType.A;
+            }
+        }
+
+
+        // =====================================================
+        // 理论 B 是否选中
+        // =====================================================
+
+        public bool IsTheoryBSelected
+        {
+            get
+            {
+                return CurrentTheory ==
+                       CalculationTheoryType.B;
+            }
+        }
+
+
+        // =====================================================
+        // 当前理论显示名称
+        // =====================================================
+
+        public string CurrentTheoryDisplayName
+        {
+            get
+            {
+                return CurrentTheory ==
+                       CalculationTheoryType.A
+                    ? "理论 A"
+                    : "理论 B";
             }
         }
 
@@ -71,10 +132,7 @@ namespace OCSFoundationOptimizer.ViewModels
         // =====================================================
 
         public ObservableCollection<ParameterItem>
-            InputParameters
-        {
-            get;
-        } = new();
+            InputParameters { get; } = new();
 
 
         // =====================================================
@@ -82,30 +140,72 @@ namespace OCSFoundationOptimizer.ViewModels
         // =====================================================
 
         public ObservableCollection<ParameterItem>
-            ResultParameters
+            ResultParameters { get; } = new();
+
+
+        // =====================================================
+        // 计算状态
+        // =====================================================
+
+        private string _calculationStatus =
+            "等待输入参数";
+
+
+        /// <summary>
+        /// 当前计算状态
+        /// </summary>
+        public string CalculationStatus
         {
-            get;
-        } = new();
+            get => _calculationStatus;
+
+            private set
+            {
+                if (_calculationStatus != value)
+                {
+                    _calculationStatus = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
+        // =====================================================
+        // 是否可以执行计算
+        // =====================================================
+
+        public bool CanCalculate
+        {
+            get { return AreAllParametersValid(); }
+        }
 
 
         // =====================================================
         // 命令
         // =====================================================
 
-        public ICommand SelectTheoryACommand
-        {
-            get;
-        }
+        /// <summary>
+        /// 选择理论 A
+        /// </summary>
+        public ICommand SelectTheoryACommand { get; }
 
-        public ICommand SelectTheoryBCommand
-        {
-            get;
-        }
 
-        public ICommand GenerateCalculationBookCommand
-        {
-            get;
-        }
+        /// <summary>
+        /// 选择理论 B
+        /// </summary>
+        public ICommand SelectTheoryBCommand { get; }
+
+
+        /// <summary>
+        /// 执行计算
+        /// </summary>
+        public ICommand CalculateCommand { get; }
+
+
+        /// <summary>
+        /// 生成计算书
+        /// </summary>
+        public ICommand GenerateCalculationBookCommand { get; }
 
 
         // =====================================================
@@ -120,35 +220,93 @@ namespace OCSFoundationOptimizer.ViewModels
             _calculationBookService =
                 new CalculationBookService();
 
+            // =================================================
+            // 自动计算计时器
+            // =================================================
 
+            _autoCalculateTimer =
+                new DispatcherTimer
+                {
+                    Interval =
+                        TimeSpan.FromMilliseconds(300)
+                };
+
+            _autoCalculateTimer.Tick +=
+                AutoCalculateTimer_Tick;
             // 初始化参数
             InitializeParameters();
+
 
             // 监听参数变化
             SubscribeParameterEvents();
 
 
+            // =================================================
             // 理论 A
+            // =================================================
+
             SelectTheoryACommand =
-                new RelayCommand(
-                    _ => SelectTheory(
-                        CalculationTheoryType.A));
+                new RelayCommand(_ =>
+                {
+                    SelectTheory(
+                        CalculationTheoryType.A);
+                });
 
 
+            // =================================================
             // 理论 B
+            // =================================================
+
             SelectTheoryBCommand =
+                new RelayCommand(_ =>
+                {
+                    SelectTheory(
+                        CalculationTheoryType.B);
+                });
+
+
+            // =================================================
+            // 执行计算
+            // =================================================
+
+            CalculateCommand =
                 new RelayCommand(
-                    _ => SelectTheory(
-                        CalculationTheoryType.B));
+                    _ => { Calculate(); },
+                    _ => { return CanCalculate; });
 
 
+            // =================================================
             // 生成计算书
+            // =================================================
+
             GenerateCalculationBookCommand =
-                new RelayCommand(
-                    _ => GenerateCalculationBook());
+                new RelayCommand(_ => { GenerateCalculationBook(); });
         }
 
+        private void AutoCalculateTimer_Tick(
+            object? sender,
+            EventArgs e)
+        {
+            // 停止计时器
+            _autoCalculateTimer.Stop();
 
+
+            // =================================================
+            // 再次检查参数
+            // =================================================
+
+            if (!AreAllParametersValid())
+            {
+                return;
+            }
+
+
+            // =================================================
+            // 自动执行计算
+            // =================================================
+
+            Calculate();
+        }
         // =====================================================
         // 选择理论
         // =====================================================
@@ -156,39 +314,97 @@ namespace OCSFoundationOptimizer.ViewModels
         private void SelectTheory(
             CalculationTheoryType theory)
         {
-            // 这里只负责“选择”
+            // =================================================
+            // 切换理论
+            // =================================================
+
             CurrentTheory = theory;
 
-            // 如果参数已经填写完整
-            // 选择理论后立即重新计算
-            if (AreAllParametersFilled())
+
+            // =================================================
+            // 清除原来的计算结果
+            // =================================================
+
+            ClearCalculationResult();
+
+
+            // =================================================
+            // 如果参数已经完整且合法
+            // 自动重新计算新的理论
+            // =================================================
+
+            if (AreAllParametersValid())
             {
-                Calculate();
+                CalculationStatus =
+                    $"正在执行 {CurrentTheoryDisplayName} 计算...";
+
+
+                _autoCalculateTimer.Stop();
+
+                _autoCalculateTimer.Start();
+            }
+            else
+            {
+                CalculationStatus =
+                    $"当前选择：{CurrentTheoryDisplayName}";
             }
         }
 
 
         // =====================================================
-        // 统一计算入口
+        // 执行计算
         // =====================================================
 
         private void Calculate()
         {
+            // =================================================
+            // 第一步：检查参数
+            // =================================================
+
+            if (!AreAllParametersValid())
+            {
+                CalculationStatus =
+                    "参数存在错误，请检查输入";
+
+                return;
+            }
+
+
             try
             {
+                CalculationStatus =
+                    $"正在执行 {CurrentTheoryDisplayName} 计算...";
+
+
+                // =================================================
+                // 调用统一计算服务
+                //
+                // 当前理论由 CurrentTheory 决定
+                // =================================================
+
                 var result =
                     _calculationService.Calculate(
                         CurrentTheory,
                         InputParameters);
 
 
+                // =================================================
+                // 显示结果
+                // =================================================
+
                 ShowResult(result);
             }
             catch (Exception ex)
             {
+                CalculationStatus =
+                    "计算过程中发生错误";
+
+
                 MessageBox.Show(
                     ex.Message,
-                    "计算错误");
+                    "计算错误",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
@@ -200,83 +416,193 @@ namespace OCSFoundationOptimizer.ViewModels
         private void ShowResult(
             CalculationResult result)
         {
+            // =================================================
+            // 计算失败
+            // =================================================
+
             if (!result.IsSuccess)
             {
+                CurrentResult = null;
+
+                ResultParameters.Clear();
+
+
+                CalculationStatus =
+                    "计算失败";
+
+
                 MessageBox.Show(
                     result.ErrorMessage,
-                    "计算错误");
+                    "计算错误",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
 
                 return;
             }
 
 
+            // =================================================
             // 保存完整计算结果
             //
             // 注意：
             //
             // ProcessParameters
-            // 虽然不显示在界面，
-            // 但是仍然保存在这里。
-            //
+            // 即使前台暂时不显示，
+            // 仍然完整保存在 CurrentResult 中。
+            // =================================================
+
             CurrentResult = result;
 
 
-            // ================================================
-            // 前台只显示 ResultParameters
-            // ================================================
+            // =================================================
+            // 更新前台结果
+            // =================================================
 
             ResultParameters.Clear();
+
 
             foreach (var item
                      in result.ResultParameters)
             {
                 ResultParameters.Add(item);
             }
+
+
+            // =================================================
+            // 更新计算状态
+            // =================================================
+
+            CalculationStatus =
+                $"{CurrentTheoryDisplayName} 计算完成";
         }
 
 
         // =====================================================
-        // 参数变化
+        // 参数发生变化
         // =====================================================
 
         private void Parameter_PropertyChanged(
             object? sender,
             PropertyChangedEventArgs e)
         {
+            // =================================================
+            // 参数值发生变化
+            // =================================================
+
             if (e.PropertyName ==
                 nameof(ParameterItem.Value))
             {
-                AutoCalculate();
+                // =================================================
+                // 先停止之前的自动计算计时器
+                //
+                // 用户继续输入时重新计时
+                // =================================================
+
+                _autoCalculateTimer.Stop();
+
+
+                // =================================================
+                // 参数发生变化以后，
+                // 原来的计算结果立即失效
+                // =================================================
+
+                ClearCalculationResult();
+
+
+                // =================================================
+                // 检查参数状态
+                // =================================================
+
+                if (InputParameters.Any(x => x.HasError))
+                {
+                    CalculationStatus =
+                        "参数输入存在错误";
+                }
+                else if (!AreAllParametersFilled())
+                {
+                    CalculationStatus =
+                        "等待输入完整参数";
+                }
+                else
+                {
+                    // =================================================
+                    // 参数全部填写并且目前合法
+                    //
+                    // 不立即计算
+                    // 等待用户停止输入 300ms
+                    // =================================================
+
+                    CalculationStatus =
+                        "参数已就绪，正在准备计算...";
+
+
+                    _autoCalculateTimer.Start();
+                }
+
+
+                // =================================================
+                // 更新计算按钮
+                // =================================================
+
+                OnPropertyChanged(
+                    nameof(CanCalculate));
+
+
+                CommandManager
+                    .InvalidateRequerySuggested();
+            }
+
+
+            // =====================================================
+            // 参数错误状态发生变化
+            // =====================================================
+
+            if (e.PropertyName ==
+                nameof(ParameterItem.HasError))
+            {
+                // 错误状态发生变化
+                _autoCalculateTimer.Stop();
+
+
+                OnPropertyChanged(
+                    nameof(CanCalculate));
+
+
+                CommandManager
+                    .InvalidateRequerySuggested();
+
+
+                // =================================================
+                // 如果所有参数已经填写并且全部合法
+                // 则启动自动计算
+                // =================================================
+
+                if (AreAllParametersValid())
+                {
+                    CalculationStatus =
+                        "参数已就绪，正在准备计算...";
+
+
+                    _autoCalculateTimer.Start();
+                }
             }
         }
 
 
         // =====================================================
-        // 自动计算
+        // 清除当前计算结果
         // =====================================================
 
-        private void AutoCalculate()
+        private void ClearCalculationResult()
         {
-            // 参数没有全部填写
-            // 不进行计算
-            if (!AreAllParametersFilled())
-                return;
+            CurrentResult = null;
 
-
-            // ================================================
-            // 注意这里！
-            //
-            // 不再判断 A / B
-            //
-            // 统一调用 Calculate()
-            // ================================================
-
-            Calculate();
+            ResultParameters.Clear();
         }
 
 
         // =====================================================
-        // 判断输入参数是否填写完整
+        // 判断参数是否全部填写
         // =====================================================
 
         private bool AreAllParametersFilled()
@@ -290,6 +616,30 @@ namespace OCSFoundationOptimizer.ViewModels
 
 
         // =====================================================
+        // 判断参数是否全部合法
+        // =====================================================
+
+        private bool AreAllParametersValid()
+        {
+            // 必填参数没有全部填写
+            if (!AreAllParametersFilled())
+            {
+                return false;
+            }
+
+
+            // 存在非法参数
+            if (InputParameters.Any(x => x.HasError))
+            {
+                return false;
+            }
+
+
+            return true;
+        }
+
+
+        // =====================================================
         // 初始化参数
         // =====================================================
 
@@ -298,36 +648,78 @@ namespace OCSFoundationOptimizer.ViewModels
             InputParameters.Add(
                 new ParameterItem
                 {
-                    Key = "FoundationWidth",
-                    Name = "基础宽度",
-                    Value = "",
-                    Unit = "m",
-                    Type = ParameterType.Number,
-                    IsRequired = true
+                    Key =
+                        "FoundationWidth",
+
+                    Name =
+                        "基础宽度",
+
+                    Value =
+                        "",
+
+                    Unit =
+                        "m",
+
+                    Type =
+                        ParameterType.Number,
+
+                    IsRequired =
+                        true,
+
+                    IsReadOnly =
+                        false
                 });
 
 
             InputParameters.Add(
                 new ParameterItem
                 {
-                    Key = "FoundationLength",
-                    Name = "基础长度",
-                    Value = "",
-                    Unit = "m",
-                    Type = ParameterType.Number,
-                    IsRequired = true
+                    Key =
+                        "FoundationLength",
+
+                    Name =
+                        "基础长度",
+
+                    Value =
+                        "",
+
+                    Unit =
+                        "m",
+
+                    Type =
+                        ParameterType.Number,
+
+                    IsRequired =
+                        true,
+
+                    IsReadOnly =
+                        false
                 });
 
 
             InputParameters.Add(
                 new ParameterItem
                 {
-                    Key = "FoundationHeight",
-                    Name = "基础高度",
-                    Value = "",
-                    Unit = "m",
-                    Type = ParameterType.Number,
-                    IsRequired = true
+                    Key =
+                        "FoundationHeight",
+
+                    Name =
+                        "基础高度",
+
+                    Value =
+                        "",
+
+                    Unit =
+                        "m",
+
+                    Type =
+                        ParameterType.Number,
+
+                    IsRequired =
+                        true,
+
+                    IsReadOnly =
+                        false
                 });
         }
 
@@ -353,33 +745,50 @@ namespace OCSFoundationOptimizer.ViewModels
 
         private void GenerateCalculationBook()
         {
+            // =================================================
+            // 没有计算结果
+            // =================================================
+
             if (CurrentResult == null ||
                 !CurrentResult.IsSuccess)
             {
                 MessageBox.Show(
                     "请先完成计算，再生成计算书。",
-                    "提示");
+                    "提示",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
 
                 return;
             }
 
 
+            // =================================================
+            // 保存文件
+            // =================================================
+
             var dialog =
                 new Microsoft.Win32.SaveFileDialog
                 {
-                    Title = "生成计算书",
+                    Title =
+                        "生成计算书",
 
                     Filter =
                         "Word文档 (*.docx)|*.docx",
 
                     FileName =
-                        "基础计算书.docx"
+                        $"基础计算书_{CurrentTheoryDisplayName}.docx"
                 };
 
 
             if (dialog.ShowDialog() != true)
+            {
                 return;
+            }
 
+
+            // =================================================
+            // 生成计算书
+            // =================================================
 
             try
             {
@@ -391,13 +800,17 @@ namespace OCSFoundationOptimizer.ViewModels
 
                 MessageBox.Show(
                     "计算书生成成功。",
-                    "完成");
+                    "完成",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(
                     $"计算书生成失败：{ex.Message}",
-                    "错误");
+                    "错误",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
@@ -411,8 +824,7 @@ namespace OCSFoundationOptimizer.ViewModels
 
 
         protected void OnPropertyChanged(
-            [CallerMemberName]
-            string? propertyName = null)
+            [CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(
                 this,
@@ -461,18 +873,18 @@ namespace OCSFoundationOptimizer.ViewModels
 
         public event EventHandler?
             CanExecuteChanged
-        {
-            add
             {
-                CommandManager
-                    .RequerySuggested += value;
-            }
+                add
+                {
+                    CommandManager
+                        .RequerySuggested += value;
+                }
 
-            remove
-            {
-                CommandManager
-                    .RequerySuggested -= value;
+                remove
+                {
+                    CommandManager
+                        .RequerySuggested -= value;
+                }
             }
-        }
     }
 }

@@ -97,8 +97,12 @@
         <None Include="App.config"/>
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="pic\" />
       <Folder Include="View\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="pic\sample.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
 </Project>
