@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace OCSFoundationOptimizer.Models
@@ -11,15 +13,16 @@ namespace OCSFoundationOptimizer.Models
         private string _name = "";
         private string _value = "";
         private string _unit = "";
+        private string _group = "";
 
-        private ParameterType _type = ParameterType.Number;
+        private ParameterType _type =
+            ParameterType.Number;
 
         private bool _isRequired = true;
         private bool _isReadOnly = false;
 
         private bool _hasError = false;
         private string _errorMessage = "";
-
 
         // =====================================================
         // 程序内部唯一标识
@@ -75,7 +78,6 @@ namespace OCSFoundationOptimizer.Models
 
                     OnPropertyChanged();
 
-                    // 输入以后立即验证
                     ValidateValue();
                 }
             }
@@ -95,6 +97,25 @@ namespace OCSFoundationOptimizer.Models
                 if (_unit != value)
                 {
                     _unit = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
+        // =====================================================
+        // 参数分组
+        // =====================================================
+
+        public string Group
+        {
+            get => _group;
+
+            set
+            {
+                if (_group != value)
+                {
+                    _group = value;
                     OnPropertyChanged();
                 }
             }
@@ -158,10 +179,21 @@ namespace OCSFoundationOptimizer.Models
                 if (_isReadOnly != value)
                 {
                     _isReadOnly = value;
+
                     OnPropertyChanged();
                 }
             }
         }
+
+
+        // =====================================================
+        // 下拉框选项
+        // =====================================================
+
+        public ObservableCollection<ParameterOption> Options
+        {
+            get;
+        } = new ObservableCollection<ParameterOption>();
 
 
         // =====================================================
@@ -177,7 +209,6 @@ namespace OCSFoundationOptimizer.Models
                 if (_hasError != value)
                 {
                     _hasError = value;
-
                     OnPropertyChanged();
                 }
             }
@@ -197,7 +228,6 @@ namespace OCSFoundationOptimizer.Models
                 if (_errorMessage != value)
                 {
                     _errorMessage = value;
-
                     OnPropertyChanged();
                 }
             }
@@ -213,16 +243,15 @@ namespace OCSFoundationOptimizer.Models
             string value =
                 Value?.Trim() ?? "";
 
-
-            // =================================================
+            // -----------------------------
             // 空值
-            // =================================================
+            // -----------------------------
 
             if (string.IsNullOrWhiteSpace(value))
             {
                 if (IsRequired)
                 {
-                    SetError("请输入参数值。");
+                    SetError("请选择或输入参数值。");
                 }
                 else
                 {
@@ -233,9 +262,9 @@ namespace OCSFoundationOptimizer.Models
             }
 
 
-            // =================================================
-            // 数字类型
-            // =================================================
+            // -----------------------------
+            // 数字
+            // -----------------------------
 
             if (Type == ParameterType.Number)
             {
@@ -246,15 +275,12 @@ namespace OCSFoundationOptimizer.Models
                         CultureInfo.InvariantCulture,
                         out double number);
 
-
                 if (!success)
                 {
                     SetError("请输入有效的数字。");
                     return;
                 }
 
-
-                // NaN / Infinity
                 if (double.IsNaN(number) ||
                     double.IsInfinity(number))
                 {
@@ -262,8 +288,6 @@ namespace OCSFoundationOptimizer.Models
                     return;
                 }
 
-
-                // 工程计算一般不允许负数
                 if (number < 0)
                 {
                     SetError("参数不能小于 0。");
@@ -272,9 +296,23 @@ namespace OCSFoundationOptimizer.Models
             }
 
 
-            // =================================================
-            // 验证通过
-            // =================================================
+            // -----------------------------
+            // 下拉选择
+            // -----------------------------
+
+            if (Type == ParameterType.Selection)
+            {
+                bool exists =
+                    Options.Any(
+                        x => x.Value == value);
+
+                if (!exists)
+                {
+                    SetError("请选择有效的参数值。");
+                    return;
+                }
+            }
+
 
             ClearError();
         }
@@ -319,5 +357,17 @@ namespace OCSFoundationOptimizer.Models
                 new PropertyChangedEventArgs(
                     propertyName));
         }
+    }
+
+
+    // =========================================================
+    // 下拉框选项
+    // =========================================================
+
+    public class ParameterOption
+    {
+        public string Text { get; set; } = "";
+
+        public string Value { get; set; } = "";
     }
 }
