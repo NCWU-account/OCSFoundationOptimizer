@@ -670,6 +670,30 @@ namespace OCSFoundationOptimizer.ViewModels
                         false
                 });
 
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key =
+                        "FoundationWidth1",
+
+                    Name =
+                        "基础宽度22",
+
+                    Value =
+                        "",
+
+                    Unit =
+                        "m",
+
+                    Type =
+                        ParameterType.Number,
+
+                    IsRequired =
+                        true,
+
+                    IsReadOnly =
+                        false
+                });
 
             InputParameters.Add(
                 new ParameterItem
