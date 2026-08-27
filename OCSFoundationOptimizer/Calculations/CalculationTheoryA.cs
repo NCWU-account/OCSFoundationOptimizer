@@ -57,6 +57,7 @@ namespace OCSFoundationOptimizer.Calculations
                         parameters,
                         "a1");
 
+
                 double b1 =
                     GetNumber(
                         parameters,
@@ -146,6 +147,7 @@ namespace OCSFoundationOptimizer.Calculations
                     GetNumber(
                         parameters,
                         "[k_c]");
+
 
 
                 // ==========================================
