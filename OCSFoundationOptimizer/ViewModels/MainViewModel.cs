@@ -650,7 +650,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "a0",
                     Name = "a0",
-                    Value = "",
+                    Value = "1700",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true
@@ -661,7 +661,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "b0",
                     Name = "b0",
-                    Value = "",
+                    Value = "1300",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true
@@ -673,7 +673,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "a1",
                     Name = "a1",
-                    Value = "",
+                    Value = "3500",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true
@@ -684,7 +684,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "b1",
                     Name = "b1",
-                    Value = "",
+                    Value = "3100",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true
@@ -695,7 +695,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "h",
                     Name = "h",
-                    Value = "",
+                    Value = "3500",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true
@@ -706,7 +706,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "na",
                     Name = "na",
-                    Value = "",
+                    Value = "2",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true
@@ -717,7 +717,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "nb",
                     Name = "nb",
-                    Value = "",
+                    Value = "2",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true
@@ -728,7 +728,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "nh",
                     Name = "nh",
-                    Value = "",
+                    Value = "2",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true
@@ -739,7 +739,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "Delta_a",
                     Name = "Δa",
-                    Value = "",
+                    Value = "450",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true
@@ -750,7 +750,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "Delta_b",
                     Name = "Δb",
-                    Value = "",
+                    Value = "450",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true
@@ -761,7 +761,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "Delta_h",
                     Name = "Δh",
-                    Value = "",
+                    Value = "450",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true
@@ -770,10 +770,10 @@ namespace OCSFoundationOptimizer.ViewModels
             InputParameters.Add(
                 new ParameterItem
                 {
-                    Key = "FoundationLength",
-                    Name = "基础长度",
-                    Value = "",
-                    Unit = "m",
+                    Key = "M1",
+                    Name = "垂直线路向荷载M",
+                    Value = "450",
+                    Unit = "KN∙m",
                     Type = ParameterType.Number,
                     IsRequired = true
                 });
@@ -782,13 +782,109 @@ namespace OCSFoundationOptimizer.ViewModels
             InputParameters.Add(
                 new ParameterItem
                 {
-                    Key = "FoundationHeight",
-                    Name = "基础高度",
-                    Value = "",
-                    Unit = "m",
+                    Key = "PH1",
+                    Name = "垂直线路向荷载P_H",
+                    Value = "38",
+                    Unit = "KN",
                     Type = ParameterType.Number,
                     IsRequired = true
                 });
+
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "M2",
+                    Name = "线路向荷载M",
+                    Value = "50",
+                    Unit = "KN∙m",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "PH2",
+                    Name = "线路向荷载P_H",
+                    Value = "4",
+                    Unit = "KN",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "Q",
+                    Name = "垂直力Q",
+                    Value = "70",
+                    Unit = "KN",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+                        InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "fak",
+                    Name = "地基承载力特征值f_ak",
+                    Value = "130",
+                    Unit = "kPa",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "r",
+                    Name = "水上填土湿容重γ",
+                    Value = "16",
+                    Unit = "kN∕m3",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "fai",
+                    Name = "土体内摩擦角φ",
+                    Value = "30",
+                    Unit = "°",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "[k_0]",
+                    Name = "抗倾稳定系数允许值[K_0]",
+                    Value = "",
+                    Unit = "",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "[k_c]",
+                    Name = "抗滑稳定系数允许值[K_c]",
+                    Value = "",
+                    Unit = "",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+
+
+
+
         }
 
 
