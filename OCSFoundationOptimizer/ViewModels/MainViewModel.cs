@@ -648,102 +648,146 @@ namespace OCSFoundationOptimizer.ViewModels
             InputParameters.Add(
                 new ParameterItem
                 {
-                    Key =
-                        "FoundationWidth",
-
-                    Name =
-                        "基础宽度",
-
-                    Value =
-                        "",
-
-                    Unit =
-                        "m",
-
-                    Type =
-                        ParameterType.Number,
-
-                    IsRequired =
-                        true,
-
-                    IsReadOnly =
-                        false
+                    Key = "a0",
+                    Name = "a0",
+                    Value = "",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true
                 });
 
             InputParameters.Add(
                 new ParameterItem
                 {
-                    Key =
-                        "FoundationWidth1",
-
-                    Name =
-                        "基础宽度22",
-
-                    Value =
-                        "",
-
-                    Unit =
-                        "m",
-
-                    Type =
-                        ParameterType.Number,
-
-                    IsRequired =
-                        true,
-
-                    IsReadOnly =
-                        false
-                });
-
-            InputParameters.Add(
-                new ParameterItem
-                {
-                    Key =
-                        "FoundationLength",
-
-                    Name =
-                        "基础长度",
-
-                    Value =
-                        "",
-
-                    Unit =
-                        "m",
-
-                    Type =
-                        ParameterType.Number,
-
-                    IsRequired =
-                        true,
-
-                    IsReadOnly =
-                        false
+                    Key = "b0",
+                    Name = "b0",
+                    Value = "",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true
                 });
 
 
             InputParameters.Add(
                 new ParameterItem
                 {
-                    Key =
-                        "FoundationHeight",
+                    Key = "a1",
+                    Name = "a1",
+                    Value = "",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
 
-                    Name =
-                        "基础高度",
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "b1",
+                    Name = "b1",
+                    Value = "",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
 
-                    Value =
-                        "",
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "h",
+                    Name = "h",
+                    Value = "",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
 
-                    Unit =
-                        "m",
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "na",
+                    Name = "na",
+                    Value = "",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
 
-                    Type =
-                        ParameterType.Number,
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "nb",
+                    Name = "nb",
+                    Value = "",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
 
-                    IsRequired =
-                        true,
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "nh",
+                    Name = "nh",
+                    Value = "",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
 
-                    IsReadOnly =
-                        false
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "Delta_a",
+                    Name = "Δa",
+                    Value = "",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "Delta_b",
+                    Name = "Δb",
+                    Value = "",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "Delta_h",
+                    Name = "Δh",
+                    Value = "",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "FoundationLength",
+                    Name = "基础长度",
+                    Value = "",
+                    Unit = "m",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "FoundationHeight",
+                    Name = "基础高度",
+                    Value = "",
+                    Unit = "m",
+                    Type = ParameterType.Number,
+                    IsRequired = true
                 });
         }
 
