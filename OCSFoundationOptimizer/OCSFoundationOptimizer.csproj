@@ -52,6 +52,17 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
+        <Compile Include="CalculationBooks\CalculationBookA.cs" />
+        <Compile Include="CalculationBooks\CalculationBookB.cs" />
+        <Compile Include="CalculationBooks\ICalculationBookGenerator.cs" />
+        <Compile Include="Calculations\CalculationTheoryA.cs" />
+        <Compile Include="Calculations\CalculationTheoryB.cs" />
+        <Compile Include="Calculations\ICalculationModule.cs" />
+        <Compile Include="Models\CalculationResult.cs" />
+        <Compile Include="Models\CalculationTheoryType.cs" />
+        <Compile Include="Models\ParameterType.cs" />
+        <Compile Include="Services\CalculationBookService.cs" />
+        <Compile Include="Services\CalculationService.cs" />
         <Compile Include="Services\FoundationCalculationService.cs" />
         <Compile Include="ViewModels\MainViewModel.cs" />
         <Page Include="MainWindow.xaml">

@@ -4,380 +4,478 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="接触网钢柱计算书"
-        Height="750"
-        Width="1100"
-        MinHeight="600"
-        MinWidth="900">
 
-    <Grid Margin="2">
+        Title="OCS基础优化计算"
+        Height="800"
+        Width="1200"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+
+        <!-- ================================================= -->
+        <!-- 输入参数模板 -->
+        <!-- ================================================= -->
+
+        <DataTemplate x:Key="ParameterTemplate">
+
+            <Grid Margin="8">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- 参数名称 -->
+                <TextBlock Grid.Column="0"
+                           Text="{Binding Name}"
+                           VerticalAlignment="Center"
+                           FontSize="14"/>
+
+                <!-- 参数值 -->
+                <TextBox Grid.Column="1"
+                         Height="28"
+                         Text="{Binding Value,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}"
+                         IsReadOnly="{Binding IsReadOnly}"
+                         VerticalContentAlignment="Center"/>
+
+                <!-- 单位 -->
+                <TextBlock Grid.Column="2"
+                           Text="{Binding Unit}"
+                           VerticalAlignment="Center"
+                           Margin="8,0,0,0"
+                           Foreground="#666666"/>
+
+            </Grid>
+
+        </DataTemplate>
+
+
+        <!-- ================================================= -->
+        <!-- 结果参数模板 -->
+        <!-- ================================================= -->
+
+        <DataTemplate x:Key="ResultTemplate">
+
+            <Grid Margin="8">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- 参数名称 -->
+                <TextBlock Grid.Column="0"
+                           Text="{Binding Name}"
+                           VerticalAlignment="Center"
+                           FontSize="14"/>
+
+                <!-- 参数值 -->
+                <TextBlock Grid.Column="1"
+                           Text="{Binding Value}"
+                           VerticalAlignment="Center"
+                           FontSize="14"
+                           FontWeight="SemiBold"/>
+
+                <!-- 单位 -->
+                <TextBlock Grid.Column="2"
+                           Text="{Binding Unit}"
+                           VerticalAlignment="Center"
+                           Margin="8,0,0,0"
+                           Foreground="#666666"/>
+
+            </Grid>
+
+        </DataTemplate>
+
+
+        <!-- ================================================= -->
+        <!-- 理论按钮样式 -->
+        <!-- ================================================= -->
+
+        <Style x:Key="TheoryButtonStyle"
+               TargetType="Button">
+
+            <Setter Property="Width"
+                    Value="100"/>
+
+            <Setter Property="Height"
+                    Value="35"/>
+
+            <Setter Property="Margin"
+                    Value="0,0,10,0"/>
+
+            <Setter Property="FontSize"
+                    Value="14"/>
+
+        </Style>
+
+
+        <!-- ================================================= -->
+        <!-- 普通操作按钮样式 -->
+        <!-- ================================================= -->
+
+        <Style x:Key="ActionButtonStyle"
+               TargetType="Button">
+
+            <Setter Property="Height"
+                    Value="35"/>
+
+            <Setter Property="FontSize"
+                    Value="14"/>
+
+        </Style>
+
+    </Window.Resources>
+
+
+    <!-- ===================================================== -->
+    <!-- 主背景 -->
+    <!-- ===================================================== -->
+
+    <Grid Background="#F5F7FA">
 
         <Grid.RowDefinitions>
 
-            <!-- 标题 -->
-            <RowDefinition Height="45"/>
+            <!-- 顶部标题 -->
+            <RowDefinition Height="Auto"/>
 
-            <!-- 主体 -->
-            <RowDefinition Height="520"/>
-
-            <!-- 计算结果 -->
+            <!-- 主区域 -->
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
 
 
-        <!-- ==================== 标题 ==================== -->
+        <!-- ================================================= -->
+        <!-- 顶部标题 -->
+        <!-- ================================================= -->
 
         <Border Grid.Row="0"
-                BorderBrush="#24749B"
-                BorderThickness="1">
+                Background="#1F4E79"
+                Padding="20">
 
-            <TextBlock Text="接触网钢柱计算书"
-                       FontSize="16"
-                       VerticalAlignment="Center"
-                       Margin="25,0,0,0"/>
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="*"/>
+
+                    <ColumnDefinition Width="Auto"/>
+
+                </Grid.ColumnDefinitions>
+
+
+                <!-- 标题 -->
+                <TextBlock Grid.Column="0"
+                           Text="接触网钢柱基础优化计算"
+                           Foreground="White"
+                           FontSize="22"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"/>
+
+
+                <!-- 当前理论 -->
+                <Border Grid.Column="1"
+                        Background="#FFFFFF"
+                        CornerRadius="4"
+                        Padding="12,6"
+                        Margin="10,0,0,0">
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <TextBlock Text="当前计算理论："
+                                   Foreground="#555555"
+                                   FontSize="14"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBlock Text="{Binding CurrentTheory}"
+                                   Foreground="#1F4E79"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   VerticalAlignment="Center"/>
+
+                    </StackPanel>
+
+                </Border>
+
+            </Grid>
 
         </Border>
 
 
-        <!-- ==================== 主体 ==================== -->
+        <!-- ================================================= -->
+        <!-- 主区域 -->
+        <!-- ================================================= -->
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1"
+              Margin="15">
+
 
             <Grid.ColumnDefinitions>
 
-                <!-- 左侧参数 -->
-                <ColumnDefinition Width="*"/>
+                <!-- 左侧 -->
+                <ColumnDefinition Width="2*"/>
 
-                <!-- 右侧图片 -->
-                <ColumnDefinition Width="*"/>
+                <!-- 右侧 -->
+                <ColumnDefinition Width="1.2*"/>
 
             </Grid.ColumnDefinitions>
 
 
-            <!-- ==================== 左侧 ==================== -->
+            <!-- ================================================= -->
+            <!-- 左侧区域 -->
+            <!-- ================================================= -->
 
-            <Border Grid.Column="0"
-                    BorderBrush="#24749B"
-                    BorderThickness="1,0,1,1">
+            <Grid Grid.Column="0"
+                  Margin="0,0,10,0">
+
+                <Grid.RowDefinitions>
+
+                    <!-- 输入参数标题 -->
+                    <RowDefinition Height="Auto"/>
+
+                    <!-- 输入参数 -->
+                    <RowDefinition Height="*"/>
+
+                    <!-- 操作区域 -->
+                    <RowDefinition Height="Auto"/>
+
+                    <!-- 结果标题 -->
+                    <RowDefinition Height="Auto"/>
+
+                    <!-- 结果 -->
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+
+
+                <!-- ================================================= -->
+                <!-- 输入参数标题 -->
+                <!-- ================================================= -->
+
+                <Border Grid.Row="0"
+                        Background="White"
+                        Padding="12">
+
+                    <TextBlock Text="输入参数"
+                               FontSize="17"
+                               FontWeight="Bold"/>
+
+                </Border>
+
+
+                <!-- ================================================= -->
+                <!-- 输入参数 -->
+                <!-- ================================================= -->
+
+                <Border Grid.Row="1"
+                        Background="White"
+                        Margin="0,1,0,10">
+
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                        <ItemsControl ItemsSource="{Binding InputParameters}"
+                                      ItemTemplate="{StaticResource ParameterTemplate}"/>
+
+                    </ScrollViewer>
+
+                </Border>
+
+
+                <!-- ================================================= -->
+                <!-- 计算操作区域 -->
+                <!-- ================================================= -->
+
+                <Border Grid.Row="2"
+                        Background="White"
+                        Padding="12"
+                        Margin="0,0,0,10">
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+
+                            <!-- 理论选择 -->
+                            <RowDefinition Height="Auto"/>
+
+                            <!-- 执行计算 -->
+                            <RowDefinition Height="Auto"/>
+
+                        </Grid.RowDefinitions>
+
+
+                        <!-- ================================================= -->
+                        <!-- 理论选择 -->
+                        <!-- ================================================= -->
+
+                        <StackPanel Grid.Row="0"
+                                    Orientation="Horizontal">
+
+                            <TextBlock Text="计算理论："
+                                       Width="80"
+                                       VerticalAlignment="Center"
+                                       FontSize="14"
+                                       FontWeight="SemiBold"/>
+
+
+                            <!-- 理论 A -->
+                            <Button Content="理论 A"
+                                    Style="{StaticResource TheoryButtonStyle}"
+                                    Command="{Binding SelectTheoryACommand}"/>
+
+
+                            <!-- 理论 B -->
+                            <Button Content="理论 B"
+                                    Style="{StaticResource TheoryButtonStyle}"
+                                    Command="{Binding SelectTheoryBCommand}"/>
+
+
+                            <!-- 当前理论提示 -->
+                            <TextBlock Text="{Binding CurrentTheory,
+                                                      StringFormat=当前选择：{0}}"
+                                       VerticalAlignment="Center"
+                                       Foreground="#1F4E79"
+                                       FontWeight="SemiBold"
+                                       Margin="5,0,0,0"/>
+
+                        </StackPanel>
+
+
+                        <!-- ================================================= -->
+                        <!-- 执行操作 -->
+                        <!-- ================================================= -->
+
+                        <StackPanel Grid.Row="1"
+                                    Orientation="Horizontal"
+                                    Margin="80,12,0,0">
+
+
+                            <!-- 执行计算 -->
+                            <Button Content="执行计算"
+                                    Width="100"
+                                    Style="{StaticResource ActionButtonStyle}"
+                                    Command="{Binding CalculateCommand}"
+                                    Margin="0,0,10,0"/>
+
+
+                            <!-- 生成计算书 -->
+                            <Button Content="生成计算书"
+                                    Width="120"
+                                    Style="{StaticResource ActionButtonStyle}"
+                                    Command="{Binding GenerateCalculationBookCommand}"/>
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </Border>
+
+
+                <!-- ================================================= -->
+                <!-- 计算结果标题 -->
+                <!-- ================================================= -->
+
+                <Border Grid.Row="3"
+                        Background="White"
+                        Padding="12">
+
+                    <TextBlock Text="计算结果"
+                               FontSize="17"
+                               FontWeight="Bold"/>
+
+                </Border>
+
+
+                <!-- ================================================= -->
+                <!-- 计算结果 -->
+                <!-- ================================================= -->
+
+                <Border Grid.Row="4"
+                        Background="White">
+
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                        <ItemsControl ItemsSource="{Binding ResultParameters}"
+                                      ItemTemplate="{StaticResource ResultTemplate}"/>
+
+                    </ScrollViewer>
+
+                </Border>
+
+
+            </Grid>
+
+
+            <!-- ================================================= -->
+            <!-- 右侧结构示意图 -->
+            <!-- ================================================= -->
+
+            <Border Grid.Column="1"
+                    Background="White"
+                    Margin="10,0,0,0"
+                    BorderBrush="#D9D9D9"
+                    BorderThickness="1">
 
                 <Grid>
 
                     <Grid.RowDefinitions>
 
-                        <!-- 输入参数 -->
-                        <RowDefinition Height="*"/>
+                        <!-- 标题 -->
+                        <RowDefinition Height="Auto"/>
 
-                        <!-- 按钮 -->
-                        <RowDefinition Height="70"/>
+                        <!-- 图片 -->
+                        <RowDefinition Height="*"/>
 
                     </Grid.RowDefinitions>
 
 
-                    <!-- 输入参数 -->
+                    <!-- ================================================= -->
+                    <!-- 图片标题 -->
+                    <!-- ================================================= -->
 
-                    <ScrollViewer Grid.Row="0"
-                                  VerticalScrollBarVisibility="Auto">
-
-                        <ItemsControl ItemsSource="{Binding InputParameters}">
-
-                            <ItemsControl.ItemsPanel>
-
-                                <ItemsPanelTemplate>
-
-                                    <UniformGrid Columns="2"/>
-
-                                </ItemsPanelTemplate>
-
-                            </ItemsControl.ItemsPanel>
+                    <TextBlock Grid.Row="0"
+                               Text="结构示意图"
+                               FontSize="17"
+                               FontWeight="Bold"
+                               Margin="15"/>
 
 
-                            <ItemsControl.ItemTemplate>
+                    <!-- ================================================= -->
+                    <!-- 图片区域 -->
+                    <!-- ================================================= -->
 
-                                <DataTemplate>
+                    <Border Grid.Row="1"
+                            Margin="15"
+                            Background="#F2F2F2"
+                            BorderBrush="#D9D9D9"
+                            BorderThickness="1">
 
-                                    <Grid Margin="20,18">
+                        <Grid>
 
-                                        <Grid.ColumnDefinitions>
+                            <!-- ================================================= -->
+                            <!-- 目前占位 -->
+                            <!-- 后续可以替换成 Image -->
+                            <!-- ================================================= -->
 
-                                            <ColumnDefinition Width="Auto"/>
+                            <TextBlock Text="结构示意图"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="24"
+                                       Foreground="#999999"/>
 
-                                            <ColumnDefinition Width="110"/>
+                        </Grid>
 
-                                        </Grid.ColumnDefinitions>
-
-
-                                        <!-- 参数名称 -->
-
-                                        <TextBlock Grid.Column="0"
-                                                   Text="{Binding Name}"
-                                                   FontSize="14"
-                                                   VerticalAlignment="Center"
-                                                   Margin="0,0,10,0"/>
-
-
-                                        <!-- 参数值 -->
-
-                                        <TextBox Grid.Column="1"
-                                                 Text="{Binding Value,
-                                                        Mode=TwoWay,
-                                                        UpdateSourceTrigger=PropertyChanged}"
-                                                 Height="26"
-                                                 VerticalContentAlignment="Center"
-                                                 FontSize="14"/>
-
-                                    </Grid>
-
-                                </DataTemplate>
-
-                            </ItemsControl.ItemTemplate>
-
-                        </ItemsControl>
-
-                    </ScrollViewer>
-
-
-                    <!-- ==================== 按钮 ==================== -->
-
-                    <StackPanel Grid.Row="1"
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center">
-
-                        <Button Content="计算"
-                                Width="100"
-                                Height="42"
-                                Margin="10"
-                                Click="CalculateButton_Click"/>
-
-                        <Button Content="生成计算书"
-                                Width="130"
-                                Height="42"
-                                Margin="10"
-                                Click="GenerateButton_Click"/>
-
-                    </StackPanel>
+                    </Border>
 
                 </Grid>
 
             </Border>
 
 
-            <!-- ==================== 右侧图片 ==================== -->
-
-            <Grid Grid.Column="1">
-
-                <Grid.RowDefinitions>
-
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-
-                </Grid.RowDefinitions>
-
-
-                <!-- ==================== 图片1 ==================== -->
-
-                <Border Grid.Row="0"
-                        BorderBrush="#24749B"
-                        BorderThickness="0,0,1,1">
-
-                    <Grid>
-
-                        <ScrollViewer x:Name="ImageScrollViewer1"
-                                      HorizontalScrollBarVisibility="Auto"
-                                      VerticalScrollBarVisibility="Auto">
-
-                            <Image x:Name="Image1"
-                                   Source="{Binding Image1Path}"
-                                   Stretch="Uniform"
-                                   RenderTransformOrigin="0.5,0.5"
-                                   MouseWheel="Image1_MouseWheel">
-
-                                <Image.RenderTransform>
-
-                                    <ScaleTransform x:Name="ImageScale1"
-                                                    ScaleX="1"
-                                                    ScaleY="1"/>
-
-                                </Image.RenderTransform>
-
-                            </Image>
-
-                        </ScrollViewer>
-
-
-                        <!-- 没有图片时显示 -->
-
-                        <TextBlock Text="房子图片1"
-                                   FontSize="18"
-                                   Foreground="Gray"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   IsHitTestVisible="False"/>
-
-
-                        <!-- 图片工具栏 -->
-
-                        <StackPanel Orientation="Horizontal"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    Margin="10">
-
-                            <Button Content="+"
-                                    Width="30"
-                                    Height="30"
-                                    Click="ZoomIn1_Click"/>
-
-                            <Button Content="-"
-                                    Width="30"
-                                    Height="30"
-                                    Margin="5,0"
-                                    Click="ZoomOut1_Click"/>
-
-                            <Button Content="100%"
-                                    Width="50"
-                                    Height="30"
-                                    Click="ResetZoom1_Click"/>
-
-                        </StackPanel>
-
-                    </Grid>
-
-                </Border>
-
-
-                <!-- ==================== 图片2 ==================== -->
-
-                <Border Grid.Row="1"
-                        BorderBrush="#24749B"
-                        BorderThickness="0,0,1,1">
-
-                    <Grid>
-
-                        <ScrollViewer x:Name="ImageScrollViewer2"
-                                      HorizontalScrollBarVisibility="Auto"
-                                      VerticalScrollBarVisibility="Auto">
-
-                            <Image x:Name="Image2"
-                                   Source="{Binding Image2Path}"
-                                   Stretch="Uniform"
-                                   RenderTransformOrigin="0.5,0.5"
-                                   MouseWheel="Image2_MouseWheel">
-
-                                <Image.RenderTransform>
-
-                                    <ScaleTransform x:Name="ImageScale2"
-                                                    ScaleX="1"
-                                                    ScaleY="1"/>
-
-                                </Image.RenderTransform>
-
-                            </Image>
-
-                        </ScrollViewer>
-
-
-                        <TextBlock Text="房子图片2"
-                                   FontSize="18"
-                                   Foreground="Gray"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   IsHitTestVisible="False"/>
-
-
-                        <StackPanel Orientation="Horizontal"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    Margin="10">
-
-                            <Button Content="+"
-                                    Width="30"
-                                    Height="30"
-                                    Click="ZoomIn2_Click"/>
-
-                            <Button Content="-"
-                                    Width="30"
-                                    Height="30"
-                                    Margin="5,0"
-                                    Click="ZoomOut2_Click"/>
-
-                            <Button Content="100%"
-                                    Width="50"
-                                    Height="30"
-                                    Click="ResetZoom2_Click"/>
-
-                        </StackPanel>
-
-                    </Grid>
-
-                </Border>
-
-            </Grid>
-
         </Grid>
-
-
-        <!-- ==================== 下方计算结果 ==================== -->
-
-        <Border Grid.Row="2"
-                BorderBrush="#24749B"
-                BorderThickness="1,0,1,1">
-
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-                <ItemsControl ItemsSource="{Binding ResultParameters}">
-
-                    <ItemsControl.ItemsPanel>
-
-                        <ItemsPanelTemplate>
-
-                            <UniformGrid Columns="3"/>
-
-                        </ItemsPanelTemplate>
-
-                    </ItemsControl.ItemsPanel>
-
-
-                    <ItemsControl.ItemTemplate>
-
-                        <DataTemplate>
-
-                            <Grid Margin="20,18">
-
-                                <Grid.ColumnDefinitions>
-
-                                    <ColumnDefinition Width="Auto"/>
-
-                                    <ColumnDefinition Width="110"/>
-
-                                </Grid.ColumnDefinitions>
-
-
-                                <TextBlock Grid.Column="0"
-                                           Text="{Binding Name}"
-                                           FontSize="14"
-                                           VerticalAlignment="Center"
-                                           Margin="0,0,10,0"/>
-
-
-                                <TextBox Grid.Column="1"
-                                         Text="{Binding Value}"
-                                         IsReadOnly="True"
-                                         Height="26"
-                                         VerticalContentAlignment="Center"
-                                         FontSize="14"/>
-
-                            </Grid>
-
-                        </DataTemplate>
-
-                    </ItemsControl.ItemTemplate>
-
-                </ItemsControl>
-
-            </ScrollViewer>
-
-        </Border>
 
     </Grid>
 
