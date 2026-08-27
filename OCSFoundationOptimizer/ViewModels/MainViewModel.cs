@@ -134,7 +134,8 @@ namespace OCSFoundationOptimizer.ViewModels
         public ObservableCollection<ParameterItem>
             InputParameters { get; } = new();
 
-
+        public ObservableCollection<ParameterGroup> ParameterGroups { get; }
+            = new();
         // =====================================================
         // 输出结果
         // =====================================================
@@ -236,7 +237,11 @@ namespace OCSFoundationOptimizer.ViewModels
             // 初始化参数
             InitializeParameters();
 
+// =================================================
+// 根据 Group 创建参数分组
+// =================================================
 
+            BuildParameterGroups();
             // 监听参数变化
             SubscribeParameterEvents();
 
@@ -282,7 +287,42 @@ namespace OCSFoundationOptimizer.ViewModels
             GenerateCalculationBookCommand =
                 new RelayCommand(_ => { GenerateCalculationBook(); });
         }
+// =====================================================
+// 根据参数 Group 创建参数分组
+// =====================================================
 
+        private void BuildParameterGroups()
+        {
+            // 先清空，防止重复构建
+            ParameterGroups.Clear();
+
+
+            // =================================================
+            // 按照参数出现的顺序进行分组
+            //
+            // GroupBy 会把相同 Group 的参数放在一起
+            // =================================================
+
+            var groups = InputParameters
+                .GroupBy(x => x.Group)
+                .Select(group => new ParameterGroup
+                {
+                    Name = group.Key,
+
+                    Parameters = new ObservableCollection<ParameterItem>(
+                        group)
+                });
+
+
+            // =================================================
+            // 添加到前台绑定的 ParameterGroups
+            // =================================================
+
+            foreach (var group in groups)
+            {
+                ParameterGroups.Add(group);
+            }
+        }
         private void AutoCalculateTimer_Tick(
             object? sender,
             EventArgs e)
@@ -653,7 +693,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "1700",
                     Unit = "mm",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "建筑物及基础尺寸"
                 });
 
             InputParameters.Add(
@@ -664,7 +705,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "1300",
                     Unit = "mm",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "建筑物及基础尺寸"
                 });
 
 
@@ -676,7 +718,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "3500",
                     Unit = "mm",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "建筑物及基础尺寸"
                 });
 
             InputParameters.Add(
@@ -687,7 +730,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "3100",
                     Unit = "mm",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "建筑物及基础尺寸"
                 });
 
             InputParameters.Add(
@@ -698,7 +742,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "3500",
                     Unit = "mm",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "建筑物及基础尺寸"
                 });
 
             InputParameters.Add(
@@ -709,7 +754,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "2",
                     Unit = "mm",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "建筑物及基础尺寸"
                 });
 
             InputParameters.Add(
@@ -720,7 +766,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "2",
                     Unit = "mm",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "建筑物及基础尺寸"
                 });
 
             InputParameters.Add(
@@ -731,7 +778,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "2",
                     Unit = "mm",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "建筑物及基础尺寸"
                 });
 
             InputParameters.Add(
@@ -742,7 +790,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "450",
                     Unit = "mm",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "建筑物及基础尺寸"
                 });
 
             InputParameters.Add(
@@ -753,7 +802,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "450",
                     Unit = "mm",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "建筑物及基础尺寸"
                 });
 
             InputParameters.Add(
@@ -764,7 +814,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "450",
                     Unit = "mm",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "建筑物及基础尺寸"
                 });
 
             InputParameters.Add(
@@ -775,7 +826,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "450",
                     Unit = "KN∙m",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "荷载参数"
                 });
 
 
@@ -787,7 +839,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "38",
                     Unit = "KN",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "荷载参数"
                 });
 
             InputParameters.Add(
@@ -798,7 +851,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "50",
                     Unit = "KN∙m",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "荷载参数"
                 });
 
 
@@ -810,7 +864,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "4",
                     Unit = "KN",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "荷载参数"
                 });
 
             InputParameters.Add(
@@ -821,10 +876,11 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "70",
                     Unit = "KN",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "荷载参数"
                 });
 
-                        InputParameters.Add(
+            InputParameters.Add(
                 new ParameterItem
                 {
                     Key = "fak",
@@ -832,7 +888,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "130",
                     Unit = "kPa",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "材料及设计参数"
                 });
 
 
@@ -844,7 +901,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "16",
                     Unit = "kN∕m3",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "材料及设计参数"
                 });
 
             InputParameters.Add(
@@ -855,7 +913,8 @@ namespace OCSFoundationOptimizer.ViewModels
                     Value = "30",
                     Unit = "°",
                     Type = ParameterType.Number,
-                    IsRequired = true
+                    IsRequired = true,
+                    Group = "材料及设计参数"
                 });
 
 
@@ -866,8 +925,29 @@ namespace OCSFoundationOptimizer.ViewModels
                     Name = "抗倾稳定系数允许值[K_0]",
                     Value = "",
                     Unit = "",
-                    Type = ParameterType.Number,
-                    IsRequired = true
+                    Type = ParameterType.Selection,
+                    IsRequired = true,
+                    Group = "材料及设计参数",
+                    Options =
+                    {
+                        new ParameterOption
+                        {
+                            Text = "1.50",
+                            Value = "1.50"
+                        },
+
+                        new ParameterOption
+                        {
+                            Text = "1.40",
+                            Value = "1.40"
+                        },
+
+                        new ParameterOption
+                        {
+                            Text = "1.30",
+                            Value = "1.30"
+                        }
+                    }
                 });
 
             InputParameters.Add(
@@ -877,14 +957,30 @@ namespace OCSFoundationOptimizer.ViewModels
                     Name = "抗滑稳定系数允许值[K_c]",
                     Value = "",
                     Unit = "",
-                    Type = ParameterType.Number,
-                    IsRequired = true
+                    Type = ParameterType.Selection,
+                    IsRequired = true,
+                    Group = "材料及设计参数",
+                    Options =
+                    {
+                        new ParameterOption
+                        {
+                            Text = "1.30",
+                            Value = "1.30"
+                        },
+
+                        new ParameterOption
+                        {
+                            Text = "1.20",
+                            Value = "1.20"
+                        },
+
+                        new ParameterOption
+                        {
+                            Text = "1.10",
+                            Value = "1.10"
+                        }
+                    }
                 });
-
-
-
-
-
         }
 
 
