@@ -42,20 +42,110 @@ namespace OCSFoundationOptimizer.Calculations
                 // 获取输入参数
                 // ==========================================
 
-                double width =
+                double a0 =
                     GetNumber(
                         parameters,
-                        "FoundationWidth");
+                        "a0");
 
-                double length =
+                double b0 =
                     GetNumber(
                         parameters,
-                        "FoundationLength");
+                        "b0");
 
-                double height =
+                double a1 =
                     GetNumber(
                         parameters,
-                        "FoundationHeight");
+                        "a1");
+
+                double b1 =
+                    GetNumber(
+                        parameters,
+                        "b1");
+
+                double h =
+                    GetNumber(
+                        parameters,
+                        "h");
+
+                double na =
+                    GetNumber(
+                        parameters,
+                        "na");
+
+                double nb =
+                    GetNumber(
+                        parameters,
+                        "nb");
+
+                double nh =
+                    GetNumber(
+                        parameters,
+                        "nh");
+
+                double Delta_a =
+                    GetNumber(
+                        parameters,
+                        "Delta_a");
+
+                double Delta_b =
+                    GetNumber(
+                        parameters,
+                        "Delta_b");
+
+                double Delta_h =
+                    GetNumber(
+                        parameters,
+                        "Delta_h");
+
+                double M1 =
+                    GetNumber(
+                        parameters,
+                        "M1");
+
+                double PH1 =
+                    GetNumber(
+                        parameters,
+                        "PH1");
+
+                double M2 =
+                    GetNumber(
+                        parameters,
+                        "M2");
+
+                double PH2 =
+                    GetNumber(
+                        parameters,
+                        "PH2");
+
+                double Q =
+                    GetNumber(
+                        parameters,
+                        "Q");
+
+                double fak =
+                    GetNumber(
+                        parameters,
+                        "fak");
+
+                double r =
+                    GetNumber(
+                        parameters,
+                        "r");
+
+                double fai =
+                    GetNumber(
+                        parameters,
+                        "fai");
+
+                double k0 =
+                    GetNumber(
+                        parameters,
+                        "[k_0]");
+
+                double kc =
+                    GetNumber(
+                        parameters,
+                        "[k_c]");
 
 
                 // ==========================================
@@ -63,7 +153,7 @@ namespace OCSFoundationOptimizer.Calculations
                 // ==========================================
 
                 double area =
-                    width * length;
+                    20;
 
                 result.ProcessParameters.Add(
                     new ParameterItem
@@ -77,7 +167,7 @@ namespace OCSFoundationOptimizer.Calculations
 
 
                 double volume =
-                    area * height;
+                    area * 2;
 
                 result.ProcessParameters.Add(
                     new ParameterItem
@@ -94,18 +184,73 @@ namespace OCSFoundationOptimizer.Calculations
                 // 最终结果
                 // ==========================================
 
-                double resultValue =
+                double resultK_0 =
                     area * 10;
 
                 result.ResultParameters.Add(
                     new ParameterItem
                     {
-                        Key = "ResultValueA",
-                        Name = "计算结果",
-                        Value = resultValue.ToString("F3"),
-                        Unit = "kN",
+                        Key = "K_0",
+                        Name = "抗倾覆稳定安全系数K_0",
+                        Value = resultK_0.ToString("F3"),
+                        Unit = "",
                         IsReadOnly = true
                     });
+
+                double resultK_c =
+                                   area * 10;
+
+                result.ResultParameters.Add(
+                    new ParameterItem
+                    {
+                        Key = "K_c",
+                        Name = "抗滑稳定安全系数K_c",
+                        Value = resultK_c.ToString("F3"),
+                        Unit = "",
+                        IsReadOnly = true
+                    });
+
+
+                double resultp_k =
+                                   area * 10;
+
+                result.ResultParameters.Add(
+                    new ParameterItem
+                    {
+                        Key = "P_k",
+                        Name = "轴心荷载作用基地压力P_k",
+                        Value = resultp_k.ToString("F3"),
+                        Unit = "kPa",
+                        IsReadOnly = true
+                    });
+
+                double resultS_min =
+                                   area * 10;
+
+                result.ResultParameters.Add(
+                    new ParameterItem
+                    {
+                        Key = "S_min",
+                        Name = "基地最小压力S_min",
+                        Value = resultS_min.ToString("F3"),
+                        Unit = "kPa",
+                        IsReadOnly = true
+                    });
+
+
+                double resultS_max =
+                                   area * 10;
+
+                result.ResultParameters.Add(
+                    new ParameterItem
+                    {
+                        Key = "S_max",
+                        Name = "基地最大压力S_max",
+                        Value = resultS_max.ToString("F3"),
+                        Unit = "kPa",
+                        IsReadOnly = true
+                    });
+
 
 
                 result.IsSuccess = true;
