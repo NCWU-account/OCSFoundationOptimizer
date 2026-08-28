@@ -783,6 +783,18 @@ namespace OCSFoundationOptimizer.ViewModels
                     IsRequired = true,
                     Group = "几何尺寸"
                 });
+            
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "h_0",
+                    Name = "h0",
+                    Value = "200",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true,
+                    Group = "几何尺寸"
+                });
 
             InputParameters.Add(
                 new ParameterItem
@@ -961,31 +973,12 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "[k_0]",
                     Name = "抗倾稳定系数允许值[K_0]",
-                    Value = "",
+                    Value = "1.6",
                     Unit = "",
-                    Type = ParameterType.Selection,
+                    Type = ParameterType.Number,
                     IsRequired = true,
                     Group = "材料及设计参数",
-                    Options =
-                    {
-                        new ParameterOption
-                        {
-                            Text = "1.50",
-                            Value = "1.50"
-                        },
-
-                        new ParameterOption
-                        {
-                            Text = "1.40",
-                            Value = "1.40"
-                        },
-
-                        new ParameterOption
-                        {
-                            Text = "1.30",
-                            Value = "1.30"
-                        }
-                    }
+                    
                 });
 
             InputParameters.Add(
@@ -993,31 +986,12 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "[k_c]",
                     Name = "抗滑稳定系数允许值[K_c]",
-                    Value = "",
+                    Value = "1.3",
                     Unit = "",
-                    Type = ParameterType.Selection,
+                    Type = ParameterType.Number,
                     IsRequired = true,
                     Group = "材料及设计参数",
-                    Options =
-                    {
-                        new ParameterOption
-                        {
-                            Text = "1.30",
-                            Value = "1.30"
-                        },
-
-                        new ParameterOption
-                        {
-                            Text = "1.20",
-                            Value = "1.20"
-                        },
-
-                        new ParameterOption
-                        {
-                            Text = "1.10",
-                            Value = "1.10"
-                        }
-                    }
+                    
                 });
         }
 
