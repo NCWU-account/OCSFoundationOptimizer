@@ -1,0 +1,17 @@
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\bin\Debug\OCSFoundationOptimizer.exe.config
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\bin\Debug\OCSFoundationOptimizer.exe
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\bin\Debug\OCSFoundationOptimizer.pdb
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\OCSFoundationOptimizer.csproj.AssemblyReference.cache
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\MainWindow.baml
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\MainWindow.g.cs
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\App.g.cs
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\OCSFoundationOptimizer_MarkupCompile.cache
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\OCSFoundationOptimizer.g.resources
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\OCSFoundationOptimizer.Properties.Resources.resources
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\OCSFoundationOptimizer.csproj.GenerateResource.cache
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\OCSFoundationOptimizer.csproj.CoreCompileInputs.cache
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\OCSFoundationOptimizer.exe
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\OCSFoundationOptimizer.pdb
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\OCSFoundationOptimizer_Content.g.cs
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\bin\Debug\pic\sample.png
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\OCSFoundationOptimizer_MarkupCompile.lref
