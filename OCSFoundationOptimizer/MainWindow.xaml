@@ -337,256 +337,257 @@
         <!-- ===================================================== -->
         <!-- 参数模板 -->
         <!-- ===================================================== -->
-        
+
         <!-- ===================================================== -->
-<!-- 参数模板 -->
-<!-- ===================================================== -->
+        <!-- 参数模板 -->
+        <!-- ===================================================== -->
 
-<DataTemplate x:Key="ParameterTemplate">
+        <DataTemplate x:Key="ParameterTemplate">
 
-    <Grid Margin="0,0,0,12">
+            <Grid Margin="0,0,0,12">
 
-        <Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
 
-            <!-- 参数名称 -->
-            <ColumnDefinition Width="220"/>
+                    <!-- 参数名称 -->
+                    <ColumnDefinition Width="220" />
 
-            <!-- 参数输入 -->
-            <ColumnDefinition Width="190"/>
+                    <!-- 参数输入 -->
+                    <ColumnDefinition Width="190" />
 
-            <!-- 单位 -->
-            <ColumnDefinition Width="*"/>
+                    <!-- 单位 -->
+                    <ColumnDefinition Width="*" />
 
-        </Grid.ColumnDefinitions>
-
-
-        <!-- ================================================= -->
-        <!-- 参数名称 -->
-        <!-- ================================================= -->
-
-        <Grid Grid.Column="0"
-              VerticalAlignment="Center">
-
-            <Grid.ColumnDefinitions>
-
-                <ColumnDefinition Width="*"/>
-
-                <ColumnDefinition Width="Auto"/>
-
-            </Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
 
 
-            <TextBlock Grid.Column="0"
-                       Text="{Binding Name}"
-                       FontSize="12"
-                       Foreground="#374151"
-                       VerticalAlignment="Center"
-                       TextTrimming="CharacterEllipsis"/>
+                <!-- ================================================= -->
+                <!-- 参数名称 -->
+                <!-- ================================================= -->
+
+                <Grid Grid.Column="0"
+                      VerticalAlignment="Center">
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="Auto" />
+
+                    </Grid.ColumnDefinitions>
 
 
-            <TextBlock Grid.Column="1"
-                       Text="必填"
-                       FontSize="9"
-                       Foreground="#9AA3AD"
-                       Margin="8,0,0,0"
-                       VerticalAlignment="Center">
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding Name}"
+                               FontSize="12"
+                               Foreground="#374151"
+                               VerticalAlignment="Center"
+                               TextTrimming="CharacterEllipsis" />
 
-                <TextBlock.Style>
 
-                    <Style TargetType="TextBlock">
+                    <TextBlock Grid.Column="1"
+                               Text="必填"
+                               FontSize="9"
+                               Foreground="#9AA3AD"
+                               Margin="8,0,0,0"
+                               VerticalAlignment="Center">
 
-                        <Setter Property="Visibility"
-                                Value="Collapsed"/>
+                        <TextBlock.Style>
 
-                        <Style.Triggers>
-
-                            <DataTrigger Binding="{Binding IsRequired}"
-                                         Value="True">
+                            <Style TargetType="TextBlock">
 
                                 <Setter Property="Visibility"
-                                        Value="Visible"/>
+                                        Value="Collapsed" />
 
-                            </DataTrigger>
+                                <Style.Triggers>
 
-                        </Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsRequired}"
+                                                 Value="True">
 
-                    </Style>
+                                        <Setter Property="Visibility"
+                                                Value="Visible" />
 
-                </TextBlock.Style>
+                                    </DataTrigger>
 
-            </TextBlock>
+                                </Style.Triggers>
 
-        </Grid>
+                            </Style>
 
+                        </TextBlock.Style>
 
-        <!-- ================================================= -->
-        <!-- 输入区域 -->
-        <!-- ================================================= -->
+                    </TextBlock>
 
-        <Grid Grid.Column="1"
-              Width="180"
-              Height="34"
-              HorizontalAlignment="Left">
+                </Grid>
 
 
-            <!-- ================================================= -->
-            <!-- Number / 普通文本 -->
-            <!-- ================================================= -->
+                <!-- ================================================= -->
+                <!-- 输入区域 -->
+                <!-- ================================================= -->
 
-            <Border>
-
-                <Border.Style>
-
-                    <Style TargetType="Border">
-
-                        <Setter Property="BorderBrush"
-                                Value="#CBD3DB"/>
-
-                        <Setter Property="Background"
-                                Value="#FAFBFC"/>
-
-                        <Setter Property="BorderThickness"
-                                Value="1"/>
-
-                        <Setter Property="CornerRadius"
-                                Value="3"/>
+                <Grid Grid.Column="1"
+                      Width="180"
+                      Height="34"
+                      HorizontalAlignment="Left">
 
 
-                        <Style.Triggers>
+                    <!-- ================================================= -->
+                    <!-- Number / 普通文本 -->
+                    <!-- ================================================= -->
 
-                            <!-- 参数错误 -->
+                    <Border>
 
-                            <DataTrigger Binding="{Binding HasError}"
-                                         Value="True">
+                        <Border.Style>
+
+                            <Style TargetType="Border">
 
                                 <Setter Property="BorderBrush"
-                                        Value="#D93025"/>
+                                        Value="#CBD3DB" />
 
                                 <Setter Property="Background"
-                                        Value="#FFF5F5"/>
+                                        Value="#FAFBFC" />
 
-                            </DataTrigger>
+                                <Setter Property="BorderThickness"
+                                        Value="1" />
 
-
-                            <!-- 只读 -->
-
-                            <DataTrigger Binding="{Binding IsReadOnly}"
-                                         Value="True">
-
-                                <Setter Property="Background"
-                                        Value="#F1F3F5"/>
-
-                            </DataTrigger>
+                                <Setter Property="CornerRadius"
+                                        Value="3" />
 
 
-                            <!-- Selection 类型隐藏 -->
+                                <Style.Triggers>
 
-                            <DataTrigger Binding="{Binding Type}"
-                                         Value="Selection">
+                                    <!-- 参数错误 -->
 
-                                <Setter Property="Visibility"
-                                        Value="Collapsed"/>
+                                    <DataTrigger Binding="{Binding HasError}"
+                                                 Value="True">
 
-                            </DataTrigger>
+                                        <Setter Property="BorderBrush"
+                                                Value="#D93025" />
 
-                        </Style.Triggers>
+                                        <Setter Property="Background"
+                                                Value="#FFF5F5" />
 
-                    </Style>
-
-                </Border.Style>
+                                    </DataTrigger>
 
 
-                <TextBox Text="{Binding Value,
+                                    <!-- 只读 -->
+
+                                    <DataTrigger Binding="{Binding IsReadOnly}"
+                                                 Value="True">
+
+                                        <Setter Property="Background"
+                                                Value="#F1F3F5" />
+
+                                    </DataTrigger>
+
+
+                                    <!-- Selection 类型隐藏 -->
+
+                                    <DataTrigger Binding="{Binding Type}"
+                                                 Value="Selection">
+
+                                        <Setter Property="Visibility"
+                                                Value="Collapsed" />
+
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+
+                            </Style>
+
+                        </Border.Style>
+
+
+                        <TextBox
+                            Text="{Binding Value,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}"
-                         IsReadOnly="{Binding IsReadOnly}"
-                         FontSize="13"
-                         Foreground="#1F2937"
-                         Background="Transparent"
-                         BorderThickness="0"
-                         Padding="9,0"
-                         VerticalContentAlignment="Center"/>
+                            IsReadOnly="{Binding IsReadOnly}"
+                            FontSize="13"
+                            Foreground="#1F2937"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Padding="9,0"
+                            VerticalContentAlignment="Center" />
 
-            </Border>
+                    </Border>
 
 
-            <!-- ================================================= -->
-            <!-- Selection -->
-            <!-- ================================================= -->
+                    <!-- ================================================= -->
+                    <!-- Selection -->
+                    <!-- ================================================= -->
 
-            <ComboBox ItemsSource="{Binding Options}"
-                      SelectedValue="{Binding Value,
+                    <ComboBox ItemsSource="{Binding Options}"
+                              SelectedValue="{Binding Value,
                                               Mode=TwoWay,
                                               UpdateSourceTrigger=PropertyChanged}"
-                      SelectedValuePath="Value"
-                      DisplayMemberPath="Text"
-                      FontSize="13"
-                      Foreground="#1F2937"
-                      Background="#FAFBFC"
-                      BorderBrush="#CBD3DB"
-                      BorderThickness="1"
-                      Padding="7,0"
-                      VerticalContentAlignment="Center">
+                              SelectedValuePath="Value"
+                              DisplayMemberPath="Text"
+                              FontSize="13"
+                              Foreground="#1F2937"
+                              Background="#FAFBFC"
+                              BorderBrush="#CBD3DB"
+                              BorderThickness="1"
+                              Padding="7,0"
+                              VerticalContentAlignment="Center">
 
-                <ComboBox.Style>
+                        <ComboBox.Style>
 
-                    <Style TargetType="ComboBox">
-
-                        <Setter Property="Visibility"
-                                Value="Collapsed"/>
-
-                        <Setter Property="IsEnabled"
-                                Value="True"/>
-
-
-                        <Style.Triggers>
-
-                            <!-- Selection 类型显示 -->
-
-                            <DataTrigger Binding="{Binding Type}"
-                                         Value="Selection">
+                            <Style TargetType="ComboBox">
 
                                 <Setter Property="Visibility"
-                                        Value="Visible"/>
-
-                            </DataTrigger>
-
-
-                            <!-- 只读 -->
-
-                            <DataTrigger Binding="{Binding IsReadOnly}"
-                                         Value="True">
+                                        Value="Collapsed" />
 
                                 <Setter Property="IsEnabled"
-                                        Value="False"/>
-
-                            </DataTrigger>
-
-                        </Style.Triggers>
-
-                    </Style>
-
-                </ComboBox.Style>
-
-            </ComboBox>
-
-        </Grid>
+                                        Value="True" />
 
 
-        <!-- ================================================= -->
-        <!-- 单位 -->
-        <!-- ================================================= -->
+                                <Style.Triggers>
 
-        <TextBlock Grid.Column="2"
-                   Text="{Binding Unit}"
-                   FontSize="11"
-                   Foreground="#7B8490"
-                   VerticalAlignment="Center"
-                   Margin="8,0,0,0"/>
+                                    <!-- Selection 类型显示 -->
 
-    </Grid>
+                                    <DataTrigger Binding="{Binding Type}"
+                                                 Value="Selection">
 
-</DataTemplate>
+                                        <Setter Property="Visibility"
+                                                Value="Visible" />
+
+                                    </DataTrigger>
+
+
+                                    <!-- 只读 -->
+
+                                    <DataTrigger Binding="{Binding IsReadOnly}"
+                                                 Value="True">
+
+                                        <Setter Property="IsEnabled"
+                                                Value="False" />
+
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+
+                            </Style>
+
+                        </ComboBox.Style>
+
+                    </ComboBox>
+
+                </Grid>
+
+
+                <!-- ================================================= -->
+                <!-- 单位 -->
+                <!-- ================================================= -->
+
+                <TextBlock Grid.Column="2"
+                           Text="{Binding Unit}"
+                           FontSize="11"
+                           Foreground="#7B8490"
+                           VerticalAlignment="Center"
+                           Margin="8,0,0,0" />
+
+            </Grid>
+
+        </DataTemplate>
 
 
         <!-- ===================================================== -->
@@ -1258,50 +1259,60 @@
                                                 <!-- 当前组参数 -->
                                                 <!-- ================================================= -->
 
-                                                <ItemsControl
-                                                    ItemsSource="{Binding Parameters}">
+                                                <!-- ================================================= -->
+                                                <!-- 当前组参数 -->
+                                                <!-- ================================================= -->
+
+                                                <ItemsControl ItemsSource="{Binding Parameters}">
+
+                                                    <!-- ================================================= -->
+                                                    <!-- 三列布局 -->
+                                                    <!-- ================================================= -->
+
+                                                    <ItemsControl.ItemsPanel>
+
+                                                        <ItemsPanelTemplate>
+
+                                                            <UniformGrid Columns="3" />
+
+                                                        </ItemsPanelTemplate>
+
+                                                    </ItemsControl.ItemsPanel>
+
+
+                                                    <!-- ================================================= -->
+                                                    <!-- 参数模板 -->
+                                                    <!-- ================================================= -->
 
                                                     <ItemsControl.ItemTemplate>
 
                                                         <DataTemplate>
 
-                                                            <Grid Margin="0,0,0,12">
+                                                            <Grid Margin="0,0,12,14">
 
-                                                                <Grid.ColumnDefinitions>
+                                                                <Grid.RowDefinitions>
 
                                                                     <!-- 参数名称 -->
-
-                                                                    <ColumnDefinition
-                                                                        Width="220" />
+                                                                    <RowDefinition Height="Auto" />
 
                                                                     <!-- 输入框 -->
+                                                                    <RowDefinition Height="34" />
 
-                                                                    <ColumnDefinition
-                                                                        Width="190" />
-
-                                                                    <!-- 单位 -->
-
-                                                                    <ColumnDefinition
-                                                                        Width="*" />
-
-                                                                </Grid.ColumnDefinitions>
+                                                                </Grid.RowDefinitions>
 
 
                                                                 <!-- ================================================= -->
                                                                 <!-- 参数名称 -->
                                                                 <!-- ================================================= -->
 
-                                                                <Grid
-                                                                    Grid.Column="0"
-                                                                    VerticalAlignment="Center">
+                                                                <Grid Grid.Row="0"
+                                                                      Margin="0,0,0,7">
 
                                                                     <Grid.ColumnDefinitions>
 
-                                                                        <ColumnDefinition
-                                                                            Width="*" />
+                                                                        <ColumnDefinition Width="*" />
 
-                                                                        <ColumnDefinition
-                                                                            Width="Auto" />
+                                                                        <ColumnDefinition Width="Auto" />
 
                                                                     </Grid.ColumnDefinitions>
 
@@ -1315,6 +1326,8 @@
                                                                         TextTrimming="CharacterEllipsis" />
 
 
+                                                                    <!-- 必填 -->
+
                                                                     <TextBlock
                                                                         Grid.Column="1"
                                                                         Text="必填"
@@ -1325,8 +1338,7 @@
 
                                                                         <TextBlock.Style>
 
-                                                                            <Style
-                                                                                TargetType="TextBlock">
+                                                                            <Style TargetType="TextBlock">
 
                                                                                 <Setter
                                                                                     Property="Visibility"
@@ -1359,25 +1371,20 @@
                                                                 <!-- 输入区域 -->
                                                                 <!-- ================================================= -->
 
-                                                                <Grid
-                                                                    Grid.Column="1"
-                                                                    Width="180"
-                                                                    Height="34"
-                                                                    HorizontalAlignment="Left">
+                                                                <Grid Grid.Row="1">
 
 
                                                                     <!-- ================================================= -->
-                                                                    <!-- 数字输入框 -->
+                                                                    <!-- 普通输入框 -->
                                                                     <!-- ================================================= -->
 
                                                                     <Border
-                                                                        BorderThickness="1"
-                                                                        CornerRadius="3">
+                                                                        CornerRadius="3"
+                                                                        BorderThickness="1">
 
                                                                         <Border.Style>
 
-                                                                            <Style
-                                                                                TargetType="Border">
+                                                                            <Style TargetType="Border">
 
                                                                                 <Setter
                                                                                     Property="BorderBrush"
@@ -1386,6 +1393,7 @@
                                                                                 <Setter
                                                                                     Property="Background"
                                                                                     Value="#FAFBFC" />
+
 
                                                                                 <Style.Triggers>
 
@@ -1418,6 +1426,19 @@
 
                                                                                     </DataTrigger>
 
+
+                                                                                    <!-- Selection 隐藏 -->
+
+                                                                                    <DataTrigger
+                                                                                        Binding="{Binding Type}"
+                                                                                        Value="Selection">
+
+                                                                                        <Setter
+                                                                                            Property="Visibility"
+                                                                                            Value="Collapsed" />
+
+                                                                                    </DataTrigger>
+
                                                                                 </Style.Triggers>
 
                                                                             </Style>
@@ -1427,44 +1448,15 @@
 
                                                                         <TextBox
                                                                             Text="{Binding Value,
-                                                        Mode=TwoWay,
-                                                        UpdateSourceTrigger=PropertyChanged}"
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged}"
                                                                             IsReadOnly="{Binding IsReadOnly}"
                                                                             FontSize="13"
                                                                             Foreground="#1F2937"
                                                                             Background="Transparent"
                                                                             BorderThickness="0"
                                                                             Padding="9,0"
-                                                                            VerticalContentAlignment="Center">
-
-                                                                            <TextBox.Style>
-
-                                                                                <Style
-                                                                                    TargetType="TextBox">
-
-                                                                                    <Setter
-                                                                                        Property="Visibility"
-                                                                                        Value="Visible" />
-
-                                                                                    <Style.Triggers>
-
-                                                                                        <DataTrigger
-                                                                                            Binding="{Binding Type}"
-                                                                                            Value="Selection">
-
-                                                                                            <Setter
-                                                                                                Property="Visibility"
-                                                                                                Value="Collapsed" />
-
-                                                                                        </DataTrigger>
-
-                                                                                    </Style.Triggers>
-
-                                                                                </Style>
-
-                                                                            </TextBox.Style>
-
-                                                                        </TextBox>
+                                                                            VerticalContentAlignment="Center" />
 
                                                                     </Border>
 
@@ -1476,23 +1468,29 @@
                                                                     <ComboBox
                                                                         ItemsSource="{Binding Options}"
                                                                         SelectedValue="{Binding Value,
-                                                    Mode=TwoWay,
-                                                    UpdateSourceTrigger=PropertyChanged}"
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged}"
                                                                         SelectedValuePath="Value"
                                                                         DisplayMemberPath="Text"
                                                                         FontSize="13"
+                                                                        Foreground="#1F2937"
+                                                                        Background="#FAFBFC"
+                                                                        BorderBrush="#CBD3DB"
+                                                                        BorderThickness="1"
+                                                                        Padding="7,0"
                                                                         VerticalContentAlignment="Center">
 
                                                                         <ComboBox.Style>
 
-                                                                            <Style
-                                                                                TargetType="ComboBox">
+                                                                            <Style TargetType="ComboBox">
 
                                                                                 <Setter
                                                                                     Property="Visibility"
                                                                                     Value="Collapsed" />
 
                                                                                 <Style.Triggers>
+
+                                                                                    <!-- Selection -->
 
                                                                                     <DataTrigger
                                                                                         Binding="{Binding Type}"
@@ -1504,6 +1502,19 @@
 
                                                                                     </DataTrigger>
 
+
+                                                                                    <!-- 只读 -->
+
+                                                                                    <DataTrigger
+                                                                                        Binding="{Binding IsReadOnly}"
+                                                                                        Value="True">
+
+                                                                                        <Setter
+                                                                                            Property="IsEnabled"
+                                                                                            Value="False" />
+
+                                                                                    </DataTrigger>
+
                                                                                 </Style.Triggers>
 
                                                                             </Style>
@@ -1512,20 +1523,21 @@
 
                                                                     </ComboBox>
 
+
+                                                                    <!-- ================================================= -->
+                                                                    <!-- 单位 -->
+                                                                    <!-- ================================================= -->
+
+                                                                    <TextBlock
+                                                                        Text="{Binding Unit}"
+                                                                        FontSize="10"
+                                                                        Foreground="#7B8490"
+                                                                        HorizontalAlignment="Right"
+                                                                        VerticalAlignment="Center"
+                                                                        Margin="0,0,9,0"
+                                                                        IsHitTestVisible="False" />
+
                                                                 </Grid>
-
-
-                                                                <!-- ================================================= -->
-                                                                <!-- 单位 -->
-                                                                <!-- ================================================= -->
-
-                                                                <TextBlock
-                                                                    Grid.Column="2"
-                                                                    Text="{Binding Unit}"
-                                                                    FontSize="11"
-                                                                    Foreground="#7B8490"
-                                                                    VerticalAlignment="Center"
-                                                                    Margin="8,0,0,0" />
 
                                                             </Grid>
 
@@ -1584,8 +1596,12 @@
 
                                 <ColumnDefinition Width="Auto" />
 
+                                <ColumnDefinition Width="Auto" />
+
                             </Grid.ColumnDefinitions>
 
+
+                            <!-- 标题 -->
 
                             <StackPanel Grid.Column="0">
 
@@ -1599,11 +1615,30 @@
                             </StackPanel>
 
 
+                            <!-- 当前理论 -->
+
                             <TextBlock Grid.Column="1"
                                        Text="{Binding CurrentTheoryDisplayName}"
                                        FontSize="10"
                                        Foreground="#1F4E79"
-                                       VerticalAlignment="Center" />
+                                       VerticalAlignment="Center"
+                                       Margin="0,0,15,0" />
+
+
+                            <!-- 折叠按钮 -->
+
+                            <Button Grid.Column="2"
+                                    Content="{Binding ResultToggleText}"
+                                    Command="{Binding ToggleResultCommand}"
+                                    Height="30"
+                                    Padding="12,0"
+                                    FontSize="11"
+                                    Background="#FFFFFF"
+                                    Foreground="#59636E"
+                                    BorderBrush="#CBD3DB"
+                                    BorderThickness="1"
+                                    Cursor="Hand"
+                                    VerticalAlignment="Center" />
 
                         </Grid>
 
@@ -1617,11 +1652,35 @@
                                       ItemTemplate="{StaticResource ResultTemplate}"
                                       Margin="18,14">
 
+                            <ItemsControl.Style>
+
+                                <Style TargetType="ItemsControl">
+
+                                    <Setter Property="Visibility"
+                                            Value="Visible"/>
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger Binding="{Binding IsResultExpanded}"
+                                                     Value="False">
+
+                                            <Setter Property="Visibility"
+                                                    Value="Collapsed"/>
+
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+
+                            </ItemsControl.Style>
+
+
                             <ItemsControl.ItemsPanel>
 
                                 <ItemsPanelTemplate>
 
-                                    <UniformGrid Columns="2" />
+                                    <UniformGrid Columns="2"/>
 
                                 </ItemsPanelTemplate>
 

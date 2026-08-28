@@ -29,6 +29,8 @@ namespace OCSFoundationOptimizer.ViewModels
         private CalculationTheoryType _currentTheory =
             CalculationTheoryType.A;
 
+        // 展示计算结果的展开状态
+        private bool _isResultExpanded = false;
 
         /// <summary>
         /// 当前选择的计算理论
@@ -59,7 +61,25 @@ namespace OCSFoundationOptimizer.ViewModels
             }
         }
 
+        // =====================================================
+        // 展示计算结果的展开状态
+        // =====================================================
+        public bool IsResultExpanded
+        {
+            get => _isResultExpanded;
+            set
+            {
+                if (_isResultExpanded == value)
+                    return;
 
+                _isResultExpanded = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(ResultToggleText));
+            }
+        }
+
+        public string ResultToggleText =>
+            IsResultExpanded ? "折叠结果" : "展开结果";
         // =====================================================
         // 理论 A 是否选中
         // =====================================================
@@ -208,6 +228,10 @@ namespace OCSFoundationOptimizer.ViewModels
         /// </summary>
         public ICommand GenerateCalculationBookCommand { get; }
 
+        /// <summary>
+        /// 展开 / 折叠计算结果
+        /// </summary>
+        public ICommand ToggleResultCommand { get; }
 
         // =====================================================
         // 构造函数
@@ -286,6 +310,12 @@ namespace OCSFoundationOptimizer.ViewModels
 
             GenerateCalculationBookCommand =
                 new RelayCommand(_ => { GenerateCalculationBook(); });
+            // =================================================
+            // 展开 / 折叠计算结果
+            // =================================================
+
+            ToggleResultCommand =
+                new RelayCommand(_ => { IsResultExpanded = !IsResultExpanded; });
         }
 // =====================================================
 // 根据参数 Group 创建参数分组
@@ -323,6 +353,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 ParameterGroups.Add(group);
             }
         }
+
         private void AutoCalculateTimer_Tick(
             object? sender,
             EventArgs e)
@@ -508,9 +539,16 @@ namespace OCSFoundationOptimizer.ViewModels
             }
 
 
-            // =================================================
-            // 更新计算状态
-            // =================================================
+// =================================================
+// 计算成功后自动展开结果
+// =================================================
+
+            IsResultExpanded = true;
+
+
+// =================================================
+// 更新计算状态
+// =================================================
 
             CalculationStatus =
                 $"{CurrentTheoryDisplayName} 计算完成";
