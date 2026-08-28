@@ -732,7 +732,7 @@ namespace OCSFoundationOptimizer.ViewModels
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
-                    Group = "建筑物及基础尺寸"
+                    Group = "几何尺寸"
                 });
 
             InputParameters.Add(
@@ -744,7 +744,7 @@ namespace OCSFoundationOptimizer.ViewModels
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
-                    Group = "建筑物及基础尺寸"
+                    Group = "几何尺寸"
                 });
 
 
@@ -757,7 +757,7 @@ namespace OCSFoundationOptimizer.ViewModels
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
-                    Group = "建筑物及基础尺寸"
+                    Group = "几何尺寸"
                 });
 
             InputParameters.Add(
@@ -769,7 +769,7 @@ namespace OCSFoundationOptimizer.ViewModels
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
-                    Group = "建筑物及基础尺寸"
+                    Group = "几何尺寸"
                 });
 
             InputParameters.Add(
@@ -781,7 +781,7 @@ namespace OCSFoundationOptimizer.ViewModels
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
-                    Group = "建筑物及基础尺寸"
+                    Group = "几何尺寸"
                 });
 
             InputParameters.Add(
@@ -793,7 +793,7 @@ namespace OCSFoundationOptimizer.ViewModels
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
-                    Group = "建筑物及基础尺寸"
+                    Group = "几何尺寸"
                 });
 
             InputParameters.Add(
@@ -805,7 +805,7 @@ namespace OCSFoundationOptimizer.ViewModels
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
-                    Group = "建筑物及基础尺寸"
+                    Group = "几何尺寸"
                 });
 
             InputParameters.Add(
@@ -817,7 +817,7 @@ namespace OCSFoundationOptimizer.ViewModels
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
-                    Group = "建筑物及基础尺寸"
+                    Group = "几何尺寸"
                 });
 
             InputParameters.Add(
@@ -829,7 +829,7 @@ namespace OCSFoundationOptimizer.ViewModels
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
-                    Group = "建筑物及基础尺寸"
+                    Group = "几何尺寸"
                 });
 
             InputParameters.Add(
@@ -841,7 +841,7 @@ namespace OCSFoundationOptimizer.ViewModels
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
-                    Group = "建筑物及基础尺寸"
+                    Group = "几何尺寸"
                 });
 
             InputParameters.Add(
@@ -853,7 +853,7 @@ namespace OCSFoundationOptimizer.ViewModels
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
-                    Group = "建筑物及基础尺寸"
+                    Group = "几何尺寸"
                 });
 
             InputParameters.Add(

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OCSFoundationOptimizer.Models"
         mc:Ignorable="d"
-        Title="OCS基础优化计算"
+        Title="支柱基础计算"
         Height="950"
         Width="1450"
         MinHeight="720"
@@ -699,12 +699,12 @@
                 <StackPanel Grid.Column="0"
                             VerticalAlignment="Center">
 
-                    <TextBlock Text="OCS FOUNDATION OPTIMIZER"
+                    <TextBlock Text="参数化计算+计算书一键生成"
                                FontSize="10"
                                FontWeight="SemiBold"
                                Foreground="#718096" />
 
-                    <TextBlock Text="接触网钢柱基础优化计算"
+                    <TextBlock Text="接触网支柱基础优化计算"
                                FontSize="21"
                                FontWeight="SemiBold"
                                Foreground="#1F2937"
@@ -723,7 +723,7 @@
 
                     <StackPanel>
 
-                        <TextBlock Text="CURRENT MODEL"
+                        <TextBlock Text="当前计算方案"
                                    FontSize="9"
                                    Foreground="#8A939D" />
 
@@ -795,7 +795,7 @@
                         <TextBlock Text="计算模型"
                                    Style="{StaticResource SectionTitle}" />
 
-                        <TextBlock Text="CALCULATION MODEL"
+                        <TextBlock Text="支持不同方式计算，请选择方案"
                                    Style="{StaticResource Caption}"
                                    Margin="0,3,0,0" />
 
@@ -1190,18 +1190,14 @@
                                 <TextBlock Text="计算参数"
                                            Style="{StaticResource SectionTitle}" />
 
-                                <TextBlock Text="INPUT PARAMETERS"
+                                <TextBlock Text="请输入设计参数"
                                            Style="{StaticResource Caption}"
                                            Margin="0,3,0,0" />
 
                             </StackPanel>
 
 
-                            <TextBlock Grid.Column="1"
-                                       Text="请输入设计参数"
-                                       FontSize="10"
-                                       Foreground="#9AA3AD"
-                                       VerticalAlignment="Center" />
+
 
                         </Grid>
 
@@ -1748,10 +1744,10 @@
                     <StackPanel Grid.Row="0"
                                 Margin="18,16">
 
-                        <TextBlock Text="结构示意"
+                        <TextBlock Text="接触网支柱基础深化设计图"
                                    Style="{StaticResource SectionTitle}" />
 
-                        <TextBlock Text="STRUCTURAL SCHEMATIC"
+                        <TextBlock Text="结构示意"
                                    Style="{StaticResource Caption}"
                                    Margin="0,3,0,0" />
 
