@@ -1,0 +1,308 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|f:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\ocsfoundationoptimizer\\ocsfoundationoptimizer\\models\\parametergroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|solutionrelative:ocsfoundationoptimizer\\models\\parametergroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|f:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\ocsfoundationoptimizer\\ocsfoundationoptimizer\\converters\\inversebooleanconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|solutionrelative:ocsfoundationoptimizer\\converters\\inversebooleanconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|f:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\ocsfoundationoptimizer\\ocsfoundationoptimizer\\calculations\\calculationtheorya.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|solutionrelative:ocsfoundationoptimizer\\calculations\\calculationtheorya.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\ocsfoundationoptimizer\\models\\calculationresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|solutionrelative:ocsfoundationoptimizer\\models\\calculationresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\ocsfoundationoptimizer\\models\\calculationtheorytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|solutionrelative:ocsfoundationoptimizer\\models\\calculationtheorytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\ocsfoundationoptimizer\\models\\parameteritem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|solutionrelative:ocsfoundationoptimizer\\models\\parameteritem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\ocsfoundationoptimizer\\models\\parametertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|solutionrelative:ocsfoundationoptimizer\\models\\parametertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\ocsfoundationoptimizer\\calculationbooks\\icalculationbookgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|solutionrelative:ocsfoundationoptimizer\\calculationbooks\\icalculationbookgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\ocsfoundationoptimizer\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|solutionrelative:ocsfoundationoptimizer\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\ocsfoundationoptimizer\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|solutionrelative:ocsfoundationoptimizer\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\ocsfoundationoptimizer\\calculationbooks\\calculationbooka.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|solutionrelative:ocsfoundationoptimizer\\calculationbooks\\calculationbooka.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\ocsfoundationoptimizer\\calculationbooks\\calculationbookb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|solutionrelative:ocsfoundationoptimizer\\calculationbooks\\calculationbookb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\ocsfoundationoptimizer\\calculations\\calculationtheoryb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|solutionrelative:ocsfoundationoptimizer\\calculations\\calculationtheoryb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\ocsfoundationoptimizer\\services\\calculationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|solutionrelative:ocsfoundationoptimizer\\services\\calculationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\ocsfoundationoptimizer\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|solutionrelative:ocsfoundationoptimizer\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\ocsfoundationoptimizer\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{75828AE5-A1B4-4910-89FE-DE684A3F2549}|OCSFoundationOptimizer\\OCSFoundationOptimizer.csproj|solutionrelative:ocsfoundationoptimizer\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ParameterGroup.cs",
+              "DocumentMoniker": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Models\\ParameterGroup.cs",
+              "RelativeDocumentMoniker": "OCSFoundationOptimizer\\Models\\ParameterGroup.cs",
+              "ToolTip": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Models\\ParameterGroup.cs",
+              "RelativeToolTip": "OCSFoundationOptimizer\\Models\\ParameterGroup.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvxIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-27T09:32:29.173Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InverseBooleanConverter.cs",
+              "DocumentMoniker": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Converters\\InverseBooleanConverter.cs",
+              "RelativeDocumentMoniker": "OCSFoundationOptimizer\\Converters\\InverseBooleanConverter.cs",
+              "ToolTip": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Converters\\InverseBooleanConverter.cs",
+              "RelativeToolTip": "OCSFoundationOptimizer\\Converters\\InverseBooleanConverter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-27T09:32:26.108Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CalculationTheoryA.cs",
+              "DocumentMoniker": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Calculations\\CalculationTheoryA.cs",
+              "RelativeDocumentMoniker": "OCSFoundationOptimizer\\Calculations\\CalculationTheoryA.cs",
+              "ToolTip": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Calculations\\CalculationTheoryA.cs",
+              "RelativeToolTip": "OCSFoundationOptimizer\\Calculations\\CalculationTheoryA.cs",
+              "ViewState": "AgIAAJIAAAAAAAAAAAAQwKoAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-27T01:54:30.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "OCSFoundationOptimizer\\MainWindow.xaml",
+              "ToolTip": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\MainWindow.xaml",
+              "RelativeToolTip": "OCSFoundationOptimizer\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-08-26T10:22:38.117Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ICalculationBookGenerator.cs",
+              "DocumentMoniker": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\CalculationBooks\\ICalculationBookGenerator.cs",
+              "RelativeDocumentMoniker": "OCSFoundationOptimizer\\CalculationBooks\\ICalculationBookGenerator.cs",
+              "ToolTip": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\CalculationBooks\\ICalculationBookGenerator.cs",
+              "RelativeToolTip": "OCSFoundationOptimizer\\CalculationBooks\\ICalculationBookGenerator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-27T06:41:41.985Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ParameterType.cs",
+              "DocumentMoniker": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Models\\ParameterType.cs",
+              "RelativeDocumentMoniker": "OCSFoundationOptimizer\\Models\\ParameterType.cs",
+              "ToolTip": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Models\\ParameterType.cs",
+              "RelativeToolTip": "OCSFoundationOptimizer\\Models\\ParameterType.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-27T06:40:36.419Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ParameterItem.cs",
+              "DocumentMoniker": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Models\\ParameterItem.cs",
+              "RelativeDocumentMoniker": "OCSFoundationOptimizer\\Models\\ParameterItem.cs",
+              "ToolTip": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Models\\ParameterItem.cs",
+              "RelativeToolTip": "OCSFoundationOptimizer\\Models\\ParameterItem.cs",
+              "ViewState": "AgIAADQBAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-27T06:40:19.939Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CalculationTheoryType.cs",
+              "DocumentMoniker": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Models\\CalculationTheoryType.cs",
+              "RelativeDocumentMoniker": "OCSFoundationOptimizer\\Models\\CalculationTheoryType.cs",
+              "ToolTip": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Models\\CalculationTheoryType.cs",
+              "RelativeToolTip": "OCSFoundationOptimizer\\Models\\CalculationTheoryType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-27T06:40:18.896Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CalculationResult.cs",
+              "DocumentMoniker": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Models\\CalculationResult.cs",
+              "RelativeDocumentMoniker": "OCSFoundationOptimizer\\Models\\CalculationResult.cs",
+              "ToolTip": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Models\\CalculationResult.cs",
+              "RelativeToolTip": "OCSFoundationOptimizer\\Models\\CalculationResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-27T06:40:15.301Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\ViewModels\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "OCSFoundationOptimizer\\ViewModels\\MainViewModel.cs",
+              "ToolTip": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\ViewModels\\MainViewModel.cs",
+              "RelativeToolTip": "OCSFoundationOptimizer\\ViewModels\\MainViewModel.cs",
+              "ViewState": "AgIAAEADAAAAAAAAAAAkwFUDAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-27T01:55:22.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CalculationBookA.cs",
+              "DocumentMoniker": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\CalculationBooks\\CalculationBookA.cs",
+              "RelativeDocumentMoniker": "OCSFoundationOptimizer\\CalculationBooks\\CalculationBookA.cs",
+              "ToolTip": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\CalculationBooks\\CalculationBookA.cs",
+              "RelativeToolTip": "OCSFoundationOptimizer\\CalculationBooks\\CalculationBookA.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAADwvy0AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-27T01:54:14.663Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CalculationTheoryB.cs",
+              "DocumentMoniker": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Calculations\\CalculationTheoryB.cs",
+              "RelativeDocumentMoniker": "OCSFoundationOptimizer\\Calculations\\CalculationTheoryB.cs",
+              "ToolTip": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Calculations\\CalculationTheoryB.cs",
+              "RelativeToolTip": "OCSFoundationOptimizer\\Calculations\\CalculationTheoryB.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-27T01:54:32.176Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CalculationBookB.cs",
+              "DocumentMoniker": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\CalculationBooks\\CalculationBookB.cs",
+              "RelativeDocumentMoniker": "OCSFoundationOptimizer\\CalculationBooks\\CalculationBookB.cs",
+              "ToolTip": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\CalculationBooks\\CalculationBookB.cs",
+              "RelativeToolTip": "OCSFoundationOptimizer\\CalculationBooks\\CalculationBookB.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-27T01:54:27.778Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "App.config",
+              "DocumentMoniker": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\App.config",
+              "RelativeDocumentMoniker": "OCSFoundationOptimizer\\App.config",
+              "ToolTip": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\App.config",
+              "RelativeToolTip": "OCSFoundationOptimizer\\App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-08-26T11:24:44.098Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CalculationService.cs",
+              "DocumentMoniker": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Services\\CalculationService.cs",
+              "RelativeDocumentMoniker": "OCSFoundationOptimizer\\Services\\CalculationService.cs",
+              "ToolTip": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\Services\\CalculationService.cs",
+              "RelativeToolTip": "OCSFoundationOptimizer\\Services\\CalculationService.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-27T01:55:19.956Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "App.xaml",
+              "DocumentMoniker": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\App.xaml",
+              "RelativeDocumentMoniker": "OCSFoundationOptimizer\\App.xaml",
+              "ToolTip": "F:\\revit\u4E8C\u6B21\u5F00\u53D1\\basics_count\\OCSFoundationOptimizer\\OCSFoundationOptimizer\\App.xaml",
+              "RelativeToolTip": "OCSFoundationOptimizer\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-08-26T11:24:39.429Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1682,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
