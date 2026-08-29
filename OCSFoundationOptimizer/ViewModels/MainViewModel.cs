@@ -753,7 +753,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "a1",
                     Name = "a1",
-                    Value = "3500",
+                    Value = "3000",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -765,7 +765,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "b1",
                     Name = "b1",
-                    Value = "3100",
+                    Value = "2600",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -801,7 +801,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "na",
                     Name = "na",
-                    Value = "2",
+                    Value = "1",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -813,7 +813,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "nb",
                     Name = "nb",
-                    Value = "2",
+                    Value = "1",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -825,7 +825,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "nh",
                     Name = "nh",
-                    Value = "2",
+                    Value = "1",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -837,7 +837,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "Delta_a",
                     Name = "Δa",
-                    Value = "450",
+                    Value = "650",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -849,7 +849,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "Delta_b",
                     Name = "Δb",
-                    Value = "450",
+                    Value = "650",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -861,7 +861,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "Delta_h",
                     Name = "Δh",
-                    Value = "450",
+                    Value = "650",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -966,6 +966,19 @@ namespace OCSFoundationOptimizer.ViewModels
                     IsRequired = true,
                     Group = "材料及设计参数"
                 });
+            
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "f",
+                    Name = "基底与土的摩擦系数f",
+                    Value = "0.25",
+                    Unit = "",
+                    Type = ParameterType.Number,
+                    IsRequired = true,
+                    Group = "材料及设计参数",
+                    
+                });
 
 
             InputParameters.Add(
@@ -987,6 +1000,19 @@ namespace OCSFoundationOptimizer.ViewModels
                     Key = "[k_c]",
                     Name = "抗滑稳定系数允许值[K_c]",
                     Value = "1.3",
+                    Unit = "",
+                    Type = ParameterType.Number,
+                    IsRequired = true,
+                    Group = "材料及设计参数",
+                    
+                });
+            
+            InputParameters.Add(
+                new ParameterItem
+                {
+                    Key = "nd",
+                    Name = "深度修正系数ηd",
+                    Value = "1.0",
                     Unit = "",
                     Type = ParameterType.Number,
                     IsRequired = true,

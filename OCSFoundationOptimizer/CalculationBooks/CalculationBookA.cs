@@ -1,4 +1,7 @@
 ﻿using OCSFoundationOptimizer.Models;
+using System;
+using System.IO;
+using System.Diagnostics;
 
 namespace OCSFoundationOptimizer.CalculationBooks
 {
@@ -11,39 +14,48 @@ namespace OCSFoundationOptimizer.CalculationBooks
             CalculationResult result,
             string filePath)
         {
-            // ============================
-            // 这里以后写 A 理论计算书
-            // ============================
+            // =================================================
+            // 1. 获取模板路径
+            // =================================================
 
-            // 1. 创建Word
+            string templatePath = Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                "pic",
+                "基础支柱计算书模板.docx");
 
-            // 2. 写入工程信息
 
-            // 3. 写入输入参数
-            foreach (var parameter in result.InputParameters)
+            // =================================================
+            // 2. 检查模板是否存在
+            // =================================================
+
+            if (!File.Exists(templatePath))
             {
-                // 参数名称
-                // 参数值
-                // 单位
+                throw new FileNotFoundException(
+                    "找不到基础支柱计算书模板。",
+                    templatePath);
             }
 
-            // 4. 写入A理论计算过程参数
-            foreach (var parameter in result.ProcessParameters)
-            {
-                // 参数名称
-                // 参数值
-                // 单位
-            }
 
-            // 5. 写入计算结果
-            foreach (var parameter in result.ResultParameters)
-            {
-                // 参数名称
-                // 参数值
-                // 单位
-            }
+            // =================================================
+            // 3. 复制模板到用户指定位置
+            // =================================================
 
-            // 6. 保存Word
+            File.Copy(
+                templatePath,
+                filePath,
+                true);
+            
+            // =================================================
+            // 4. 自动打开生成的Word文档
+            // =================================================
+
+            Process.Start(
+                new ProcessStartInfo
+                {
+                    FileName = filePath,
+                    UseShellExecute = true
+                });
         }
+        
     }
 }
