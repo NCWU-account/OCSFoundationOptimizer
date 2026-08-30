@@ -268,7 +268,7 @@ namespace OCSFoundationOptimizer.Calculations
                     new ParameterItem
                     {
                         Key = "K_0",
-                        Name = "抗倾覆稳定安全系数K_0",
+                        Name = "抗倾覆稳定安全系数K_0--(理论A)",
                         Value = resultK_0.ToString("F3"),
                         Unit = "",
                         IsReadOnly = true
@@ -303,6 +303,9 @@ namespace OCSFoundationOptimizer.Calculations
 
                 double resultS_min =
                     ((Q+a1*b1*(h-h0)*rz)/(a1*b1))-((M1+PH1*h-(Ep*hc))/(a1*a1*b1/6));
+                
+                // 如果 S_min 小于 0，则取 0
+                resultS_min = Math.Max(0, resultS_min);
 
                 result.ResultParameters.Add(
                     new ParameterItem

@@ -753,7 +753,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "a1",
                     Name = "a1",
-                    Value = "3000",
+                    Value = "3100",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
