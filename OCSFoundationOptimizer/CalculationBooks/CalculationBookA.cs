@@ -1,7 +1,9 @@
 ﻿using OCSFoundationOptimizer.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Diagnostics;
+using OCSFoundationOptimizer.CalculationBooks.CalculationBookUtil;
 
 namespace OCSFoundationOptimizer.CalculationBooks
 {
@@ -36,6 +38,9 @@ namespace OCSFoundationOptimizer.CalculationBooks
             }
 
 
+          
+            
+            
             // =================================================
             // 3. 复制模板到用户指定位置
             // =================================================
@@ -44,6 +49,17 @@ namespace OCSFoundationOptimizer.CalculationBooks
                 templatePath,
                 filePath,
                 true);
+            // 执行计算书生成逻辑
+            var data = new Dictionary<string, string>
+            {
+                { "test", "Hello, World!wwww" },
+                { "ok", "bad你好还" },
+                { "name", "张三" },
+                { "hello", "hhhhh" }
+            };
+            WordHelper.ReplaceContentControls(templatePath, filePath, data);
+            Console.WriteLine("生成成功！");
+            
             
             // =================================================
             // 4. 自动打开生成的Word文档
