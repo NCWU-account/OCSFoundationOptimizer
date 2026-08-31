@@ -33,3 +33,8 @@ F:\revit二次开发\basics_count\OCSFoundationOptimizer\OCSFoundationOptimizer\
 F:\revit二次开发\basics_count\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\OCSFoundationOptimizer.exe
 F:\revit二次开发\basics_count\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\OCSFoundationOptimizer.pdb
 F:\revit二次开发\basics_count\OCSFoundationOptimizer\OCSFoundationOptimizer\bin\Debug\pic\sample.png
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\bin\Debug\DocumentFormat.OpenXml.dll
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\bin\Debug\DocumentFormat.OpenXml.Framework.dll
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\bin\Debug\DocumentFormat.OpenXml.xml
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\bin\Debug\DocumentFormat.OpenXml.Framework.xml
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\OCSFound.541841CE.Up2Date
