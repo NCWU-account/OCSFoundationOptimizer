@@ -68,6 +68,8 @@
         <Compile Include="Converters\InverseBooleanConverter.cs" />
         <Compile Include="Models\CalculationResult.cs" />
         <Compile Include="Models\CalculationTheoryType.cs" />
+        <Compile Include="Models\OptimizationParameter.cs" />
+        <Compile Include="Models\OptimizationResult.cs" />
         <Compile Include="Models\ParameterGroup.cs" />
         <Compile Include="Models\ParameterType.cs" />
         <Compile Include="Selectors\ParameterTemplateSelector.cs" />
