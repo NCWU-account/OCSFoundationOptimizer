@@ -63,6 +63,7 @@
         <Compile Include="CalculationBooks\CalculationBookUtil\WordHelper.cs" />
         <Compile Include="CalculationBooks\ICalculationBookGenerator.cs" />
         <Compile Include="Calculations\CalculationTheoryA.cs" />
+        <Compile Include="Calculations\CalculationAOptimization.cs" />
         <Compile Include="Calculations\CalculationTheoryB.cs" />
         <Compile Include="Calculations\ICalculationModule.cs" />
         <Compile Include="Converters\InverseBooleanConverter.cs" />
@@ -75,7 +76,18 @@
         <Compile Include="Selectors\ParameterTemplateSelector.cs" />
         <Compile Include="Services\CalculationBookService.cs" />
         <Compile Include="Services\CalculationService.cs" />
+        <Compile Include="ViewModels\MainViewModel.Calculation.cs" />
+        <Compile Include="ViewModels\MainViewModel.Commands.cs" />
         <Compile Include="ViewModels\MainViewModel.cs" />
+        <Compile Include="ViewModels\MainViewModel.Optimization.cs" />
+        <Compile Include="ViewModels\MainViewModel.Parameters.cs" />
+        <Compile Include="ViewModels\MainViewModel.Result.cs" />
+        <Compile Include="View\ActionBarView.xaml.cs" />
+        <Compile Include="View\FooterView.xaml.cs" />
+        <Compile Include="View\HeaderView.xaml.cs" />
+        <Compile Include="View\ParameterPanelView.xaml.cs" />
+        <Compile Include="View\ResultView.xaml.cs" />
+        <Compile Include="View\TheorySelectorView.xaml.cs" />
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
@@ -88,6 +100,13 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Page Include="View\ActionBarView.xaml" />
+        <Page Include="View\FooterView.xaml" />
+        <Page Include="View\HeaderView.xaml" />
+        <Page Include="View\ParameterPanelView.xaml" />
+        <Page Include="View\Resources\CommonStyles.xaml" />
+        <Page Include="View\ResultView.xaml" />
+        <Page Include="View\TheorySelectorView.xaml" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Models\ParameterItem.cs" />
@@ -107,9 +126,6 @@
     <ItemGroup>
         <None Include="App.config"/>
         <None Include="packages.config" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="View\" />
     </ItemGroup>
     <ItemGroup>
       <Content Include="pic\sample.png">

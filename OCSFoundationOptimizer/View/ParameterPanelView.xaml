@@ -1,0 +1,893 @@
+<UserControl x:Class="OCSFoundationOptimizer.View.ParameterPanelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/CommonStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate x:Key="ParameterTemplate">
+
+                <Grid Margin="0,0,0,12">
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="220" />
+
+                        <ColumnDefinition Width="190" />
+
+                        <ColumnDefinition Width="*" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0"
+                          VerticalAlignment="Center">
+
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="*" />
+
+                            <ColumnDefinition Width="Auto" />
+
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="{Binding Name}"
+                                   FontSize="12"
+                                   Foreground="#374151"
+                                   VerticalAlignment="Center"
+                                   TextTrimming="CharacterEllipsis" />
+
+                        <TextBlock Grid.Column="1"
+                                   Text="必填"
+                                   FontSize="9"
+                                   Foreground="#9AA3AD"
+                                   Margin="8,0,0,0"
+                                   VerticalAlignment="Center">
+
+                            <TextBlock.Style>
+
+                                <Style TargetType="TextBlock">
+
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger Binding="{Binding IsRequired}"
+                                                     Value="True">
+
+                                            <Setter Property="Visibility"
+                                                    Value="Visible" />
+
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+
+                            </TextBlock.Style>
+
+                        </TextBlock>
+
+                    </Grid>
+
+                    <Grid Grid.Column="1"
+                          Width="180"
+                          Height="34"
+                          HorizontalAlignment="Left">
+
+                        <Border>
+
+                            <Border.Style>
+
+                                <Style TargetType="Border">
+
+                                    <Setter Property="BorderBrush"
+                                            Value="#CBD3DB" />
+
+                                    <Setter Property="Background"
+                                            Value="#FAFBFC" />
+
+                                    <Setter Property="BorderThickness"
+                                            Value="1" />
+
+                                    <Setter Property="CornerRadius"
+                                            Value="3" />
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger Binding="{Binding HasError}"
+                                                     Value="True">
+
+                                            <Setter Property="BorderBrush"
+                                                    Value="#D93025" />
+
+                                            <Setter Property="Background"
+                                                    Value="#FFF5F5" />
+
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding IsReadOnly}"
+                                                     Value="True">
+
+                                            <Setter Property="Background"
+                                                    Value="#F1F3F5" />
+
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding Type}"
+                                                     Value="Selection">
+
+                                            <Setter Property="Visibility"
+                                                    Value="Collapsed" />
+
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+
+                            </Border.Style>
+
+                            <TextBox
+                                Text="{Binding Value,
+                                               Mode=TwoWay,
+                                               UpdateSourceTrigger=PropertyChanged}"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                FontSize="13"
+                                Foreground="#1F2937"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Padding="9,0"
+                                VerticalContentAlignment="Center" />
+
+                        </Border>
+
+                        <ComboBox ItemsSource="{Binding Options}"
+                                  SelectedValue="{Binding Value,
+                                                          Mode=TwoWay,
+                                                          UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedValuePath="Value"
+                                  DisplayMemberPath="Text"
+                                  FontSize="13"
+                                  Foreground="#1F2937"
+                                  Background="#FAFBFC"
+                                  BorderBrush="#CBD3DB"
+                                  BorderThickness="1"
+                                  Padding="7,0"
+                                  VerticalContentAlignment="Center">
+
+                            <ComboBox.Style>
+
+                                <Style TargetType="ComboBox">
+
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+
+                                    <Setter Property="IsEnabled"
+                                            Value="True" />
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger Binding="{Binding Type}"
+                                                     Value="Selection">
+
+                                            <Setter Property="Visibility"
+                                                    Value="Visible" />
+
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding IsReadOnly}"
+                                                     Value="True">
+
+                                            <Setter Property="IsEnabled"
+                                                    Value="False" />
+
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+
+                            </ComboBox.Style>
+
+                        </ComboBox>
+
+                    </Grid>
+
+                    <TextBlock Grid.Column="2"
+                               Text="{Binding Unit}"
+                               FontSize="11"
+                               Foreground="#7B8490"
+                               VerticalAlignment="Center"
+                               Margin="8,0,0,0" />
+
+                </Grid>
+
+            </DataTemplate>
+
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+
+    <Border
+        Background="#FFFFFF"
+        BorderBrush="#DDE2E7"
+        BorderThickness="1"
+        Margin="0,0,0,12">
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="Auto" />
+
+                <RowDefinition Height="1" />
+
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+
+            <!-- 标题 -->
+
+            <Grid Grid.Row="0"
+                  Margin="18,15">
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="*" />
+
+                    <ColumnDefinition Width="Auto" />
+
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+
+                    <TextBlock Text="计算参数"
+                               Style="{StaticResource SectionTitle}" />
+
+                    <TextBlock Text="请输入设计参数"
+                               Style="{StaticResource Caption}"
+                               Margin="0,3,0,0" />
+
+                </StackPanel>
+
+            </Grid>
+
+            <!-- 分割线 -->
+
+            <Border Grid.Row="1"
+                    Background="#E6E9ED" />
+
+            <!-- 参数区域 -->
+
+            <ScrollViewer Grid.Row="2"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled"
+                          Padding="18">
+
+                <Grid>
+
+                    <!-- ================================================= -->
+                    <!-- 理论 A -->
+                    <!-- ================================================= -->
+
+                    <ScrollViewer
+                        Grid.Row="0"
+                        VerticalScrollBarVisibility="Disabled"
+                        HorizontalScrollBarVisibility="Disabled">
+
+                        <ScrollViewer.Style>
+
+                            <Style TargetType="ScrollViewer">
+
+                                <Setter Property="Visibility"
+                                        Value="Visible" />
+
+                                <Style.Triggers>
+
+                                    <DataTrigger
+                                        Binding="{Binding IsTheoryASelected}"
+                                        Value="False">
+
+                                        <Setter
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+
+                            </Style>
+
+                        </ScrollViewer.Style>
+
+                        <ItemsControl
+                            ItemsSource="{Binding ParameterGroups}">
+
+                            <ItemsControl.ItemTemplate>
+
+                                <DataTemplate>
+
+                                    <StackPanel
+                                        Margin="0,0,0,20">
+
+                                        <Border
+                                            Background="#F5F7FA"
+                                            BorderBrush="#DDE3E8"
+                                            BorderThickness="0,0,0,1"
+                                            Padding="10,8"
+                                            Margin="0,0,0,12">
+
+                                            <TextBlock
+                                                Text="{Binding Name}"
+                                                FontSize="13"
+                                                FontWeight="SemiBold"
+                                                Foreground="#1F4E79" />
+
+                                        </Border>
+
+                                        <ItemsControl
+                                            ItemsSource="{Binding Parameters}">
+
+                                            <ItemsControl.ItemsPanel>
+
+                                                <ItemsPanelTemplate>
+
+                                                    <UniformGrid
+                                                        Columns="3" />
+
+                                                </ItemsPanelTemplate>
+
+                                            </ItemsControl.ItemsPanel>
+
+                                            <ItemsControl.ItemTemplate>
+
+                                                <DataTemplate>
+
+                                                    <Grid
+                                                        Margin="0,0,12,14">
+
+                                                        <Grid.RowDefinitions>
+
+                                                            <RowDefinition
+                                                                Height="Auto" />
+
+                                                            <RowDefinition
+                                                                Height="34" />
+
+                                                        </Grid.RowDefinitions>
+
+                                                        <TextBlock
+                                                            Grid.Row="0"
+                                                            Text="{Binding Name}"
+                                                            FontSize="12"
+                                                            Foreground="#374151"
+                                                            Margin="0,0,0,7" />
+
+                                                        <TextBox
+                                                            Grid.Row="1"
+                                                            Text="{Binding Value,
+                                                                Mode=TwoWay,
+                                                                UpdateSourceTrigger=PropertyChanged}"
+                                                            IsReadOnly="{Binding IsReadOnly}"
+                                                            FontSize="13"
+                                                            Padding="9,0"
+                                                            VerticalContentAlignment="Center" />
+
+                                                    </Grid>
+
+                                                </DataTemplate>
+
+                                            </ItemsControl.ItemTemplate>
+
+                                        </ItemsControl>
+
+                                    </StackPanel>
+
+                                </DataTemplate>
+
+                            </ItemsControl.ItemTemplate>
+
+                        </ItemsControl>
+
+                    </ScrollViewer>
+
+
+                    <!-- ================================================= -->
+                    <!-- 理论 A 优化 -->
+                    <!-- 原来的理论 B 输入框全部保留 -->
+                    <!-- ================================================= -->
+
+                    <StackPanel
+                        Grid.Row="0">
+
+                        <StackPanel.Style>
+
+                            <Style TargetType="StackPanel">
+
+                                <Setter
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+
+                                <Style.Triggers>
+
+                                    <DataTrigger
+                                        Binding="{Binding IsTheoryAOptimizationSelected}"
+                                        Value="True">
+
+                                        <Setter
+                                            Property="Visibility"
+                                            Value="Visible" />
+
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+
+                            </Style>
+
+                        </StackPanel.Style>
+
+
+                        <!-- B：说明 -->
+
+                        <Border
+                            Background="#EEF5FB"
+                            BorderBrush="#C9DDED"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            Padding="12"
+                            Margin="0,0,0,18">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Text="反向优化设计"
+                                    FontSize="14"
+                                    FontWeight="SemiBold"
+                                    Foreground="#1F4E79" />
+
+                                <TextBlock
+                                    Text="给定安全系数要求，自动搜索满足条件的最小基础尺寸。"
+                                    FontSize="11"
+                                    Foreground="#66717D"
+                                    Margin="0,5,0,0"
+                                    TextWrapping="Wrap" />
+
+                            </StackPanel>
+
+                        </Border>
+
+
+                        <!-- 优化目标 -->
+
+                        <TextBlock
+                            Text="优化目标"
+                            Style="{StaticResource SectionTitle}"
+                            Margin="0,0,0,10" />
+
+
+                        <Grid
+                            Margin="0,0,0,20">
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="*" />
+
+                                <ColumnDefinition Width="18" />
+
+                                <ColumnDefinition Width="*" />
+
+                            </Grid.ColumnDefinitions>
+
+
+                            <!-- K0 -->
+
+                            <StackPanel
+                                Grid.Column="0">
+
+                                <TextBlock
+                                    Text="K₀ 最小允许值"
+                                    FontSize="12"
+                                    Foreground="#374151"
+                                    Margin="0,0,0,6" />
+
+                                <TextBox
+                                    Text="{Binding OptimizationParameters[0].Value,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}"
+                                    Height="34"
+                                    Style="{StaticResource ParameterTextBox}" />
+
+                                <TextBlock
+                                    Text="抗倾覆稳定"
+                                    FontSize="10"
+                                    Foreground="#89929C"
+                                    Margin="0,4,0,0" />
+
+                            </StackPanel>
+
+
+                            <!-- Kc -->
+
+                            <StackPanel
+                                Grid.Column="2">
+
+                                <TextBlock
+                                    Text="Kc 最小允许值"
+                                    FontSize="12"
+                                    Foreground="#374151"
+                                    Margin="0,0,0,6" />
+
+                                <TextBox
+                                    Text="{Binding OptimizationParameters[1].Value,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}"
+                                    Height="34"
+                                    Style="{StaticResource ParameterTextBox}" />
+
+                                <TextBlock
+                                    Text="抗滑稳定"
+                                    FontSize="10"
+                                    Foreground="#89929C"
+                                    Margin="0,4,0,0" />
+
+                            </StackPanel>
+
+                        </Grid>
+
+
+                        <!-- a1 优化范围 -->
+
+                        <Border
+                            Background="#FFFFFF"
+                            BorderBrush="#DDE3E8"
+                            BorderThickness="1"
+                            Padding="12"
+                            Margin="0,0,0,12">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Text="a1 优化范围"
+                                    FontSize="13"
+                                    FontWeight="SemiBold"
+                                    Foreground="#1F4E79"
+                                    Margin="0,0,0,12" />
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+
+                                        <ColumnDefinition Width="*" />
+
+                                        <ColumnDefinition Width="*" />
+
+                                        <ColumnDefinition Width="*" />
+
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <!-- 最小值 -->
+
+                                    <StackPanel
+                                        Grid.Column="0"
+                                        Margin="0,0,8,0">
+
+                                        <TextBlock
+                                            Text="最小值"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding OptimizationParameters[2].Value,
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+
+                                    <!-- 最大值 -->
+
+                                    <StackPanel
+                                        Grid.Column="1"
+                                        Margin="4,0,4,0">
+
+                                        <TextBlock
+                                            Text="最大值"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            HorizontalAlignment="Center"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding OptimizationParameters[3].Value,
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+
+                                    <!-- 步长 -->
+
+                                    <StackPanel
+                                        Grid.Column="2"
+                                        Margin="8,0,0,0">
+
+                                        <TextBlock
+                                            Text="步长 Δa"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding OptimizationParameters[4].Value,
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+                                </Grid>
+
+                            </StackPanel>
+
+                        </Border>
+
+
+                        <!-- b1 优化范围 -->
+
+                        <Border
+                            Background="#FFFFFF"
+                            BorderBrush="#DDE3E8"
+                            BorderThickness="1"
+                            Padding="12"
+                            Margin="0,0,0,12">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Text="b1 优化范围"
+                                    FontSize="13"
+                                    FontWeight="SemiBold"
+                                    Foreground="#1F4E79"
+                                    Margin="0,0,0,12" />
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+
+                                        <ColumnDefinition Width="*" />
+
+                                        <ColumnDefinition Width="*" />
+
+                                        <ColumnDefinition Width="*" />
+
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <!-- 最小值 -->
+
+                                    <StackPanel
+                                        Grid.Column="0"
+                                        Margin="0,0,8,0">
+
+                                        <TextBlock
+                                            Text="最小值"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding OptimizationParameters[5].Value,
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+
+                                    <!-- 最大值 -->
+
+                                    <StackPanel
+                                        Grid.Column="1"
+                                        Margin="4,0,4,0">
+
+                                        <TextBlock
+                                            Text="最大值"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            HorizontalAlignment="Center"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding OptimizationParameters[6].Value,
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+
+                                    <!-- 步长 -->
+
+                                    <StackPanel
+                                        Grid.Column="2"
+                                        Margin="8,0,0,0">
+
+                                        <TextBlock
+                                            Text="步长 Δb"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding OptimizationParameters[7].Value,
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+                                </Grid>
+
+                            </StackPanel>
+
+                        </Border>
+
+
+                        <!-- h 优化范围 -->
+
+                        <Border
+                            Background="#FFFFFF"
+                            BorderBrush="#DDE3E8"
+                            BorderThickness="1"
+                            Padding="12"
+                            Margin="0,0,0,12">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Text="h 优化范围"
+                                    FontSize="13"
+                                    FontWeight="SemiBold"
+                                    Foreground="#1F4E79"
+                                    Margin="0,0,0,12" />
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+
+                                        <ColumnDefinition Width="*" />
+
+                                        <ColumnDefinition Width="*" />
+
+                                        <ColumnDefinition Width="*" />
+
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <!-- 最小值 -->
+
+                                    <StackPanel
+                                        Grid.Column="0"
+                                        Margin="0,0,8,0">
+
+                                        <TextBlock
+                                            Text="最小值"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding OptimizationParameters[8].Value,
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+
+                                    <!-- 最大值 -->
+
+                                    <StackPanel
+                                        Grid.Column="1"
+                                        Margin="4,0,4,0">
+
+                                        <TextBlock
+                                            Text="最大值"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            HorizontalAlignment="Center"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding OptimizationParameters[9].Value,
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+
+                                    <!-- 步长 -->
+
+                                    <StackPanel
+                                        Grid.Column="2"
+                                        Margin="8,0,0,0">
+
+                                        <TextBlock
+                                            Text="步长 Δh"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding OptimizationParameters[10].Value,
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+                                </Grid>
+
+                            </StackPanel>
+
+                        </Border>
+
+
+                        <!-- 优化目标说明 -->
+
+                        <Border
+                            Background="#F7F9FB"
+                            BorderBrush="#E0E5EA"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            Padding="12"
+                            Margin="0,4,0,0">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Text="优化原则"
+                                    FontSize="11"
+                                    FontWeight="SemiBold"
+                                    Foreground="#59636E" />
+
+                                <TextBlock
+                                    Text="在满足 K₀ 和 Kc 最小允许值的前提下，以 a1 × b1 × h 最小为优化目标。"
+                                    FontSize="10"
+                                    Foreground="#7B8490"
+                                    TextWrapping="Wrap"
+                                    Margin="0,4,0,0" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </ScrollViewer>
+
+        </Grid>
+
+    </Border>
+
+</UserControl>

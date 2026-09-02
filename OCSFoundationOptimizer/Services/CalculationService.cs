@@ -19,7 +19,7 @@ namespace OCSFoundationOptimizer.Services
                 new List<ICalculationModule>
                 {
                     new CalculationTheoryA(),
-                    new CalculationTheoryB()
+                    new CalculationAOptimization()
                 };
 
             _modules =

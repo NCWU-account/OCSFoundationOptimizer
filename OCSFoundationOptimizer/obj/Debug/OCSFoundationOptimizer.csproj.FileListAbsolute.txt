@@ -38,3 +38,17 @@ F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\bin\Debug\DocumentFo
 F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\bin\Debug\DocumentFormat.OpenXml.xml
 F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\bin\Debug\DocumentFormat.OpenXml.Framework.xml
 F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\OCSFound.541841CE.Up2Date
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\View\ActionBarView.baml
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\View\FooterView.baml
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\View\HeaderView.baml
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\View\ParameterPanelView.baml
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\View\Resources\CommonStyles.baml
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\View\ResultView.baml
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\View\TheorySelectorView.baml
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\View\ActionBarView.g.cs
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\View\FooterView.g.cs
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\View\HeaderView.g.cs
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\View\ParameterPanelView.g.cs
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\View\ResultView.g.cs
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\View\TheorySelectorView.g.cs
+F:\CSharpCode\OCSFoundationOptimizer\OCSFoundationOptimizer\obj\Debug\GeneratedInternalTypeHelper.g.cs
