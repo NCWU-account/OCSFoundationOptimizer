@@ -21,7 +21,17 @@ namespace OCSFoundationOptimizer.ViewModels
                         x.Value));
         }
 
-
+        // =====================================================
+        // 判断理论B参数是否全部填写
+        // =====================================================
+        private bool AreAllTheoryBParametersFilled()
+        {
+            return TheoryBParameters
+                .Where(x => x.IsRequired)
+                .All(x =>
+                    !string.IsNullOrWhiteSpace(
+                        x.Value));
+        }
         // =====================================================
         // 判断参数是否全部合法
         // =====================================================
@@ -36,8 +46,7 @@ namespace OCSFoundationOptimizer.ViewModels
 
 
             // 存在非法参数
-            if (InputParameters.Any(
-                    x => x.HasError))
+            if (InputParameters.Any(x => x.HasError))
             {
                 return false;
             }
@@ -46,24 +55,35 @@ namespace OCSFoundationOptimizer.ViewModels
             return true;
         }
 
+        private bool AreAllTheoryBParametersValid()
+        {
+            if (!AreAllTheoryBParametersFilled())
+            {
+                return false;
+            }
 
+            if (TheoryBParameters.Any(x => x.HasError))
+            {
+                return false;
+            }
+
+            return true;
+        }
         // =====================================================
         // 判断优化参数是否合法
         // =====================================================
 
         private bool AreOptimizationParametersValid()
         {
-            if (OptimizationParameters.Any(
-                    x =>
-                        string.IsNullOrWhiteSpace(
-                            x.Value)))
+            if (OptimizationParameters.Any(x =>
+                    string.IsNullOrWhiteSpace(
+                        x.Value)))
             {
                 return false;
             }
 
 
-            if (OptimizationParameters.Any(
-                    x => x.HasError))
+            if (OptimizationParameters.Any(x => x.HasError))
             {
                 return false;
             }
@@ -74,7 +94,7 @@ namespace OCSFoundationOptimizer.ViewModels
 
 
         // =====================================================
-        // 初始化输入参数
+        // 初始化A输入参数
         // =====================================================
 
         private void InitializeParameters()
@@ -393,7 +413,7 @@ namespace OCSFoundationOptimizer.ViewModels
 
 
         // =====================================================
-        // 初始化优化参数
+        // 初始化A优化参数
         // =====================================================
 
         private void InitializeOptimizationParameters()
@@ -401,7 +421,7 @@ namespace OCSFoundationOptimizer.ViewModels
             OptimizationParameters.Add(
                 new ParameterItem
                 {
-                    Key = "B_K0_MIN",
+                    Key = "A_K0_MIN",
                     Name = "K₀最小允许值",
                     Value = "1.50",
                     Unit = "",
@@ -414,7 +434,7 @@ namespace OCSFoundationOptimizer.ViewModels
             OptimizationParameters.Add(
                 new ParameterItem
                 {
-                    Key = "B_KC_MIN",
+                    Key = "A_KC_MIN",
                     Name = "Kc最小允许值",
                     Value = "1.30",
                     Unit = "",
@@ -431,7 +451,7 @@ namespace OCSFoundationOptimizer.ViewModels
             OptimizationParameters.Add(
                 new ParameterItem
                 {
-                    Key = "B_A1_MIN",
+                    Key = "A_A1_MIN",
                     Name = "a1最小值",
                     Value = "2000",
                     Unit = "mm",
@@ -444,7 +464,7 @@ namespace OCSFoundationOptimizer.ViewModels
             OptimizationParameters.Add(
                 new ParameterItem
                 {
-                    Key = "B_A1_MAX",
+                    Key = "A_A1_MAX",
                     Name = "a1最大值",
                     Value = "4000",
                     Unit = "mm",
@@ -457,7 +477,7 @@ namespace OCSFoundationOptimizer.ViewModels
             OptimizationParameters.Add(
                 new ParameterItem
                 {
-                    Key = "B_DELTA_A",
+                    Key = "A_DELTA_A",
                     Name = "a1步长Δa",
                     Value = "50",
                     Unit = "mm",
@@ -474,7 +494,7 @@ namespace OCSFoundationOptimizer.ViewModels
             OptimizationParameters.Add(
                 new ParameterItem
                 {
-                    Key = "B_B1_MIN",
+                    Key = "A_B1_MIN",
                     Name = "b1最小值",
                     Value = "1800",
                     Unit = "mm",
@@ -487,7 +507,7 @@ namespace OCSFoundationOptimizer.ViewModels
             OptimizationParameters.Add(
                 new ParameterItem
                 {
-                    Key = "B_B1_MAX",
+                    Key = "A_B1_MAX",
                     Name = "b1最大值",
                     Value = "3500",
                     Unit = "mm",
@@ -500,7 +520,7 @@ namespace OCSFoundationOptimizer.ViewModels
             OptimizationParameters.Add(
                 new ParameterItem
                 {
-                    Key = "B_DELTA_B",
+                    Key = "A_DELTA_B",
                     Name = "b1步长Δb",
                     Value = "50",
                     Unit = "mm",
@@ -517,7 +537,7 @@ namespace OCSFoundationOptimizer.ViewModels
             OptimizationParameters.Add(
                 new ParameterItem
                 {
-                    Key = "B_H_MIN",
+                    Key = "A_H_MIN",
                     Name = "h最小值",
                     Value = "2500",
                     Unit = "mm",
@@ -530,7 +550,7 @@ namespace OCSFoundationOptimizer.ViewModels
             OptimizationParameters.Add(
                 new ParameterItem
                 {
-                    Key = "B_H_MAX",
+                    Key = "A_H_MAX",
                     Name = "h最大值",
                     Value = "5000",
                     Unit = "mm",
@@ -543,7 +563,7 @@ namespace OCSFoundationOptimizer.ViewModels
             OptimizationParameters.Add(
                 new ParameterItem
                 {
-                    Key = "B_DELTA_H",
+                    Key = "A_DELTA_H",
                     Name = "h步长Δh",
                     Value = "50",
                     Unit = "mm",
@@ -553,7 +573,39 @@ namespace OCSFoundationOptimizer.ViewModels
                 });
         }
 
+        // =====================================================
+        // 初始化B输入参数
+        // =====================================================
+        private void InitializeTheoryBParameters()
+        {
+            TheoryBParameters.Clear();
 
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "B_A0",
+                    Name = "基础底面宽度 a₀",
+                    Value = "1700",
+                    Unit = "mm",
+                    Group = "几何尺寸",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "B_B0",
+                    Name = "基础底面长度 b₀",
+                    Value = "1300",
+                    Unit = "mm",
+                    Group = "几何尺寸",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            // 后续继续添加 B 的参数
+        }
         // =====================================================
         // 根据 Group 创建参数分组
         // =====================================================
@@ -582,6 +634,29 @@ namespace OCSFoundationOptimizer.ViewModels
             }
         }
 
+        private void BuildTheoryBParameterGroups()
+        {
+            TheoryBParameterGroups.Clear();
+
+            foreach (var parameter in TheoryBParameters)
+            {
+                var group =
+                    TheoryBParameterGroups
+                        .FirstOrDefault(x => x.Name == parameter.Group);
+
+                if (group == null)
+                {
+                    group = new ParameterGroup
+                    {
+                        Name = parameter.Group
+                    };
+
+                    TheoryBParameterGroups.Add(group);
+                }
+
+                group.Parameters.Add(parameter);
+            }
+        }
 
         // =====================================================
         // 创建优化参数分组
@@ -624,8 +699,13 @@ namespace OCSFoundationOptimizer.ViewModels
                     Parameter_PropertyChanged;
             }
 
-
             foreach (var parameter in OptimizationParameters)
+            {
+                parameter.PropertyChanged +=
+                    Parameter_PropertyChanged;
+            }
+
+            foreach (var parameter in TheoryBParameters)
             {
                 parameter.PropertyChanged +=
                     Parameter_PropertyChanged;
@@ -647,14 +727,13 @@ namespace OCSFoundationOptimizer.ViewModels
                 return;
             }
 
-
             _autoCalculateTimer.Stop();
 
             ClearCalculationResult();
 
 
             // =====================================================
-            // 理论 B
+            // 理论 A 优化
             // =====================================================
 
             if (CurrentTheory ==
@@ -665,6 +744,44 @@ namespace OCSFoundationOptimizer.ViewModels
 
                 OnPropertyChanged(
                     nameof(CanOptimize));
+
+                OnPropertyChanged(
+                    nameof(CanCalculate));
+
+                CommandManager
+                    .InvalidateRequerySuggested();
+
+                return;
+            }
+
+
+            // =====================================================
+            // 理论 B
+            // =====================================================
+
+            if (CurrentTheory ==
+                CalculationTheoryType.B)
+            {
+                if (TheoryBParameters.Any(x => x.HasError))
+                {
+                    CalculationStatus =
+                        "参数输入存在错误";
+                }
+                else if (!AreAllTheoryBParametersFilled())
+                {
+                    CalculationStatus =
+                        "等待输入完整参数";
+                }
+                else
+                {
+                    CalculationStatus =
+                        "参数已就绪，正在准备计算...";
+
+                    _autoCalculateTimer.Start();
+                }
+
+                OnPropertyChanged(
+                    nameof(CanCalculate));
 
                 CommandManager
                     .InvalidateRequerySuggested();
@@ -677,8 +794,7 @@ namespace OCSFoundationOptimizer.ViewModels
             // 理论 A
             // =====================================================
 
-            if (InputParameters.Any(
-                    x => x.HasError))
+            if (InputParameters.Any(x => x.HasError))
             {
                 CalculationStatus =
                     "参数输入存在错误";
@@ -699,6 +815,9 @@ namespace OCSFoundationOptimizer.ViewModels
 
             OnPropertyChanged(
                 nameof(CanCalculate));
+
+            OnPropertyChanged(
+                nameof(CanOptimize));
 
             CommandManager
                 .InvalidateRequerySuggested();

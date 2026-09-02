@@ -401,10 +401,138 @@
 
                     </ScrollViewer>
 
+                    <!-- ================================================= -->
+                    <!-- 理论 B -->
+                    <!-- ================================================= -->
 
+                    <ScrollViewer
+                        Grid.Row="0"
+                        VerticalScrollBarVisibility="Disabled"
+                        HorizontalScrollBarVisibility="Disabled">
+
+                        <ScrollViewer.Style>
+
+                            <Style TargetType="ScrollViewer">
+
+                                <Setter
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+
+                                <Style.Triggers>
+
+                                    <DataTrigger
+                                        Binding="{Binding IsTheoryBSelected}"
+                                        Value="True">
+
+                                        <Setter
+                                            Property="Visibility"
+                                            Value="Visible" />
+
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+
+                            </Style>
+
+                        </ScrollViewer.Style>
+
+
+                        <ItemsControl
+                            ItemsSource="{Binding TheoryBParameterGroups}">
+
+                            <ItemsControl.ItemTemplate>
+
+                                <DataTemplate>
+
+                                    <StackPanel
+                                        Margin="0,0,0,20">
+
+                                        <Border
+                                            Background="#F5F7FA"
+                                            BorderBrush="#DDE3E8"
+                                            BorderThickness="0,0,0,1"
+                                            Padding="10,8"
+                                            Margin="0,0,0,12">
+
+                                            <TextBlock
+                                                Text="{Binding Name}"
+                                                FontSize="13"
+                                                FontWeight="SemiBold"
+                                                Foreground="#1F4E79" />
+
+                                        </Border>
+
+
+                                        <ItemsControl
+                                            ItemsSource="{Binding Parameters}">
+
+                                            <ItemsControl.ItemsPanel>
+
+                                                <ItemsPanelTemplate>
+
+                                                    <UniformGrid
+                                                        Columns="3" />
+
+                                                </ItemsPanelTemplate>
+
+                                            </ItemsControl.ItemsPanel>
+
+
+                                            <ItemsControl.ItemTemplate>
+
+                                                <DataTemplate>
+
+                                                    <Grid
+                                                        Margin="0,0,12,14">
+
+                                                        <Grid.RowDefinitions>
+
+                                                            <RowDefinition
+                                                                Height="Auto" />
+
+                                                            <RowDefinition
+                                                                Height="34" />
+
+                                                        </Grid.RowDefinitions>
+
+
+                                                        <TextBlock
+                                                            Grid.Row="0"
+                                                            Text="{Binding Name}"
+                                                            FontSize="12"
+                                                            Foreground="#374151"
+                                                            Margin="0,0,0,7" />
+
+
+                                                        <TextBox
+                                                            Grid.Row="1"
+                                                            Text="{Binding Value,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                                                            IsReadOnly="{Binding IsReadOnly}"
+                                                            FontSize="13"
+                                                            Padding="9,0"
+                                                            VerticalContentAlignment="Center" />
+
+                                                    </Grid>
+
+                                                </DataTemplate>
+
+                                            </ItemsControl.ItemTemplate>
+
+                                        </ItemsControl>
+
+                                    </StackPanel>
+
+                                </DataTemplate>
+
+                            </ItemsControl.ItemTemplate>
+
+                        </ItemsControl>
+
+                    </ScrollViewer>
                     <!-- ================================================= -->
                     <!-- 理论 A 优化 -->
-                    <!-- 原来的理论 B 输入框全部保留 -->
                     <!-- ================================================= -->
 
                     <StackPanel

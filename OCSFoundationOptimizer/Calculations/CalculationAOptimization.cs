@@ -96,10 +96,10 @@ namespace OCSFoundationOptimizer.Calculations
                 // =====================================================
 
                 double targetK0 =
-                    GetNumber(parameters, "B_K0_MIN");
+                    GetNumber(parameters, "A_K0_MIN");
 
                 double targetKc =
-                    GetNumber(parameters, "B_KC_MIN");
+                    GetNumber(parameters, "A_KC_MIN");
 
 
                 // =====================================================
@@ -107,31 +107,31 @@ namespace OCSFoundationOptimizer.Calculations
                 // =====================================================
 
                 double a1Min =
-                    GetNumber(parameters, "B_A1_MIN");
+                    GetNumber(parameters, "A_A1_MIN");
 
                 double a1Max =
-                    GetNumber(parameters, "B_A1_MAX");
+                    GetNumber(parameters, "A_A1_MAX");
 
                 double deltaA =
-                    GetNumber(parameters, "B_DELTA_A");
+                    GetNumber(parameters, "A_DELTA_A");
 
                 double b1Min =
-                    GetNumber(parameters, "B_B1_MIN");
+                    GetNumber(parameters, "A_B1_MIN");
 
                 double b1Max =
-                    GetNumber(parameters, "B_B1_MAX");
+                    GetNumber(parameters, "A_B1_MAX");
 
                 double deltaB =
-                    GetNumber(parameters, "B_DELTA_B");
+                    GetNumber(parameters, "A_DELTA_B");
 
                 double hMin =
-                    GetNumber(parameters, "B_H_MIN");
+                    GetNumber(parameters, "A_H_MIN");
 
                 double hMax =
-                    GetNumber(parameters, "B_H_MAX");
+                    GetNumber(parameters, "A_H_MAX");
 
                 double deltaH =
-                    GetNumber(parameters, "B_DELTA_H");
+                    GetNumber(parameters, "A_DELTA_H");
 
 
                 // =====================================================
@@ -389,28 +389,28 @@ namespace OCSFoundationOptimizer.Calculations
 
                 AddResult(
                     result,
-                    "B_A1",
+                    "A_A1",
                     "优化后基础长度a1",
                     bestA1.ToString("F0"),
                     "mm");
 
                 AddResult(
                     result,
-                    "B_B1",
+                    "A_B1",
                     "优化后基础宽度b1",
                     bestB1.ToString("F0"),
                     "mm");
 
                 AddResult(
                     result,
-                    "B_H",
+                    "A_H",
                     "优化后基础高度h",
                     bestH.ToString("F0"),
                     "mm");
 
                 AddResult(
                     result,
-                    "B_VOLUME",
+                    "A_VOLUME",
                     "基础体积",
                     (
                         bestA1 *

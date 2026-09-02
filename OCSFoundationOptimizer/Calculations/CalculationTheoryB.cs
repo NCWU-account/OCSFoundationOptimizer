@@ -1,32 +1,54 @@
-﻿using OCSFoundationOptimizer.Models;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using OCSFoundationOptimizer.Calculations;
+using OCSFoundationOptimizer.Models;
 
-namespace OCSFoundationOptimizer.Calculations
+public class CalculationTheoryB : ICalculationModule
 {
-    /// <summary>
-    /// 理论 B
-    ///
-    /// 当前仅保留接口位置。
-    /// 后续在这里实现真正的理论 B。
-    /// </summary>
-    public class CalculationTheoryB : ICalculationModule
+    public CalculationTheoryType Theory =>
+        CalculationTheoryType.B;
+
+    public string Name =>
+        "理论 B";
+
+    public CalculationResult Calculate(
+        IReadOnlyList<ParameterItem> parameters)
     {
-        public CalculationTheoryType Theory =>
-            CalculationTheoryType.B;
+        double a0 = GetNumber(parameters, "B_A0");
+        double b0 = GetNumber(parameters, "B_B0");
 
-        public string Name =>
-            "理论 B";
+        // B 的计算公式
+        double result = a0 * b0;
 
-
-        public CalculationResult Calculate(
-            IReadOnlyList<ParameterItem> parameters)
+        return new CalculationResult
         {
-            return new CalculationResult
-            {
-                IsSuccess = false,
-                ErrorMessage =
-                    "理论 B 尚未实现。"
-            };
+            IsSuccess = true
+        };
+    }
+
+    private double GetNumber(
+        IReadOnlyList<ParameterItem> parameters,
+        string key)
+    {
+        var parameter =
+            parameters.FirstOrDefault(
+                x => x.Key == key);
+
+        if (parameter == null)
+        {
+            throw new Exception(
+                $"找不到理论 B 参数：{key}");
         }
+
+        if (!double.TryParse(
+                parameter.Value,
+                out double value))
+        {
+            throw new Exception(
+                $"理论 B 参数 {key} 不是有效数字。");
+        }
+
+        return value;
     }
 }

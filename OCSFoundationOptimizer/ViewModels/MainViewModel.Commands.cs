@@ -53,13 +53,7 @@ namespace OCSFoundationOptimizer.ViewModels
             CalculateCommand =
                 new RelayCommand(
                     _ => { Calculate(); },
-                    _ =>
-                    {
-                        return
-                            CurrentTheory ==
-                            CalculationTheoryType.A &&
-                            CanCalculate;
-                    });
+                    _ => CanCalculate);
 
 
             // =====================================================

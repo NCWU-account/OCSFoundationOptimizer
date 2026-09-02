@@ -39,26 +39,15 @@
                     <Style TargetType="Button"
                            BasedOn="{StaticResource ExecuteButton}">
 
-                        <Setter Property="Visibility"
-                                Value="Visible" />
+                        <Setter
+                            Property="Visibility"
+                            Value="Visible" />
 
                         <Style.Triggers>
 
                             <!-- 理论 A 优化时隐藏 -->
                             <DataTrigger
                                 Binding="{Binding IsTheoryAOptimizationSelected}"
-                                Value="True">
-
-                                <Setter
-                                    Property="Visibility"
-                                    Value="Collapsed" />
-
-                            </DataTrigger>
-
-
-                            <!-- 理论 B 隐藏 -->
-                            <DataTrigger
-                                Binding="{Binding IsTheoryBSelected}"
                                 Value="True">
 
                                 <Setter

@@ -1,6 +1,6 @@
 ﻿using OCSFoundationOptimizer.Models;
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 
@@ -21,10 +21,26 @@ namespace OCSFoundationOptimizer.ViewModels
 
 
             // =================================================
-            // 再次检查参数
+            // 根据当前理论检查参数
             // =================================================
 
-            if (!AreAllParametersValid())
+            if (CurrentTheory ==
+                CalculationTheoryType.A)
+            {
+                if (!AreAllParametersValid())
+                {
+                    return;
+                }
+            }
+            else if (CurrentTheory ==
+                     CalculationTheoryType.B)
+            {
+                if (!AreAllTheoryBParametersValid())
+                {
+                    return;
+                }
+            }
+            else
             {
                 return;
             }
@@ -52,9 +68,9 @@ namespace OCSFoundationOptimizer.ViewModels
             _autoCalculateTimer.Stop();
 
 
-            // =====================================================
+            // =================================================
             // 理论 A
-            // =====================================================
+            // =================================================
 
             if (CurrentTheory ==
                 CalculationTheoryType.A)
@@ -74,9 +90,9 @@ namespace OCSFoundationOptimizer.ViewModels
             }
 
 
-            // =====================================================
+            // =================================================
             // 理论 A 优化
-            // =====================================================
+            // =================================================
 
             else if (CurrentTheory ==
                      CalculationTheoryType.AOptimization)
@@ -86,15 +102,25 @@ namespace OCSFoundationOptimizer.ViewModels
             }
 
 
-            // =====================================================
+            // =================================================
             // 理论 B
-            // =====================================================
+            // =================================================
 
             else if (CurrentTheory ==
                      CalculationTheoryType.B)
             {
-                CalculationStatus =
-                    "当前选择：理论 B（暂未实现）。";
+                if (AreAllTheoryBParametersValid())
+                {
+                    CalculationStatus =
+                        "参数已就绪，正在准备计算...";
+
+                    _autoCalculateTimer.Start();
+                }
+                else
+                {
+                    CalculationStatus =
+                        "当前选择：理论 B";
+                }
             }
 
 
@@ -116,14 +142,42 @@ namespace OCSFoundationOptimizer.ViewModels
         private void Calculate()
         {
             // =================================================
-            // 第一步：检查参数
+            // 根据当前理论取得参数
             // =================================================
 
-            if (!AreAllParametersValid())
-            {
-                CalculationStatus =
-                    "参数存在错误，请检查输入";
+            IReadOnlyList<ParameterItem> parameters;
 
+
+            if (CurrentTheory ==
+                CalculationTheoryType.A)
+            {
+                if (!AreAllParametersValid())
+                {
+                    CalculationStatus =
+                        "参数存在错误，请检查输入";
+
+                    return;
+                }
+
+                parameters =
+                    InputParameters;
+            }
+            else if (CurrentTheory ==
+                     CalculationTheoryType.B)
+            {
+                if (!AreAllTheoryBParametersValid())
+                {
+                    CalculationStatus =
+                        "理论 B 参数存在错误，请检查输入";
+
+                    return;
+                }
+
+                parameters =
+                    TheoryBParameters;
+            }
+            else
+            {
                 return;
             }
 
@@ -141,7 +195,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 var result =
                     _calculationService.Calculate(
                         CurrentTheory,
-                        InputParameters);
+                        parameters);
 
 
                 // =================================================
@@ -149,6 +203,23 @@ namespace OCSFoundationOptimizer.ViewModels
                 // =================================================
 
                 ShowResult(result);
+
+
+                // =================================================
+                // 更新计算状态
+                // =================================================
+
+                if (result.IsSuccess)
+                {
+                    CalculationStatus =
+                        $"{CurrentTheoryDisplayName} 计算完成";
+                }
+                else
+                {
+                    CalculationStatus =
+                        result.ErrorMessage ??
+                        $"{CurrentTheoryDisplayName} 计算失败";
+                }
             }
             catch (Exception ex)
             {

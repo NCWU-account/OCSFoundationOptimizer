@@ -243,6 +243,11 @@ namespace OCSFoundationOptimizer.ViewModels
             = new();
 
 
+        public ObservableCollection<ParameterItem> TheoryBParameters { get; } = new();
+        public ObservableCollection<ParameterGroup> TheoryBParameterGroups { get; } = new();
+        
+        
+        
         // =====================================================
         // 当前计算状态
         // =====================================================
@@ -271,7 +276,19 @@ namespace OCSFoundationOptimizer.ViewModels
         {
             get
             {
-                return AreAllParametersValid();
+                if (CurrentTheory ==
+                    CalculationTheoryType.A)
+                {
+                    return AreAllParametersValid();
+                }
+
+                if (CurrentTheory ==
+                    CalculationTheoryType.B)
+                {
+                    return AreAllTheoryBParametersValid();
+                }
+
+                return false;
             }
         }
 
@@ -343,12 +360,13 @@ namespace OCSFoundationOptimizer.ViewModels
             // =================================================
             // 初始化参数
             // =================================================
-
+            // 初始化理论 A 参数
             InitializeParameters();
-
+            // 初始化优化参数
             InitializeOptimizationParameters();
 
-
+            // 初始化理论 B 参数
+            InitializeTheoryBParameters();
             // =================================================
             // 根据 Group 创建参数分组
             // =================================================
@@ -356,7 +374,7 @@ namespace OCSFoundationOptimizer.ViewModels
             BuildParameterGroups();
 
             BuildOptimizationGroups();
-
+            BuildTheoryBParameterGroups();
 
             // =================================================
             // 监听参数变化
