@@ -530,7 +530,7 @@
                                 Foreground="#263238" />
 
                             <TextBlock
-                                Text="计算模型 B（暂未实现）"
+                                Text="计算模型 B"
                                 FontSize="10"
                                 Foreground="#89929C"
                                 Margin="0,3,0,0" />
