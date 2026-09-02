@@ -99,6 +99,8 @@ namespace OCSFoundationOptimizer.ViewModels
 
         private void InitializeParameters()
         {
+            
+            
             InputParameters.Add(
                 new ParameterItem
                 {
@@ -583,8 +585,20 @@ namespace OCSFoundationOptimizer.ViewModels
             TheoryBParameters.Add(
                 new ParameterItem
                 {
-                    Key = "B_A0",
-                    Name = "基础底面宽度 a₀",
+                    Key = "H",
+                    Name = "钢柱高度H",
+                    Value = "15",
+                    Unit = "m",
+                    Type = ParameterType.Number,
+                    IsRequired = true,
+                    Group = "几何尺寸"
+                });
+            
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "a0",
+                    Name = "a0",
                     Value = "1700",
                     Unit = "mm",
                     Group = "几何尺寸",
@@ -595,14 +609,294 @@ namespace OCSFoundationOptimizer.ViewModels
             TheoryBParameters.Add(
                 new ParameterItem
                 {
-                    Key = "B_B0",
-                    Name = "基础底面长度 b₀",
+                    Key = "b0",
+                    Name = "b0",
                     Value = "1300",
                     Unit = "mm",
                     Group = "几何尺寸",
                     Type = ParameterType.Number,
                     IsRequired = true
                 });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "a1",
+                    Name = "a1",
+                    Value = "3100",
+                    Unit = "mm",
+                    Group = "几何尺寸",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "b1",
+                    Name = "b1",
+                    Value = "2600",
+                    Unit = "mm",
+                    Group = "几何尺寸",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "h",
+                    Name = "h",
+                    Value = "3500",
+                    Unit = "mm",
+                    Group = "几何尺寸",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "h_0",
+                    Name = "h0",
+                    Value = "200",
+                    Unit = "mm",
+                    Group = "几何尺寸",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "na",
+                    Name = "na",
+                    Value = "1",
+                    Unit = "mm",
+                    Group = "几何尺寸",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "nb",
+                    Name = "nb",
+                    Value = "1",
+                    Unit = "mm",
+                    Group = "几何尺寸",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "nh",
+                    Name = "nh",
+                    Value = "1",
+                    Unit = "mm",
+                    Group = "几何尺寸",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "Delta_a",
+                    Name = "Δa",
+                    Value = "650",
+                    Unit = "mm",
+                    Group = "几何尺寸",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "Delta_b",
+                    Name = "Δb",
+                    Value = "650",
+                    Unit = "mm",
+                    Group = "几何尺寸",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "Delta_h",
+                    Name = "Δh",
+                    Value = "650",
+                    Unit = "mm",
+                    Group = "几何尺寸",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "M1",
+                    Name = "垂直线路向荷载M",
+                    Value = "450",
+                    Unit = "KN∙m",
+                    Group = "荷载参数",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "PH1",
+                    Name = "垂直线路向荷载P_H",
+                    Value = "38",
+                    Unit = "KN",
+                    Group = "荷载参数",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "M2",
+                    Name = "线路向荷载M",
+                    Value = "50",
+                    Unit = "KN∙m",
+                    Group = "荷载参数",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "PH2",
+                    Name = "线路向荷载P_H",
+                    Value = "4",
+                    Unit = "KN",
+                    Group = "荷载参数",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "Q",
+                    Name = "垂直力Q",
+                    Value = "70",
+                    Unit = "KN",
+                    Group = "荷载参数",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+            
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "G0",
+                    Name = "由钢柱传给基础的垂直力G0",
+                    Value = "7.5",
+                    Unit = "KN",
+                    Group = "荷载参数",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "fak",
+                    Name = "地基承载力特征值f_ak",
+                    Value = "130",
+                    Unit = "kPa",
+                    Group = "材料及设计参数",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "r",
+                    Name = "水上填土湿容重γ",
+                    Value = "16",
+                    Unit = "kN∕m3",
+                    Group = "材料及设计参数",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "fai",
+                    Name = "土体内摩擦角φ",
+                    Value = "30",
+                    Unit = "°",
+                    Group = "材料及设计参数",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "[k_0]",
+                    Name = "抗倾稳定系数允许值[K_0]",
+                    Value = "1.6",
+                    Unit = "",
+                    Group = "材料及设计参数",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "[k_c]",
+                    Name = "抗滑稳定系数允许值[K_c]",
+                    Value = "1.3",
+                    Unit = "",
+                    Group = "材料及设计参数",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "nd",
+                    Name = "深度修正系数ηd",
+                    Value = "1.0",
+                    Unit = "",
+                    Group = "材料及设计参数",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
+            TheoryBParameters.Add(
+                new ParameterItem
+                {
+                    Key = "kr",
+                    Name = "由土壤种类决定的系数kr",
+                    Value = "2.0",
+                    Unit = "",
+                    Group = "材料及设计参数",
+                    Type = ParameterType.Number,
+                    IsRequired = true
+                });
+
 
             // 后续继续添加 B 的参数
         }
