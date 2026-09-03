@@ -1009,7 +1009,439 @@
                         </Border>
 
                     </StackPanel>
+                    
+                    
+                    <!-- ================================================= -->
+                    <!-- 理论 B 优化 -->
+                    <!-- ================================================= -->
 
+                    <StackPanel
+                        Grid.Row="0">
+
+                        <StackPanel.Style>
+
+                            <Style TargetType="StackPanel">
+
+                                <Setter
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+
+                                <Style.Triggers>
+
+                                    <DataTrigger
+                                        Binding="{Binding IsTheoryBOptimizationSelected}"
+                                        Value="True">
+
+                                        <Setter
+                                            Property="Visibility"
+                                            Value="Visible" />
+
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+
+                            </Style>
+
+                        </StackPanel.Style>
+
+
+                        <!-- 说明 -->
+
+                        <Border
+                            Background="#EEF5FB"
+                            BorderBrush="#C9DDED"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            Padding="12"
+                            Margin="0,0,0,18">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Text="理论 B 反向优化设计"
+                                    FontSize="14"
+                                    FontWeight="SemiBold"
+                                    Foreground="#1F4E79" />
+
+                                <TextBlock
+                                    Text="给定理论 B 抗倾覆安全系数要求，自动搜索满足条件的最小基础尺寸。"
+                                    FontSize="11"
+                                    Foreground="#66717D"
+                                    Margin="0,5,0,0"
+                                    TextWrapping="Wrap" />
+
+                            </StackPanel>
+
+                        </Border>
+
+
+                        <!-- ================================================= -->
+                        <!-- 优化目标 -->
+                        <!-- ================================================= -->
+
+                        <TextBlock
+                            Text="优化目标"
+                            Style="{StaticResource SectionTitle}"
+                            Margin="0,0,0,10" />
+
+
+                        <Border
+                            Background="#FFFFFF"
+                            BorderBrush="#DDE3E8"
+                            BorderThickness="1"
+                            Padding="12"
+                            Margin="0,0,0,12">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Text="K 最小允许值"
+                                    FontSize="13"
+                                    FontWeight="SemiBold"
+                                    Foreground="#1F4E79"
+                                    Margin="0,0,0,10" />
+
+                                <TextBox
+                                    Text="{Binding TheoryBOptimizationParameters[0].Value,
+                              Mode=TwoWay,
+                              UpdateSourceTrigger=PropertyChanged}"
+                                    Height="34"
+                                    Style="{StaticResource ParameterTextBox}" />
+
+                                <TextBlock
+                                    Text="抗倾覆稳定安全系数"
+                                    FontSize="10"
+                                    Foreground="#89929C"
+                                    Margin="0,4,0,0" />
+
+                            </StackPanel>
+
+                        </Border>
+
+
+                        <!-- ================================================= -->
+                        <!-- a1 优化范围 -->
+                        <!-- ================================================= -->
+
+                        <Border
+                            Background="#FFFFFF"
+                            BorderBrush="#DDE3E8"
+                            BorderThickness="1"
+                            Padding="12"
+                            Margin="0,0,0,12">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Text="a1 优化范围"
+                                    FontSize="13"
+                                    FontWeight="SemiBold"
+                                    Foreground="#1F4E79"
+                                    Margin="0,0,0,12" />
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+
+                                        <ColumnDefinition Width="*" />
+
+                                        <ColumnDefinition Width="*" />
+
+                                        <ColumnDefinition Width="*" />
+
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <StackPanel
+                                        Grid.Column="0"
+                                        Margin="0,0,8,0">
+
+                                        <TextBlock
+                                            Text="最小值"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding TheoryBOptimizationParameters[1].Value,
+                                      Mode=TwoWay,
+                                      UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+
+                                    <StackPanel
+                                        Grid.Column="1"
+                                        Margin="4,0,4,0">
+
+                                        <TextBlock
+                                            Text="最大值"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            HorizontalAlignment="Center"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding TheoryBOptimizationParameters[2].Value,
+                                      Mode=TwoWay,
+                                      UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+
+                                    <StackPanel
+                                        Grid.Column="2"
+                                        Margin="8,0,0,0">
+
+                                        <TextBlock
+                                            Text="步长 Δa"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding TheoryBOptimizationParameters[3].Value,
+                                      Mode=TwoWay,
+                                      UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+                                </Grid>
+
+                            </StackPanel>
+
+                        </Border>
+
+
+                        <!-- ================================================= -->
+                        <!-- b1 优化范围 -->
+                        <!-- ================================================= -->
+
+                        <Border
+                            Background="#FFFFFF"
+                            BorderBrush="#DDE3E8"
+                            BorderThickness="1"
+                            Padding="12"
+                            Margin="0,0,0,12">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Text="b1 优化范围"
+                                    FontSize="13"
+                                    FontWeight="SemiBold"
+                                    Foreground="#1F4E79"
+                                    Margin="0,0,0,12" />
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+
+                                        <ColumnDefinition Width="*" />
+
+                                        <ColumnDefinition Width="*" />
+
+                                        <ColumnDefinition Width="*" />
+
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <StackPanel
+                                        Grid.Column="0"
+                                        Margin="0,0,8,0">
+
+                                        <TextBlock
+                                            Text="最小值"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding TheoryBOptimizationParameters[4].Value,
+                                      Mode=TwoWay,
+                                      UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+
+                                    <StackPanel
+                                        Grid.Column="1"
+                                        Margin="4,0,4,0">
+
+                                        <TextBlock
+                                            Text="最大值"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            HorizontalAlignment="Center"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding TheoryBOptimizationParameters[5].Value,
+                                      Mode=TwoWay,
+                                      UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+
+                                    <StackPanel
+                                        Grid.Column="2"
+                                        Margin="8,0,0,0">
+
+                                        <TextBlock
+                                            Text="步长 Δb"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding TheoryBOptimizationParameters[6].Value,
+                                      Mode=TwoWay,
+                                      UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+                                </Grid>
+
+                            </StackPanel>
+
+                        </Border>
+
+
+                        <!-- ================================================= -->
+                        <!-- h 优化范围 -->
+                        <!-- ================================================= -->
+
+                        <Border
+                            Background="#FFFFFF"
+                            BorderBrush="#DDE3E8"
+                            BorderThickness="1"
+                            Padding="12"
+                            Margin="0,0,0,12">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Text="h 优化范围"
+                                    FontSize="13"
+                                    FontWeight="SemiBold"
+                                    Foreground="#1F4E79"
+                                    Margin="0,0,0,12" />
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+
+                                        <ColumnDefinition Width="*" />
+
+                                        <ColumnDefinition Width="*" />
+
+                                        <ColumnDefinition Width="*" />
+
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <StackPanel
+                                        Grid.Column="0"
+                                        Margin="0,0,8,0">
+
+                                        <TextBlock
+                                            Text="最小值"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding TheoryBOptimizationParameters[7].Value,
+                                      Mode=TwoWay,
+                                      UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+
+                                    <StackPanel
+                                        Grid.Column="1"
+                                        Margin="4,0,4,0">
+
+                                        <TextBlock
+                                            Text="最大值"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            HorizontalAlignment="Center"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding TheoryBOptimizationParameters[8].Value,
+                                      Mode=TwoWay,
+                                      UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+
+                                    <StackPanel
+                                        Grid.Column="2"
+                                        Margin="8,0,0,0">
+
+                                        <TextBlock
+                                            Text="步长 Δh"
+                                            FontSize="10"
+                                            Foreground="#89929C"
+                                            Margin="0,0,0,5" />
+
+                                        <TextBox
+                                            Text="{Binding TheoryBOptimizationParameters[9].Value,
+                                      Mode=TwoWay,
+                                      UpdateSourceTrigger=PropertyChanged}"
+                                            Style="{StaticResource ParameterTextBox}" />
+
+                                    </StackPanel>
+
+                                </Grid>
+
+                            </StackPanel>
+
+                        </Border>
+
+
+                        <!-- ================================================= -->
+                        <!-- 优化原则 -->
+                        <!-- ================================================= -->
+
+                        <Border
+                            Background="#F7F9FB"
+                            BorderBrush="#E0E5EA"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            Padding="12"
+                            Margin="0,4,0,0">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Text="优化原则"
+                                    FontSize="11"
+                                    FontWeight="SemiBold"
+                                    Foreground="#59636E" />
+
+                                <TextBlock
+                                    Text="在满足 K 最小允许值的前提下，以 a1 × b1 × h 最小为优化目标。"
+                                    FontSize="10"
+                                    Foreground="#7B8490"
+                                    TextWrapping="Wrap"
+                                    Margin="0,4,0,0" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                    </StackPanel>
                 </Grid>
 
             </ScrollViewer>

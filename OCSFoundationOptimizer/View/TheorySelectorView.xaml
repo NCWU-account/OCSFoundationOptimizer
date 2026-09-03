@@ -580,6 +580,175 @@
                     </Grid>
 
                 </Button>
+                <!-- ================================================= -->
+                <!-- 理论 B 优化 -->
+                <!-- ================================================= -->
+
+                <Button
+                    Command="{Binding SelectTheoryBOptimizationCommand}">
+
+                    <Button.Style>
+
+                        <Style
+                            TargetType="Button"
+                            BasedOn="{StaticResource TheoryButton}">
+
+                            <Style.Triggers>
+
+                                <DataTrigger
+                                    Binding="{Binding IsTheoryBOptimizationSelected}"
+                                    Value="True">
+
+                                    <Setter
+                                        Property="Background"
+                                        Value="#EEF5FB" />
+
+                                    <Setter
+                                        Property="BorderBrush"
+                                        Value="#1F4E79" />
+
+                                    <Setter
+                                        Property="BorderThickness"
+                                        Value="2" />
+
+                                </DataTrigger>
+
+
+                                <Trigger
+                                    Property="IsMouseOver"
+                                    Value="True">
+
+                                    <Setter
+                                        Property="Background"
+                                        Value="#F1F6FA" />
+
+                                    <Setter
+                                        Property="BorderBrush"
+                                        Value="#9EB2C3" />
+
+                                </Trigger>
+
+                            </Style.Triggers>
+
+                        </Style>
+
+                    </Button.Style>
+
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="28" />
+
+                            <ColumnDefinition Width="*" />
+
+                            <ColumnDefinition Width="Auto" />
+
+                        </Grid.ColumnDefinitions>
+
+
+                        <!-- 状态圆点 -->
+
+                        <Ellipse
+                            Grid.Column="0"
+                            Width="9"
+                            Height="9"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+
+                            <Ellipse.Style>
+
+                                <Style TargetType="Ellipse">
+
+                                    <Setter
+                                        Property="Fill"
+                                        Value="#AAB4BE" />
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger
+                                            Binding="{Binding IsTheoryBOptimizationSelected}"
+                                            Value="True">
+
+                                            <Setter
+                                                Property="Fill"
+                                                Value="#1F4E79" />
+
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+
+                            </Ellipse.Style>
+
+                        </Ellipse>
+
+
+                        <!-- 文字 -->
+
+                        <StackPanel
+                            Grid.Column="1">
+
+                            <TextBlock
+                                Text="理论 B 优化"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#263238" />
+
+                            <TextBlock
+                                Text="反向优化设计"
+                                FontSize="10"
+                                Foreground="#89929C"
+                                Margin="0,3,0,0" />
+
+                        </StackPanel>
+
+
+                        <!-- 对勾 -->
+
+                        <TextBlock
+                            Grid.Column="2"
+                            Text="✓"
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Foreground="#1F4E79"
+                            VerticalAlignment="Center">
+
+                            <TextBlock.Style>
+
+                                <Style
+                                    TargetType="TextBlock">
+
+                                    <Setter
+                                        Property="Visibility"
+                                        Value="Collapsed" />
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger
+                                            Binding="{Binding IsTheoryBOptimizationSelected}"
+                                            Value="True">
+
+                                            <Setter
+                                                Property="Visibility"
+                                                Value="Visible" />
+
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+
+                            </TextBlock.Style>
+
+                        </TextBlock>
+
+                    </Grid>
+
+                </Button>
+
 
             </StackPanel>
 

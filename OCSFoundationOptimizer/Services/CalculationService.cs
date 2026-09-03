@@ -20,7 +20,8 @@ namespace OCSFoundationOptimizer.Services
                 {
                     new CalculationTheoryA(),
                     new CalculationAOptimization(),
-                    new CalculationTheoryB()
+                    new CalculationTheoryB(),
+                    new CalculationBOptimization()
                 };
 
             _modules =

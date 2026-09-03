@@ -62,6 +62,7 @@
         <Compile Include="CalculationBooks\CalculationBookB.cs" />
         <Compile Include="CalculationBooks\CalculationBookUtil\WordHelper.cs" />
         <Compile Include="CalculationBooks\ICalculationBookGenerator.cs" />
+        <Compile Include="Calculations\CalculationBOptimization.cs" />
         <Compile Include="Calculations\CalculationTheoryA.cs" />
         <Compile Include="Calculations\CalculationAOptimization.cs" />
         <Compile Include="Calculations\CalculationTheoryB.cs" />

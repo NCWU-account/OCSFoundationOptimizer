@@ -18,6 +18,10 @@
         /// <summary>
         /// 真正的理论 B
         /// </summary>
-        B
+        B,
+        /// <summary>
+        /// 基于理论 B 的反向优化
+        /// </summary>
+        BOptimization
     }
 }
