@@ -45,7 +45,16 @@ namespace OCSFoundationOptimizer.ViewModels
                         CalculationTheoryType.B);
                 });
 
+            // =====================================================
+            // 理论 B 优化
+            // =====================================================
 
+            SelectTheoryBOptimizationCommand =
+                new RelayCommand(_ =>
+                {
+                    SelectTheory(
+                        CalculationTheoryType.BOptimization);
+                });
             // =====================================================
             // 执行计算
             // =====================================================
@@ -56,9 +65,9 @@ namespace OCSFoundationOptimizer.ViewModels
                     _ => CanCalculate);
 
 
-            // =====================================================
-            // A 优化
-            // =====================================================
+// =====================================================
+// 反向优化
+// =====================================================
 
             OptimizeCommand =
                 new RelayCommand(
@@ -66,12 +75,16 @@ namespace OCSFoundationOptimizer.ViewModels
                     _ =>
                     {
                         return
-                            CurrentTheory ==
-                            CalculationTheoryType.AOptimization &&
+                            (
+                                CurrentTheory ==
+                                CalculationTheoryType.AOptimization
+                                ||
+                                CurrentTheory ==
+                                CalculationTheoryType.BOptimization
+                            )
+                            &&
                             CanOptimize;
                     });
-
-
             // =====================================================
             // 生成计算书
             // =====================================================

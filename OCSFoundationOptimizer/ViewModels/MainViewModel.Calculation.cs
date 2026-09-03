@@ -122,6 +122,25 @@ namespace OCSFoundationOptimizer.ViewModels
                         "当前选择：理论 B";
                 }
             }
+            // =================================================
+            // 理论 B 优化
+            // =================================================
+
+            else if (CurrentTheory ==
+                     CalculationTheoryType.BOptimization)
+            {
+                if (AreAllTheoryBParametersValid() &&
+                    AreTheoryBOptimizationParametersValid())
+                {
+                    CalculationStatus =
+                        "参数已就绪，可以开始理论 B 优化。";
+                }
+                else
+                {
+                    CalculationStatus =
+                        "当前选择：理论 B 优化，请设置优化参数。";
+                }
+            }
 
 
             OnPropertyChanged(

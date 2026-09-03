@@ -83,6 +83,8 @@ namespace OCSFoundationOptimizer.ViewModels
 
                 OnPropertyChanged(
                     nameof(IsTheoryBSelected));
+                OnPropertyChanged(
+                    nameof(IsTheoryBOptimizationSelected));
 
                 OnPropertyChanged(
                     nameof(CurrentTheoryDisplayName));
@@ -153,6 +155,20 @@ namespace OCSFoundationOptimizer.ViewModels
                        CalculationTheoryType.AOptimization;
             }
         }
+
+        // =====================================================
+        // 理论 B 优化是否选中
+        // =====================================================
+
+        public bool IsTheoryBOptimizationSelected
+        {
+            get
+            {
+                return CurrentTheory ==
+                       CalculationTheoryType.BOptimization;
+            }
+        }
+
         // =====================================================
         // 当前理论显示名称
         // =====================================================
@@ -171,7 +187,10 @@ namespace OCSFoundationOptimizer.ViewModels
 
                     case CalculationTheoryType.B:
                         return "理论 B";
-
+                    
+                    case CalculationTheoryType.BOptimization:
+                        return "理论 B 优化";
+                    
                     default:
                         return "";
                 }
@@ -217,20 +236,28 @@ namespace OCSFoundationOptimizer.ViewModels
 
 
         // =====================================================
-        // 优化参数
+        // 理论 A 优化参数
         // =====================================================
 
         public ObservableCollection<ParameterItem>
             OptimizationParameters { get; }
             = new();
 
-
-        // =====================================================
-        // 优化参数分组
-        // =====================================================
-
         public ObservableCollection<ParameterGroup>
             OptimizationGroups { get; }
+            = new();
+
+
+        // =====================================================
+        // 理论 B 优化参数
+        // =====================================================
+
+        public ObservableCollection<ParameterItem>
+            TheoryBOptimizationParameters { get; }
+            = new();
+
+        public ObservableCollection<ParameterGroup>
+            TheoryBOptimizationGroups { get; }
             = new();
 
 
@@ -245,9 +272,8 @@ namespace OCSFoundationOptimizer.ViewModels
 
         public ObservableCollection<ParameterItem> TheoryBParameters { get; } = new();
         public ObservableCollection<ParameterGroup> TheoryBParameterGroups { get; } = new();
-        
-        
-        
+
+
         // =====================================================
         // 当前计算状态
         // =====================================================
@@ -301,13 +327,25 @@ namespace OCSFoundationOptimizer.ViewModels
         {
             get
             {
-                return
-                    CurrentTheory ==
-                    CalculationTheoryType.AOptimization
-                    &&
-                    AreAllParametersValid()
-                    &&
-                    AreOptimizationParametersValid();
+                if (CurrentTheory ==
+                    CalculationTheoryType.AOptimization)
+                {
+                    return
+                        AreAllParametersValid()
+                        &&
+                        AreOptimizationParametersValid();
+                }
+
+                if (CurrentTheory ==
+                    CalculationTheoryType.BOptimization)
+                {
+                    return
+                        AreAllTheoryBParametersValid()
+                        &&
+                        AreTheoryBOptimizationParametersValid();
+                }
+
+                return false;
             }
         }
 
@@ -317,16 +355,17 @@ namespace OCSFoundationOptimizer.ViewModels
         // =====================================================
 
         public ICommand SelectTheoryACommand { get; set; }
-        public ICommand SelectTheoryAOptimizationCommand { get;set; }
-        public ICommand SelectTheoryBCommand { get;set; }
+        public ICommand SelectTheoryAOptimizationCommand { get; set; }
+        public ICommand SelectTheoryBCommand { get; set; }
+        
+        public ICommand SelectTheoryBOptimizationCommand { get; set; }
+        public ICommand CalculateCommand { get; set; }
 
-        public ICommand CalculateCommand { get;set; }
+        public ICommand OptimizeCommand { get; set; }
 
-        public ICommand OptimizeCommand { get;set; }
+        public ICommand GenerateCalculationBookCommand { get; set; }
 
-        public ICommand GenerateCalculationBookCommand { get;set; }
-
-        public ICommand ToggleResultCommand { get;set; }
+        public ICommand ToggleResultCommand { get; set; }
 
 
         // =====================================================
@@ -362,11 +401,12 @@ namespace OCSFoundationOptimizer.ViewModels
             // =================================================
             // 初始化理论 A 参数
             InitializeParameters();
-            // 初始化优化参数
+            // 初始化A优化参数
             InitializeOptimizationParameters();
 
             // 初始化理论 B 参数
             InitializeTheoryBParameters();
+            InitializeTheoryBOptimizationParameters();
             // =================================================
             // 根据 Group 创建参数分组
             // =================================================
@@ -376,6 +416,7 @@ namespace OCSFoundationOptimizer.ViewModels
             BuildOptimizationGroups();
             BuildTheoryBParameterGroups();
 
+            BuildTheoryBOptimizationGroups();
             // =================================================
             // 监听参数变化
             // =================================================
@@ -449,18 +490,18 @@ namespace OCSFoundationOptimizer.ViewModels
 
         public event EventHandler?
             CanExecuteChanged
-        {
-            add
             {
-                CommandManager
-                    .RequerySuggested += value;
-            }
+                add
+                {
+                    CommandManager
+                        .RequerySuggested += value;
+                }
 
-            remove
-            {
-                CommandManager
-                    .RequerySuggested -= value;
+                remove
+                {
+                    CommandManager
+                        .RequerySuggested -= value;
+                }
             }
-        }
     }
 }

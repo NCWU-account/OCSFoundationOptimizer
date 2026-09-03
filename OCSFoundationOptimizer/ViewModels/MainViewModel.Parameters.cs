@@ -21,6 +21,7 @@ namespace OCSFoundationOptimizer.ViewModels
                         x.Value));
         }
 
+
         // =====================================================
         // 判断理论B参数是否全部填写
         // =====================================================
@@ -32,6 +33,29 @@ namespace OCSFoundationOptimizer.ViewModels
                     !string.IsNullOrWhiteSpace(
                         x.Value));
         }
+
+
+        // =====================================================
+        // 判断理论B优化参数是否合法
+        // =====================================================
+
+        private bool AreTheoryBOptimizationParametersValid()
+        {
+            if (TheoryBOptimizationParameters.Any(x =>
+                    string.IsNullOrWhiteSpace(x.Value)))
+            {
+                return false;
+            }
+
+            if (TheoryBOptimizationParameters.Any(x =>
+                    x.HasError))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         // =====================================================
         // 判断参数是否全部合法
         // =====================================================
@@ -99,8 +123,6 @@ namespace OCSFoundationOptimizer.ViewModels
 
         private void InitializeParameters()
         {
-            
-            
             InputParameters.Add(
                 new ParameterItem
                 {
@@ -593,7 +615,7 @@ namespace OCSFoundationOptimizer.ViewModels
                     IsRequired = true,
                     Group = "几何尺寸"
                 });
-            
+
             TheoryBParameters.Add(
                 new ParameterItem
                 {
@@ -798,7 +820,7 @@ namespace OCSFoundationOptimizer.ViewModels
                     Type = ParameterType.Number,
                     IsRequired = true
                 });
-            
+
             TheoryBParameters.Add(
                 new ParameterItem
                 {
@@ -900,6 +922,163 @@ namespace OCSFoundationOptimizer.ViewModels
 
             // 后续继续添加 B 的参数
         }
+
+        // =====================================================
+        // 初始化B优化参数
+        // =====================================================
+
+        private void InitializeTheoryBOptimizationParameters()
+        {
+            TheoryBOptimizationParameters.Clear();
+
+
+            // =================================================
+            // 优化目标
+            // =================================================
+
+            TheoryBOptimizationParameters.Add(
+                new ParameterItem
+                {
+                    Key = "B_K_MIN",
+                    Name = "K最小允许值",
+                    Value = "1.50",
+                    Unit = "",
+                    Type = ParameterType.Number,
+                    IsRequired = true,
+                    Group = "优化目标"
+                });
+
+
+            // =================================================
+            // a1
+            // =================================================
+
+            TheoryBOptimizationParameters.Add(
+                new ParameterItem
+                {
+                    Key = "B_A1_MIN",
+                    Name = "a1最小值",
+                    Value = "2000",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true,
+                    Group = "a1优化范围"
+                });
+
+
+            TheoryBOptimizationParameters.Add(
+                new ParameterItem
+                {
+                    Key = "B_A1_MAX",
+                    Name = "a1最大值",
+                    Value = "4000",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true,
+                    Group = "a1优化范围"
+                });
+
+
+            TheoryBOptimizationParameters.Add(
+                new ParameterItem
+                {
+                    Key = "B_DELTA_A",
+                    Name = "a1步长Δa",
+                    Value = "50",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true,
+                    Group = "a1优化范围"
+                });
+
+
+            // =================================================
+            // b1
+            // =================================================
+
+            TheoryBOptimizationParameters.Add(
+                new ParameterItem
+                {
+                    Key = "B_B1_MIN",
+                    Name = "b1最小值",
+                    Value = "1800",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true,
+                    Group = "b1优化范围"
+                });
+
+
+            TheoryBOptimizationParameters.Add(
+                new ParameterItem
+                {
+                    Key = "B_B1_MAX",
+                    Name = "b1最大值",
+                    Value = "3500",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true,
+                    Group = "b1优化范围"
+                });
+
+
+            TheoryBOptimizationParameters.Add(
+                new ParameterItem
+                {
+                    Key = "B_DELTA_B",
+                    Name = "b1步长Δb",
+                    Value = "50",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true,
+                    Group = "b1优化范围"
+                });
+
+
+            // =================================================
+            // h
+            // =================================================
+
+            TheoryBOptimizationParameters.Add(
+                new ParameterItem
+                {
+                    Key = "B_H_MIN",
+                    Name = "h最小值",
+                    Value = "2500",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true,
+                    Group = "h优化范围"
+                });
+
+
+            TheoryBOptimizationParameters.Add(
+                new ParameterItem
+                {
+                    Key = "B_H_MAX",
+                    Name = "h最大值",
+                    Value = "5000",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true,
+                    Group = "h优化范围"
+                });
+
+
+            TheoryBOptimizationParameters.Add(
+                new ParameterItem
+                {
+                    Key = "B_DELTA_H",
+                    Name = "h步长Δh",
+                    Value = "50",
+                    Unit = "mm",
+                    Type = ParameterType.Number,
+                    IsRequired = true,
+                    Group = "h优化范围"
+                });
+        }
+
+
         // =====================================================
         // 根据 Group 创建参数分组
         // =====================================================
@@ -982,6 +1161,34 @@ namespace OCSFoundationOptimizer.ViewModels
 
 
         // =====================================================
+        // 创建理论B优化参数分组
+        // =====================================================
+
+        private void BuildTheoryBOptimizationGroups()
+        {
+            TheoryBOptimizationGroups.Clear();
+
+            var groups =
+                TheoryBOptimizationParameters
+                    .GroupBy(x => x.Group)
+                    .Select(group =>
+                        new ParameterGroup
+                        {
+                            Name = group.Key,
+
+                            Parameters =
+                                new ObservableCollection<ParameterItem>(
+                                    group)
+                        });
+
+            foreach (var group in groups)
+            {
+                TheoryBOptimizationGroups.Add(group);
+            }
+        }
+
+
+        // =====================================================
         // 监听输入参数
         // =====================================================
 
@@ -1000,6 +1207,12 @@ namespace OCSFoundationOptimizer.ViewModels
             }
 
             foreach (var parameter in TheoryBParameters)
+            {
+                parameter.PropertyChanged +=
+                    Parameter_PropertyChanged;
+            }
+
+            foreach (var parameter in TheoryBOptimizationParameters)
             {
                 parameter.PropertyChanged +=
                     Parameter_PropertyChanged;
@@ -1032,6 +1245,29 @@ namespace OCSFoundationOptimizer.ViewModels
 
             if (CurrentTheory ==
                 CalculationTheoryType.AOptimization)
+            {
+                CalculationStatus =
+                    "优化参数已修改，请点击“开始优化”。";
+
+                OnPropertyChanged(
+                    nameof(CanOptimize));
+
+                OnPropertyChanged(
+                    nameof(CanCalculate));
+
+                CommandManager
+                    .InvalidateRequerySuggested();
+
+                return;
+            }
+            
+            
+            // =====================================================
+            // 理论 B 优化
+            // =====================================================
+
+            if (CurrentTheory ==
+                CalculationTheoryType.BOptimization)
             {
                 CalculationStatus =
                     "优化参数已修改，请点击“开始优化”。";

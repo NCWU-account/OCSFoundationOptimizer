@@ -27,7 +27,7 @@
 
 
             <!-- ================================================= -->
-            <!-- 理论 A：执行计算 -->
+            <!-- 普通理论：执行计算 -->
             <!-- ================================================= -->
 
             <Button Content="执行计算"
@@ -56,6 +56,18 @@
 
                             </DataTrigger>
 
+
+                            <!-- 理论 B 优化时隐藏 -->
+                            <DataTrigger
+                                Binding="{Binding IsTheoryBOptimizationSelected}"
+                                Value="True">
+
+                                <Setter
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+
+                            </DataTrigger>
+
                         </Style.Triggers>
 
                     </Style>
@@ -66,7 +78,7 @@
 
 
             <!-- ================================================= -->
-            <!-- 理论 A 优化：开始优化 -->
+            <!-- 反向优化：开始优化 -->
             <!-- ================================================= -->
 
             <Button Content="开始优化"
@@ -78,8 +90,9 @@
                     <Style TargetType="Button"
                            BasedOn="{StaticResource ExecuteButton}">
 
-                        <Setter Property="Visibility"
-                                Value="Collapsed" />
+                        <Setter
+                            Property="Visibility"
+                            Value="Collapsed" />
 
                         <Style.Triggers>
 
@@ -94,12 +107,28 @@
 
                             </DataTrigger>
 
+
+                            <!-- 理论 B 优化时显示 -->
+                            <DataTrigger
+                                Binding="{Binding IsTheoryBOptimizationSelected}"
+                                Value="True">
+
+                                <Setter
+                                    Property="Visibility"
+                                    Value="Visible" />
+
+                            </DataTrigger>
+
                         </Style.Triggers>
 
                     </Style>
 
                 </Button.Style>
+
             </Button>
+
         </StackPanel>
+
     </Grid>
+
 </UserControl>
