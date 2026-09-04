@@ -1,5 +1,4 @@
-﻿
-using OCSFoundationOptimizer.Models;
+﻿using OCSFoundationOptimizer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -336,6 +335,14 @@ namespace OCSFoundationOptimizer.Calculations
 
                             if (Kc < targetKc)
                                 continue;
+                            // =================================================
+                            // 判断 a1 与 b1 的尺寸差
+                            //
+                            // 要求：|a1 - b1| <= 400 mm
+                            // =================================================
+
+                            if (Math.Abs(a1mm - b1mm) > 400.0)
+                                continue;
 
 
                             // =================================================
@@ -502,12 +509,12 @@ namespace OCSFoundationOptimizer.Calculations
                     bestH / 1000.0;
 
                 double finalEp =
-                    (
-                        r *
-                        (finalH - h0) *
-                        (finalH - h0) *
-                        Kp
-                    ) / 2.0;
+                (
+                    r *
+                    (finalH - h0) *
+                    (finalH - h0) *
+                    Kp
+                ) / 2.0;
 
                 double finalHc =
                     (finalH - h0) / 3.0;
@@ -695,8 +702,7 @@ namespace OCSFoundationOptimizer.Calculations
             string key)
         {
             var parameter =
-                parameters.FirstOrDefault(
-                    x => x.Key == key);
+                parameters.FirstOrDefault(x => x.Key == key);
 
             if (parameter == null)
             {
