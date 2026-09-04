@@ -661,44 +661,6 @@ namespace OCSFoundationOptimizer.Calculations
                     "");
 
 
-                AddResult(
-                    result,
-                    "M_r",
-                    "抗倾覆力矩Mr",
-                    bestMr.ToString("F3"),
-                    "kN∙m");
-
-
-                AddResult(
-                    result,
-                    "M_0",
-                    "倾覆力矩M0",
-                    bestM0.ToString("F3"),
-                    "kN∙m");
-
-
-                AddResult(
-                    result,
-                    "M1B",
-                    "基础前后面土壤抗压力的力矩M1B",
-                    bestM1B.ToString("F3"),
-                    "kN∙m");
-
-
-                AddResult(
-                    result,
-                    "M2B",
-                    "基础底部的土壤抵抗力矩M2B",
-                    bestM2B.ToString("F3"),
-                    "kN∙m");
-
-
-                AddResult(
-                    result,
-                    "M3B",
-                    "摩擦力矩M3B",
-                    bestM3B.ToString("F3"),
-                    "kN∙m");
 
 
                 // =================================================
