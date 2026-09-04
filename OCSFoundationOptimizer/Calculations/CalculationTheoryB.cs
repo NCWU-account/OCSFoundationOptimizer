@@ -10,7 +10,7 @@ public class CalculationTheoryB : ICalculationModule
         CalculationTheoryType.B;
 
     public string Name =>
-        "理论 B";
+        "蓝皮书";
 
     public CalculationResult Calculate(
         IReadOnlyList<ParameterItem> parameters)

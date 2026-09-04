@@ -184,13 +184,13 @@
                             Grid.Column="1">
 
                             <TextBlock
-                                Text="理论 A"
+                                Text="白皮书"
                                 FontSize="14"
                                 FontWeight="SemiBold"
                                 Foreground="#263238" />
 
                             <TextBlock
-                                Text="计算模型 A"
+                                Text="《建筑地基基础设计规范》（GB 50007-2011）"
                                 FontSize="10"
                                 Foreground="#89929C"
                                 Margin="0,3,0,0" />
@@ -354,7 +354,7 @@
                             Grid.Column="1">
 
                             <TextBlock
-                                Text="理论 A 优化"
+                                Text="白皮书优化"
                                 FontSize="14"
                                 FontWeight="SemiBold"
                                 Foreground="#263238" />
@@ -524,13 +524,13 @@
                             Grid.Column="1">
 
                             <TextBlock
-                                Text="理论 B"
+                                Text="蓝皮书"
                                 FontSize="14"
                                 FontWeight="SemiBold"
                                 Foreground="#263238" />
 
                             <TextBlock
-                                Text="计算模型 B"
+                                Text="《电气化铁道设计手册接触网》（1983）"
                                 FontSize="10"
                                 Foreground="#89929C"
                                 Margin="0,3,0,0" />
@@ -692,7 +692,7 @@
                             Grid.Column="1">
 
                             <TextBlock
-                                Text="理论 B 优化"
+                                Text="蓝皮书优化"
                                 FontSize="14"
                                 FontWeight="SemiBold"
                                 Foreground="#263238" />

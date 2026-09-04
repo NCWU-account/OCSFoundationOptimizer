@@ -14,7 +14,7 @@ namespace OCSFoundationOptimizer.Calculations
             CalculationTheoryType.AOptimization;
 
         public string Name =>
-            "理论 A 优化";
+            "白皮书优化";
 
         public CalculationResult Calculate(
             IReadOnlyList<ParameterItem> parameters)

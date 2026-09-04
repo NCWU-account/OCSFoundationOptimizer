@@ -180,16 +180,16 @@ namespace OCSFoundationOptimizer.ViewModels
                 switch (CurrentTheory)
                 {
                     case CalculationTheoryType.A:
-                        return "理论 A";
+                        return "《建筑地基基础设计规范》（GB 50007-2011）";
 
                     case CalculationTheoryType.AOptimization:
-                        return "理论 A 优化";
+                        return "《建筑地基基础设计规范》（GB 50007-2011）";
 
                     case CalculationTheoryType.B:
-                        return "理论 B";
+                        return "《电气化铁道设计手册接触网》（1983）";
                     
                     case CalculationTheoryType.BOptimization:
-                        return "理论 B 优化";
+                        return "《电气化铁道设计手册接触网》（1983）";
                     
                     default:
                         return "";

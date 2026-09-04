@@ -447,7 +447,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "A_K0_MIN",
                     Name = "K₀最小允许值",
-                    Value = "1.50",
+                    Value = "1.60",
                     Unit = "",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -477,7 +477,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "A_A1_MIN",
                     Name = "a1最小值",
-                    Value = "2000",
+                    Value = "1000",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -520,7 +520,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "A_B1_MIN",
                     Name = "b1最小值",
-                    Value = "1800",
+                    Value = "1000",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -533,7 +533,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "A_B1_MAX",
                     Name = "b1最大值",
-                    Value = "3500",
+                    Value = "4000",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -563,7 +563,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "A_H_MIN",
                     Name = "h最小值",
-                    Value = "2500",
+                    Value = "3500",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -576,7 +576,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "A_H_MAX",
                     Name = "h最大值",
-                    Value = "5000",
+                    Value = "3500",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -941,7 +941,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "B_K_MIN",
                     Name = "K最小允许值",
-                    Value = "1.50",
+                    Value = "1.60",
                     Unit = "",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -958,7 +958,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "B_A1_MIN",
                     Name = "a1最小值",
-                    Value = "2000",
+                    Value = "1000",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -1001,7 +1001,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "B_B1_MIN",
                     Name = "b1最小值",
-                    Value = "1800",
+                    Value = "1000",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -1014,7 +1014,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "B_B1_MAX",
                     Name = "b1最大值",
-                    Value = "3500",
+                    Value = "4000",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -1044,7 +1044,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "B_H_MIN",
                     Name = "h最小值",
-                    Value = "2500",
+                    Value = "3500",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,
@@ -1057,7 +1057,7 @@ namespace OCSFoundationOptimizer.ViewModels
                 {
                     Key = "B_H_MAX",
                     Name = "h最大值",
-                    Value = "5000",
+                    Value = "3500",
                     Unit = "mm",
                     Type = ParameterType.Number,
                     IsRequired = true,

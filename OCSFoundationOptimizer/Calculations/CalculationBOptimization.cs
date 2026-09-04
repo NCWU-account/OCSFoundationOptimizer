@@ -11,7 +11,7 @@ namespace OCSFoundationOptimizer.Calculations
             CalculationTheoryType.BOptimization;
 
         public string Name =>
-            "理论 B 优化";
+            "蓝皮书优化";
 
 
         public CalculationResult Calculate(
